@@ -21,17 +21,19 @@ usePageSeo({
 })
 
 const { public: { siteUrl } } = useRuntimeConfig()
+const reqUrl = useRequestURL()
+const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
 
 useJsonLd({
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: service.value.h1,
   description: service.value.hero_description || service.value.short_description,
-  url: `${siteUrl}/${service.value.slug}`,
+  url: `${baseUrl}/${service.value.slug}`,
   provider: {
     '@type': 'RepairService',
     name: 'REVIVE',
-    url: siteUrl,
+    url: baseUrl,
   },
   areaServed: {
     '@type': 'City',

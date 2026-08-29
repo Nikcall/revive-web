@@ -13,6 +13,8 @@ usePageSeo({
 })
 
 const { public: { siteUrl } } = useRuntimeConfig()
+const reqUrl = useRequestURL()
+const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
 
 if (content.value.faq?.length) {
   useJsonLd({
@@ -33,10 +35,10 @@ useJsonLd({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'REVIVE',
-  url: siteUrl,
+  url: baseUrl,
   potentialAction: {
     '@type': 'SearchAction',
-    target: `${siteUrl}/?q={search_term_string}`,
+    target: `${baseUrl}/?q={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
 })

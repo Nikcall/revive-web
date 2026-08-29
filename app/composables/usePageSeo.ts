@@ -10,7 +10,9 @@ interface PageSeo {
 
 export function usePageSeo(seo: PageSeo) {
   const { public: { siteUrl } } = useRuntimeConfig()
-  const path = useRequestURL().pathname
+  const reqUrl = useRequestURL()
+  const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
+  const path = reqUrl.pathname
 
   const canonical = seo.canonical || path
   const absoluteCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`

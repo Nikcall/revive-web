@@ -11,13 +11,15 @@ usePageSeo({
 })
 
 const { public: { siteUrl } } = useRuntimeConfig()
+const reqUrl = useRequestURL()
+const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
 
 useJsonLd({
   '@context': 'https://schema.org',
   '@type': 'RepairService',
   name: 'REVIVE',
   description: 'Сервисный центр по ремонту компьютеров, ноутбуков, смартфонов и планшетов в Сургуте',
-  url: `${siteUrl}/contacts`,
+  url: `${baseUrl}/contacts`,
   telephone: '+79952431995',
   email: s.value.email,
   address: {
