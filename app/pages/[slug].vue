@@ -19,6 +19,31 @@ usePageSeo({
   description: service.value.seo_description,
   canonical: `/${service.value.slug}`,
 })
+
+const { public: { siteUrl } } = useRuntimeConfig()
+
+useJsonLd({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.value.h1,
+  description: service.value.hero_description || service.value.short_description,
+  url: `${siteUrl}/${service.value.slug}`,
+  provider: {
+    '@type': 'RepairService',
+    name: 'REVIVE',
+    url: siteUrl,
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Сургут',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: service.value.price_from,
+    priceCurrency: 'RUB',
+    availability: 'https://schema.org/InStock',
+  },
+})
 </script>
 
 <template>

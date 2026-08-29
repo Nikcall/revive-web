@@ -9,6 +9,21 @@ usePageSeo({
   description: page.value.seo_description,
   canonical: page.value.canonical,
 })
+
+if (content.value.faq?.length) {
+  useJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: content.value.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  })
+}
 </script>
 
 <template>

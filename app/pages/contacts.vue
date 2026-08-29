@@ -9,6 +9,41 @@ usePageSeo({
   description: page.value.seo_description,
   canonical: page.value.canonical,
 })
+
+const { public: { siteUrl } } = useRuntimeConfig()
+
+useJsonLd({
+  '@context': 'https://schema.org',
+  '@type': 'RepairService',
+  name: 'REVIVE',
+  description: 'Сервисный центр по ремонту компьютеров, ноутбуков, смартфонов и планшетов в Сургуте',
+  url: `${siteUrl}/contacts`,
+  telephone: '+79952431995',
+  email: s.value.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: s.value.address,
+    addressLocality: s.value.city,
+    addressCountry: 'RU',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 61.25,
+    longitude: 73.38,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '09:00',
+    closes: '21:00',
+  },
+  priceRange: '$$',
+  areaServed: {
+    '@type': 'City',
+    name: 'Сургут',
+  },
+  sameAs: [s.value.telegram, s.value.whatsapp, s.value.vk].filter(Boolean),
+})
 </script>
 
 <template>
