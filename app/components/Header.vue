@@ -193,6 +193,10 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
 }
 .hdr-social a {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   color: #555;
   transition: color 0.2s;
 }
@@ -200,8 +204,8 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
   color: var(--brand);
 }
 .hdr-social :deep(.si-img) {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 .hdr-phone {
   font-size: 15px;
