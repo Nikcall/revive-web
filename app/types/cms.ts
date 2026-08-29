@@ -131,6 +131,8 @@ export type CmsService = {
   name: string
   h1: string
   short_description: string
+  hero_description?: string
+  icon?: string
   price_from: number
   diagnostic_price: number
   warranty: string

@@ -8,8 +8,8 @@ onMounted(() => {
   show.value = localStorage.getItem('revive-cookie') !== '1'
 })
 
-function accept() {
-  localStorage.setItem('revive-cookie', '1')
+function dismiss(accepted: boolean) {
+  localStorage.setItem('revive-cookie', accepted ? 'accepted' : 'rejected')
   show.value = false
 }
 </script>
@@ -20,7 +20,10 @@ function accept() {
       {{ settings.cookie_text }}
       <NuxtLink to="/privacy">Политика конфиденциальности</NuxtLink>
     </p>
-    <button type="button" @click="accept">Ок, больше не показывать</button>
+    <div class="cookie-btns">
+      <button type="button" class="cookie-reject" @click="dismiss(false)">Отклонить</button>
+      <button type="button" class="cookie-accept" @click="dismiss(true)">Принять</button>
+    </div>
   </div>
 </template>
 
@@ -54,7 +57,12 @@ p a {
   text-underline-offset: 2px;
   font-weight: 600;
 }
-button {
+.cookie-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.cookie-accept {
   background: #000;
   color: #fff;
   border: 0;
@@ -64,6 +72,21 @@ button {
   font-weight: 700;
   font-size: 12px;
   cursor: pointer;
+}
+.cookie-reject {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding: 10px 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+}
+.cookie-reject:hover {
+  border-color: #999;
+  color: #333;
 }
 @media (max-width: 700px) {
   .cookie {
