@@ -455,10 +455,6 @@
           "visible": true
         },
         {
-          "type": "price_table",
-          "visible": true
-        },
-        {
           "type": "faq",
           "visible": true
         },
@@ -493,10 +489,6 @@
         },
         {
           "type": "service_advantages",
-          "visible": true
-        },
-        {
-          "type": "price_table",
           "visible": true
         },
         {
@@ -536,10 +528,6 @@
           "visible": true
         },
         {
-          "type": "price_table",
-          "visible": true
-        },
-        {
           "type": "faq",
           "visible": true
         },
@@ -573,10 +561,6 @@
         },
         {
           "type": "service_advantages",
-          "visible": true
-        },
-        {
-          "type": "price_table",
           "visible": true
         },
         {

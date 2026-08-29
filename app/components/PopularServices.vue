@@ -78,6 +78,10 @@ function priceLabel(item: CatalogPrice) {
           <a class="card-cta" href="#order">Заказать</a>
         </div>
       </div>
+      <NuxtLink to="/prices" class="all-link">
+        Посмотреть все цены
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+      </NuxtLink>
     </div>
   </section>
 </template>
@@ -166,6 +170,25 @@ function priceLabel(item: CatalogPrice) {
 }
 .card-cta:hover {
   background: #e04410;
+}
+.all-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brand);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.all-link:hover {
+  opacity: 0.8;
+}
+.all-link svg {
+  width: 16px;
+  height: 16px;
 }
 @media (max-width: 880px) {
   .grid { grid-template-columns: 1fr 1fr; }
