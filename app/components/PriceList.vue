@@ -271,6 +271,7 @@ select {
   font-size: 13px;
   border-radius: 8px;
   box-shadow: none;
+  width: fit-content;
 }
 .tabs {
   display: flex;
