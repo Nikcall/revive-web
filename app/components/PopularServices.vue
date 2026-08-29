@@ -2,6 +2,7 @@
 import type { CatalogPrice } from '#shared/catalog'
 
 const props = defineProps<{
+  prices?: CatalogPrice[]
   slug?: string
 }>()
 
@@ -40,17 +41,10 @@ const POPULAR: Record<string, string[]> = {
   ],
 }
 
-const { data } = await useAsyncData(`popular:${props.slug}`, async () => {
-  if (!props.slug) return null
-  const res = await $fetch<{ services: { price_items: CatalogPrice[] }[] }>('/api/catalog', {
-    query: { slug: props.slug },
-  })
-  return res?.services?.[0]?.price_items || []
-})
-
 const popularItems = computed(() => {
   const names = POPULAR[props.slug || ''] || []
-  const allItems = data.value || []
+  if (!names.length) return []
+  const allItems = props.prices || []
   return allItems
     .filter((p) => names.includes(p.name))
     .sort((a, b) => {

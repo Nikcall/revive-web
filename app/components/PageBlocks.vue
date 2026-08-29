@@ -133,7 +133,7 @@ function stepsOf(block: CmsBlock) {
     <Hero v-if="block.type === 'hero'" :home="heroFrom(block)" :h1="h1 || 'Ремонт компьютерной и мобильной техники'" />
     <DevicePicker v-else-if="block.type === 'device_picker'" />
     <TrackCta v-else-if="block.type === 'track_cta'" />
-    <PopularServices v-else-if="block.type === 'popular_services'" :slug="serviceSlug" />
+    <PopularServices v-else-if="block.type === 'popular_services'" :prices="catalogPrices || []" :slug="serviceSlug" />
     <template v-else-if="block.type === 'service_advantages'">
       <Services v-if="block.show_catalog" :services="services" />
       <Advantages
