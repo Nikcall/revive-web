@@ -244,7 +244,7 @@ onUnmounted(() => stopChatPolling())
         </div>
 
         <div class="track-chat-messages" ref="chatScroll">
-          <p v-if="!messages.length" class="track-chat-empty">Пока нет сообщений. Напишитеfirst!</p>
+          <p v-if="!messages.length" class="track-chat-empty">Пока нет сообщений. Напишите первым!</p>
           <div
             v-for="m in messages"
             :key="m.id"
