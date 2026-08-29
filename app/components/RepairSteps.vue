@@ -134,4 +134,10 @@ p {
   .cover { background-attachment: scroll; min-height: 36vh; }
   .steps { padding: 64px 0 48px; }
 }
+@media (max-width: 480px) {
+  .steps { padding: 48px 0 32px; }
+  h3 { font-size: 18px; }
+  .quote { padding: 48px 0; }
+  .quote p { font-size: 17px; }
+}
 </style>

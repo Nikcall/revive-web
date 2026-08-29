@@ -106,7 +106,7 @@ function onMove(event: PointerEvent, slug: string, el: HTMLElement) {
 }
 .bag {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
   gap: 20px;
 }
 .bac {
@@ -212,6 +212,18 @@ function onMove(event: PointerEvent, slug: string, el: HTMLElement) {
   .ph,
   .bag {
     padding: 0 20px;
+  }
+}
+@media (max-width: 480px) {
+  .ph,
+  .bag {
+    padding: 0 16px;
+  }
+  .bag {
+    grid-template-columns: 1fr;
+  }
+  .tt {
+    font-size: clamp(28px, 7vw, 40px);
   }
 }
 </style>

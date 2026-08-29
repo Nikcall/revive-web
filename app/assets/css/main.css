@@ -126,3 +126,12 @@ textarea {
     padding: 0 24px;
   }
 }
+
+@media (max-width: 480px) {
+  :root {
+    --header-h: 56px;
+  }
+  .wrap {
+    padding: 0 16px;
+  }
+}

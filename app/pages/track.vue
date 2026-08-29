@@ -615,4 +615,10 @@ h1 {
     max-width: 90%;
   }
 }
+@media (max-width: 480px) {
+  .track-page {
+    padding: calc(var(--header-h) + 24px) 16px 56px;
+  }
+  h1 { font-size: 26px; }
+}
 </style>

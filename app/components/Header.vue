@@ -195,8 +195,8 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 44px;
+  height: 44px;
   color: #555;
   transition: color 0.2s;
 }
@@ -331,6 +331,12 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
   .hdr-mobile-social :deep(.si-img) {
     width: 20px;
     height: 20px;
+  }
+  .hdr-mobile-social a {
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

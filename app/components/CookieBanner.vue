@@ -67,7 +67,7 @@ p a {
   color: #fff;
   border: 0;
   border-radius: 30px;
-  padding: 10px 16px;
+  padding: 12px 18px;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 12px;
@@ -78,7 +78,7 @@ p a {
   color: #666;
   border: 1px solid #ccc;
   border-radius: 30px;
-  padding: 10px 16px;
+  padding: 12px 18px;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 12px;

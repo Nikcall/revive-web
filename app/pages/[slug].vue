@@ -111,4 +111,10 @@ h1 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 16px; line-height: 1.15; 
   .hero-icon { width: 120px; height: 120px; }
   .hero-icon img { width: 70px; height: 70px; }
 }
+@media (max-width: 480px) {
+  .hero { padding: 32px 0 40px; }
+  .hero-inner { gap: 20px; }
+  .hero-meta { gap: 8px; }
+  .meta-chip { font-size: 12px; padding: 5px 12px; }
+}
 </style>

@@ -89,4 +89,9 @@ p {
   gap: 8px;
   flex-wrap: wrap;
 }
+@media (max-width: 480px) {
+  .faq { padding: 56px 0; }
+  button { padding: 16px; font-size: 15px; }
+  p { padding: 0 16px 14px; font-size: 15px; }
+}
 </style>

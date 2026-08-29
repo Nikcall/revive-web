@@ -623,6 +623,18 @@ function iconSvg(name: string) {
   .tagline { max-width: 100%; }
   .hl-line { font-size: clamp(32px, 9vw, 44px); }
 }
+@media (max-width: 480px) {
+  .hero { padding: 24px 16px 32px; }
+  .chip { margin-bottom: 24px; }
+  .hl-line { font-size: clamp(28px, 8vw, 38px); }
+  .tagline { font-size: 14px; margin-bottom: 24px; }
+  .actions { margin-bottom: 32px; }
+  .stats { grid-template-columns: 1fr; gap: 12px; }
+  .stat-num { font-size: 22px; }
+  .svc { width: 100%; }
+  .adv-bar { grid-template-columns: 1fr; }
+  .adv { padding: 16px 20px; }
+}
 @media (max-width: 430px) {
   .actions { flex-direction: column; align-items: stretch; }
   .actions .btn-fill { width: 100%; justify-content: center; }

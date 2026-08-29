@@ -83,8 +83,8 @@ h2 span {
   color: var(--brand);
 }
 .nav button {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #111;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -168,5 +168,9 @@ h2 span {
   .wrap { padding: 0 20px; }
   .card { flex: 0 0 100%; }
   .track { transform: translateX(calc(-1 * v-bind(index) * 100%)) !important; }
+}
+@media (max-width: 480px) {
+  .wrap { padding: 0 16px; }
+  .rv { padding: 0 0 56px; }
 }
 </style>

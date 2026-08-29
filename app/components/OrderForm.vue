@@ -225,8 +225,8 @@ h2 {
   align-items: center;
 }
 .soc a {
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
   color: #000;
   display: grid;
   place-items: center;
@@ -307,8 +307,8 @@ textarea {
 }
 .consent input {
   margin-top: 3px;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   padding: 0;
   border: 1px solid #888;
   border-radius: 3px;
@@ -332,5 +332,9 @@ textarea {
 @media (max-width: 880px) {
   .grid { grid-template-columns: 1fr; gap: 28px; }
   .submit { width: 100%; }
+}
+@media (max-width: 480px) {
+  .order { padding: 56px 0; }
+  .soc { gap: 6px; }
 }
 </style>

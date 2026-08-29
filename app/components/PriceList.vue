@@ -329,4 +329,10 @@ li {
   .calc { grid-template-columns: 1fr; }
   .result strong { font-size: 36px; }
 }
+@media (max-width: 480px) {
+  .price { padding: 48px 0; }
+  .calc-title { font-size: 22px; }
+  .result strong { font-size: 28px; }
+  .result { padding: 12px; }
+}
 </style>

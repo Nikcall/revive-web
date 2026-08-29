@@ -30,7 +30,7 @@ useHead({
 
 <style scoped>
 .page { padding-top: calc(var(--header-h) + 32px); padding-bottom: 40px; }
-h1 { font-size: clamp(32px, 5vw, 48px); margin-bottom: 20px; }
+h1 { font-size: clamp(28px, 6vw, 48px); margin-bottom: 20px; }
 ul { list-style: none; font-size: 18px; line-height: 1.9; margin-bottom: 16px; }
 p { color: #666; }
 </style>
