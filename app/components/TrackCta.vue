@@ -8,17 +8,24 @@
         <div class="content">
           <span class="eyebrow">Техника уже в REVIVE?</span>
           <h2 class="title">Проверяйте статус ремонта онлайн</h2>
-          <p class="text">Отслеживайте tiến độ ремонта и общайтесь с мастером через личный кабинет — круглосуточно, из любого браузера.</p>
+          <p class="text">Отслеживайте ход ремонта и общайтесь с мастером через личный кабинет — круглосуточно, из любого браузера.</p>
           <NuxtLink to="/track" class="btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
             Проверить статус ремонта
           </NuxtLink>
         </div>
         <div class="visual">
-          <div class="mock-phone">
-            <div class="mock-header">
-              <span class="mock-dot" />
-              <span class="mock-title">REVIVE</span>
+          <div class="mock-browser">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <span class="dot red" />
+                <span class="dot yellow" />
+                <span class="dot green" />
+              </div>
+              <div class="url-bar">
+                <span class="favicon" />
+                <span>revive.su/track</span>
+              </div>
             </div>
             <div class="mock-body">
               <div class="mock-order">
@@ -115,31 +122,59 @@
   display: flex;
   justify-content: center;
 }
-.mock-phone {
-  width: 260px;
+.mock-browser {
+  width: 300px;
   background: #fff;
-  border-radius: 24px;
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
-.mock-header {
-  background: var(--brand);
-  padding: 16px 20px;
+.browser-bar {
+  background: #ececec;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
-.mock-dot {
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.5);
+.browser-dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.dot {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
 }
-.mock-title {
-  font-size: 14px;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 0.04em;
+.dot.red {
+  background: #ff5f57;
+}
+.dot.yellow {
+  background: #febc2e;
+}
+.dot.green {
+  background: #28c840;
+}
+.url-bar {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border-radius: 6px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+}
+.favicon {
+  width: 10px;
+  height: 10px;
+  background: var(--brand);
+  border-radius: 3px;
+  flex-shrink: 0;
 }
 .mock-body {
   padding: 20px;
@@ -222,7 +257,7 @@
 @media (max-width: 880px) {
   .card { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; }
   .visual { order: -1; }
-  .mock-phone { width: 220px; }
+  .mock-browser { width: 260px; }
 }
 @media (max-width: 480px) {
   .card { padding: 32px 20px; border-radius: 16px; }
