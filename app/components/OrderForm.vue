@@ -225,12 +225,11 @@ h2 {
   align-items: center;
 }
 .soc a {
-  width: 44px;
-  height: 44px;
   color: #000;
   display: grid;
   place-items: center;
   transition: color 0.2s;
+  padding: 7px;
 }
 .soc a:hover {
   color: var(--brand);

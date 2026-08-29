@@ -68,10 +68,9 @@ const year = new Date().getFullYear()
   margin-bottom: 20px;
 }
 .soc a {
-  width: 44px;
-  height: 44px;
   display: grid;
   place-items: center;
+  padding: 10px;
   color: #fff;
   transition: color 0.2s;
 }
