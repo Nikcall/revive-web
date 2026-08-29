@@ -14,7 +14,13 @@ echo "Building and starting Nuxt..."
 docker compose up -d --build
 
 echo "Waiting for healthcheck..."
-sleep 5
+for i in $(seq 1 15); do
+  status=$(docker inspect --format '{{.State.Health.Status}}' revive-web 2>/dev/null || echo "unknown")
+  if [ "$status" = "healthy" ]; then
+    break
+  fi
+  sleep 2
+done
 docker compose ps
 
 echo ""

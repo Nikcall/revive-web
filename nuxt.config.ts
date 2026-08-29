@@ -22,14 +22,17 @@ export default defineNuxtConfig({
     },
   },
 
+  // Приватные поля НЕ читаются через process.env.* вручную — Nuxt сам
+  // подставляет значения из переменных окружения NUXT_* в рантайме
+  // (build-time только для public.siteUrl, см. Dockerfile ARG).
   runtimeConfig: {
-    crmLeadsUrl: process.env.NUXT_CRM_LEADS_URL || '',
-    crmLeadsKey: process.env.NUXT_CRM_LEADS_KEY || '',
-    crmPublicPricelistUrl: process.env.NUXT_CRM_PUBLIC_PRICELIST_URL || 'https://crm.revive.su/api/public/pricelist',
+    crmLeadsUrl: '',
+    crmLeadsKey: '',
+    crmPublicPricelistUrl: '',
     crmTrackUrl: process.env.NUXT_CRM_TRACK_URL || 'https://crm.revive.su',
-    directusUrl: process.env.NUXT_DIRECTUS_URL || process.env.DIRECTUS_URL || 'http://localhost:8055',
+    directusUrl: '',
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+      siteUrl: '',
     },
   },
 

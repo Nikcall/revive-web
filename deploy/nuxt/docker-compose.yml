@@ -6,13 +6,16 @@ services:
     build:
       context: ../../
       dockerfile: Dockerfile
+      args:
+        NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-https://revive.su}
     container_name: revive-web
     restart: unless-stopped
     network_mode: host
-    mem_limit: 256m
+    mem_limit: 512m
     env_file: .env
     healthcheck:
       test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/']
       interval: 30s
       timeout: 5s
       retries: 3
+      start_period: 20s
