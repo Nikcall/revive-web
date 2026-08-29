@@ -11,14 +11,14 @@ interface PageSeo {
 export function usePageSeo(seo: PageSeo) {
   const { public: { siteUrl } } = useRuntimeConfig()
   const reqUrl = useRequestURL()
-  const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
+  const fallbackUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
   const path = reqUrl.pathname
 
   const canonical = seo.canonical || path
-  const absoluteCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`
+  const absoluteCanonical = canonical.startsWith('http') ? canonical : `${fallbackUrl}${canonical}`
 
   const ogImage = seo.ogImage || '/og.jpg'
-  const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
+  const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${fallbackUrl}${ogImage}`
 
   useHead({
     title: seo.title,

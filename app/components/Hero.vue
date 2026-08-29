@@ -15,12 +15,11 @@ const splitTitle = computed(() => {
   const t = cmsTitle.value
   return t.includes('компьютерной') && t.includes('мобильной')
 })
-const taglineLines = computed(() =>
-  (heroCms.value.hero_subtitle || props.home.tagline || '')
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean),
-)
+const taglineLines = computed(() => {
+  const raw = heroCms.value.hero_subtitle || props.home.tagline || ''
+  return raw.split(/\n+/).map((l) => l.trim()).filter(Boolean)
+})
+const trustItems = ['Бесплатная диагностика', 'Гарантия до 6 мес.', 'Стоимость до ремонта']
 
 onMounted(() => {
   props.home.stats.forEach((stat, idx) => {
@@ -110,6 +109,12 @@ function iconSvg(name: string) {
             {{ home.cta_secondary_text }}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
+        </div>
+        <div class="trust-row">
+          <span v-for="item in trustItems" :key="item" class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" /></svg>
+            {{ item }}
+          </span>
         </div>
         <div class="stats">
           <template v-for="(stat, i) in home.stats" :key="stat.label">
@@ -348,6 +353,26 @@ function iconSvg(name: string) {
 .actions .btn-outline svg {
   width: 16px;
   height: 16px;
+}
+.trust-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.trust-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: #0a7;
+  flex-shrink: 0;
 }
 .stats {
   display: flex;
@@ -622,6 +647,7 @@ function iconSvg(name: string) {
   .stat-sep { display: none; }
   .tagline { max-width: 100%; }
   .hl-line { font-size: clamp(32px, 9vw, 44px); }
+  .trust-row { gap: 12px; }
 }
 @media (max-width: 480px) {
   .hero { padding: 24px 16px 32px; }

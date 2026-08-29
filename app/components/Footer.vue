@@ -40,7 +40,7 @@ const year = new Date().getFullYear()
         <li><NuxtLink to="/privacy">Конфиденциальность</NuxtLink></li>
       </ul>
       <p class="copy">
-        © {{ year }} <span>RE</span>VIVE — ремонт смартфонов, ноутбуков и техники Apple в Сургуте.
+        © {{ year }} <span>RE</span>VIVE — ремонт компьютерной и мобильной техники в Сургуте.
         <br />Бесплатная диагностика · Гарантия · Выезд мастера
         <br />{{ contacts.legal_name }}
         <br />ИНН {{ contacts.inn }} · ОГРНИП {{ contacts.ogrnip }}
@@ -48,6 +48,9 @@ const year = new Date().getFullYear()
         <br />Режим работы: {{ contacts.hours }}
         <br />Тел.: <a :href="contacts.phone_href">{{ contacts.phone }}</a> · E-mail:
         <a :href="`mailto:${contacts.email}`">{{ contacts.email }}</a>
+      </p>
+      <p class="disclaimer">
+        REVIVE — независимый сервис. Упомянутые товарные знаки (Apple, Samsung, MSI, ASUS и др.) принадлежат их правообладателям. Упоминание брендов не означает авторизацию или партнёрство с производителями.
       </p>
     </div>
   </footer>
@@ -94,6 +97,12 @@ hr {
 }
 .copy span {
   color: rgb(255, 133, 98);
+}
+.disclaimer {
+  margin-top: 20px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.6;
 }
 a:hover {
   color: var(--brand);

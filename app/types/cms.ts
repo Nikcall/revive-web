@@ -109,7 +109,7 @@ export type CmsLegalBlock = {
 }
 
 export type CmsBlock = {
-  type: 'hero' | 'service_advantages' | 'price_table' | 'text_image' | 'repair_cases' | 'faq' | 'reviews' | 'cta' | 'legal' | 'qr_hub'
+  type: 'hero' | 'service_advantages' | 'price_table' | 'text_image' | 'repair_cases' | 'faq' | 'reviews' | 'cta' | 'legal' | 'qr_hub' | 'device_picker' | 'track_cta' | 'popular_services'
   visible?: boolean
   [key: string]: unknown
 }
