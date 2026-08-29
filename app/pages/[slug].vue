@@ -20,6 +20,11 @@ usePageSeo({
   canonical: `/${service.value.slug}`,
 })
 
+useBreadcrumb([
+  { name: 'Главная', href: '/' },
+  { name: service.value.h1, href: `/${service.value.slug}` },
+])
+
 const { public: { siteUrl } } = useRuntimeConfig()
 const reqUrl = useRequestURL()
 const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`

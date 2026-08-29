@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     '/remont-kompyuterov': { prerender: false },
     '/remont-smartfonov': { prerender: false },
     '/remont-planshetov': { prerender: false },
+    '/remont-iphone': { prerender: false },
     '/qr': { prerender: true, headers: { 'X-Robots-Tag': 'noindex, nofollow' } },
     '/privacy': { prerender: true },
     '/oferta': { prerender: true },

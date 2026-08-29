@@ -10,6 +10,11 @@ usePageSeo({
   canonical: page.value.canonical,
 })
 
+useBreadcrumb([
+  { name: 'Главная', href: '/' },
+  { name: 'Цены', href: '/prices' },
+])
+
 if (content.value.faq?.length) {
   useJsonLd({
     '@context': 'https://schema.org',

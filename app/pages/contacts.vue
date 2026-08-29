@@ -10,6 +10,11 @@ usePageSeo({
   canonical: page.value.canonical,
 })
 
+useBreadcrumb([
+  { name: 'Главная', href: '/' },
+  { name: 'Контакты', href: '/contacts' },
+])
+
 const { public: { siteUrl } } = useRuntimeConfig()
 const reqUrl = useRequestURL()
 const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`

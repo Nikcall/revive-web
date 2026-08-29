@@ -16,10 +16,13 @@ const { public: { siteUrl } } = useRuntimeConfig()
 const reqUrl = useRequestURL()
 const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
 
+useBreadcrumb([{ name: 'Главная', href: '/' }])
+
 if (content.value.faq?.length) {
   useJsonLd({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+
     mainEntity: content.value.faq.map((item) => ({
       '@type': 'Question',
       name: item.question,

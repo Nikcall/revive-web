@@ -23,9 +23,9 @@ const CATEGORY_LANDING: Record<string, { slug: string; landing: string; serviceN
     serviceName: 'Ремонт компьютеров',
   },
   iPhone: {
-    slug: 'remont-smartfonov',
-    landing: '/remont-smartfonov',
-    serviceName: 'Ремонт смартфонов',
+    slug: 'remont-iphone',
+    landing: '/remont-iphone',
+    serviceName: 'Ремонт iPhone',
   },
   iPad: {
     slug: 'remont-planshetov',

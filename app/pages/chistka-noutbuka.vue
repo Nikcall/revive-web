@@ -7,6 +7,12 @@ usePageSeo({
   ogDescription: 'Чистка ноутбука от пыли, замена термопасты. Устраняем перегрев за 1–2 часа. Бесплатная диагностика, гарантия.',
 })
 
+useBreadcrumb([
+  { name: 'Главная', href: '/' },
+  { name: 'Ремонт ноутбуков', href: '/remont-noutbukov' },
+  { name: 'Чистка ноутбука', href: '/chistka-noutbuka' },
+])
+
 const { public: { siteUrl } } = useRuntimeConfig()
 const reqUrl = useRequestURL()
 const baseUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
