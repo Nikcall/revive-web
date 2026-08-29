@@ -2,7 +2,6 @@
 import type { CatalogPrice } from '#shared/catalog'
 
 const props = defineProps<{
-  prices: CatalogPrice[]
   slug?: string
 }>()
 
@@ -41,9 +40,15 @@ const POPULAR: Record<string, string[]> = {
   ],
 }
 
+const { data } = await useFetch<{ services: { price_items: CatalogPrice[] }[] }>('/api/catalog', {
+  key: `popular:${props.slug}`,
+  query: props.slug ? { slug: props.slug } : undefined,
+})
+
 const popularItems = computed(() => {
   const names = POPULAR[props.slug || ''] || []
-  return props.prices
+  const allItems = data.value?.services?.[0]?.price_items || []
+  return allItems
     .filter((p) => names.includes(p.name))
     .sort((a, b) => {
       const ia = names.indexOf(a.name)
@@ -150,11 +155,6 @@ function priceLabel(item: CatalogPrice) {
   border: 1px solid var(--border);
   padding: 3px 10px;
   border-radius: 100px;
-}
-.meta.accent {
-  color: var(--brand);
-  border-color: rgba(253, 81, 25, 0.2);
-  background: rgba(253, 81, 25, 0.05);
 }
 .card-cta {
   display: block;
