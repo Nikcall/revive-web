@@ -201,9 +201,12 @@ const activeTable = computed(() => grouped.value.find(([cat]) => cat === tab.val
 }
 .calc {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr minmax(240px, 1.1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
   padding: 24px;
+}
+.calc .result {
+  grid-column: 1 / -1;
 }
 label {
   display: flex;
@@ -242,6 +245,7 @@ select {
   background: #fafafa;
   border-radius: 12px;
   padding: 16px;
+  justify-self: stretch;
 }
 .result strong {
   font-size: 40px;
