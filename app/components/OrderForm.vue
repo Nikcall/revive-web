@@ -189,7 +189,7 @@ async function onSubmit() {
             <a :href="contacts.phone_href">{{ contacts.phone }}</a>
           </span>
         </label>
-        <p v-if="status === 'ok'" class="ok">Заявка принята! Мы свяжемся с вами в ближайшее время. Спасибо за доверие — всё восстановим!</p>
+        <p v-if="status === 'ok'" class="ok">Заявка принята! Спасибо, что обратились в REVIVE. В ближайшее время мы свяжемся с вами, уточним детали и расскажем, что делать дальше.</p>
         <p v-if="status === 'error'" class="err">{{ message }}</p>
       </form>
     </div>
