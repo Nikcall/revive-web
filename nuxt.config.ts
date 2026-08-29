@@ -65,5 +65,6 @@ export default defineNuxtConfig({
       '/return',
       '/api/**',
     ],
+    canonical: false,
   },
 })
