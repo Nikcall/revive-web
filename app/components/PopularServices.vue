@@ -40,14 +40,17 @@ const POPULAR: Record<string, string[]> = {
   ],
 }
 
-const { data } = await useFetch<{ services: { price_items: CatalogPrice[] }[] }>('/api/catalog', {
-  key: `popular:${props.slug}`,
-  query: props.slug ? { slug: props.slug } : undefined,
+const { data } = await useAsyncData(`popular:${props.slug}`, async () => {
+  if (!props.slug) return null
+  const res = await $fetch<{ services: { price_items: CatalogPrice[] }[] }>('/api/catalog', {
+    query: { slug: props.slug },
+  })
+  return res?.services?.[0]?.price_items || []
 })
 
 const popularItems = computed(() => {
   const names = POPULAR[props.slug || ''] || []
-  const allItems = data.value?.services?.[0]?.price_items || []
+  const allItems = data.value || []
   return allItems
     .filter((p) => names.includes(p.name))
     .sort((a, b) => {
