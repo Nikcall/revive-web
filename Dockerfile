@@ -9,6 +9,7 @@ COPY app/ app/
 COPY server/ server/
 COPY shared/ shared/
 COPY public/ public/
+COPY cms/ cms/
 
 ARG NUXT_CRM_PUBLIC_PRICELIST_URL
 ARG NUXT_CRM_LEADS_URL
