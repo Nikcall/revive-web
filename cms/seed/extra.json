@@ -40,7 +40,7 @@
       "h1": "Ремонт смартфонов, ноутбуков и ПК\nв Сургуте",
       "seo_title": "REVIVE — ремонт техники в Сургуте",
       "seo_description": "Ремонт техники: телефоны, ноутбуки, компьютеры. Бесплатная диагностика и гарантия.",
-      "canonical": "https://revive.su/qr",
+      "canonical": "/qr",
       "og_image": "",
       "blocks": [
         {
@@ -58,7 +58,7 @@
       "h1": "Публичная оферта на оказание услуг по ремонту техники",
       "seo_title": "Оферта",
       "seo_description": "Оферта",
-      "canonical": "https://revive.su/oferta",
+      "canonical": "/oferta",
       "og_image": "",
       "blocks": [
         {
@@ -196,7 +196,7 @@
       "h1": "Правила отказа от услуги и возврата денежных средств",
       "seo_title": "Возврат / отказ от услуги",
       "seo_description": "Возврат / отказ от услуги",
-      "canonical": "https://revive.su/return",
+      "canonical": "/return",
       "og_image": "",
       "blocks": [
         {
@@ -276,7 +276,7 @@
       "h1": "Политика в отношении обработки персональных данных",
       "seo_title": "Политика в отношении обработки персональных данных",
       "seo_description": "Политика обработки персональных данных",
-      "canonical": "https://revive.su/privacy",
+      "canonical": "/privacy",
       "og_image": "",
       "blocks": [
         {

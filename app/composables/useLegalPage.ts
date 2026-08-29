@@ -8,12 +8,18 @@ export async function useLegalPage(slug: string) {
       throw createError({ statusCode: 404, message: 'Страница не найдена' })
     }
 
+    const { public: { siteUrl } } = useRuntimeConfig()
+    const reqUrl = useRequestURL()
+    const fallbackUrl = (siteUrl && !siteUrl.includes('localhost')) ? siteUrl : `${reqUrl.protocol}//${reqUrl.host}`
+    const canonicalPath = page.value.canonical || `/${slug}`
+    const absoluteCanonical = canonicalPath.startsWith('http') ? canonicalPath : `${fallbackUrl}${canonicalPath}`
+
     useHead({
       title: page.value.seo_title || page.value.title,
       meta: [
         { name: 'description', content: page.value.seo_description || page.value.title },
       ],
-      link: [{ rel: 'canonical', href: page.value.canonical || `/${slug}` }],
+      link: [{ rel: 'canonical', href: absoluteCanonical }],
     })
 
     return page
