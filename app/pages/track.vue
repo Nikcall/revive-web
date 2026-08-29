@@ -13,6 +13,15 @@ const phone = ref('')
 const loading = ref(false)
 const error = ref('')
 const order = ref<any>(null)
+const token = ref('')
+
+const messages = ref<any[]>([])
+const chatOpen = ref(false)
+const chatInput = ref('')
+const chatSending = ref(false)
+const chatError = ref('')
+
+let chatTimer: ReturnType<typeof setInterval> | null = null
 
 const STATUS_LABELS: Record<string, string> = {
   new: 'Новая заявка',
@@ -44,10 +53,19 @@ function formatPrice(v: number) {
   return new Intl.NumberFormat('ru-RU').format(v) + ' ₽'
 }
 
+function formatTime(dateStr: string) {
+  if (!dateStr) return ''
+  const d = new Date(dateStr)
+  return d.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+}
+
 async function lookup() {
   error.value = ''
   order.value = null
+  token.value = ''
   loading.value = true
+  messages.value = []
+  chatOpen.value = false
 
   try {
     const data = await $fetch('/api/track', {
@@ -58,12 +76,73 @@ async function lookup() {
       return
     }
     order.value = (data as any).order
+    token.value = (data as any).order?.token || ''
+
+    if (token.value) {
+      await fetchMessages()
+      startChatPolling()
+    }
   } catch (e: any) {
     error.value = e?.data?.statusMessage || e?.message || 'Не удалось найти заявку'
   } finally {
     loading.value = false
   }
 }
+
+async function fetchMessages() {
+  if (!token.value) return
+  try {
+    const data = await $fetch('/api/track/messages', {
+      params: { token: token.value },
+    })
+    if ((data as any)?.success) {
+      messages.value = (data as any).messages || []
+    }
+  } catch {
+    // silent
+  }
+}
+
+function startChatPolling() {
+  stopChatPolling()
+  chatTimer = setInterval(fetchMessages, 15000)
+}
+
+function stopChatPolling() {
+  if (chatTimer) {
+    clearInterval(chatTimer)
+    chatTimer = null
+  }
+}
+
+async function sendMessage() {
+  const text = chatInput.value.trim()
+  if (!text || chatSending.value || !token.value) return
+
+  chatSending.value = true
+  chatError.value = ''
+
+  try {
+    await $fetch('/api/track/messages', {
+      method: 'POST',
+      params: { token: token.value },
+      body: { text },
+    })
+    chatInput.value = ''
+    await fetchMessages()
+  } catch (e: any) {
+    chatError.value = e?.data?.statusMessage || 'Не удалось отправить'
+  } finally {
+    chatSending.value = false
+  }
+}
+
+function toggleChat() {
+  chatOpen.value = !chatOpen.value
+  if (chatOpen.value) fetchMessages()
+}
+
+onUnmounted(() => stopChatPolling())
 </script>
 
 <template>
@@ -149,6 +228,48 @@ async function lookup() {
             <span v-if="p.price">{{ formatPrice(p.price * (p.quantity || 1)) }}</span>
           </div>
         </div>
+
+        <div v-if="token" class="track-chat-toggle">
+          <button class="track-btn" type="button" @click="toggleChat">
+            {{ chatOpen ? 'Закрыть чат' : 'Написать мастеру' }}
+          </button>
+          <span v-if="messages.length" class="track-chat-count">{{ messages.length }}</span>
+        </div>
+      </div>
+
+      <div v-if="chatOpen && token" class="track-chat">
+        <div class="track-chat-header">
+          <h3>Чат по заявке</h3>
+          <small>Мастер ответит в ближайшее время</small>
+        </div>
+
+        <div class="track-chat-messages" ref="chatScroll">
+          <p v-if="!messages.length" class="track-chat-empty">Пока нет сообщений. Напишитеfirst!</p>
+          <div
+            v-for="m in messages"
+            :key="m.id"
+            class="track-chat-msg"
+            :class="m.sender === 'staff' ? 'staff' : 'client'"
+          >
+            <span class="track-chat-sender">{{ m.sender === 'staff' ? 'Мастер' : 'Вы' }}</span>
+            <p>{{ m.text }}</p>
+            <time>{{ formatTime(m.createdAt || m.createdat) }}</time>
+          </div>
+        </div>
+
+        <form class="track-chat-form" @submit.prevent="sendMessage">
+          <input
+            v-model="chatInput"
+            type="text"
+            placeholder="Сообщение…"
+            maxlength="1000"
+            :disabled="chatSending"
+          />
+          <button type="submit" :disabled="chatSending || !chatInput.trim()">
+            {{ chatSending ? '…' : '→' }}
+          </button>
+        </form>
+        <p v-if="chatError" class="track-chat-error">{{ chatError }}</p>
       </div>
     </div>
   </main>
@@ -343,6 +464,139 @@ h1 {
   border-bottom: 1px solid #f0f0f0;
   font-size: 14px;
 }
+.track-chat-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+.track-chat-count {
+  background: var(--brand);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  padding: 0 6px;
+}
+.track-chat {
+  margin-top: 24px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+.track-chat-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+}
+.track-chat-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.track-chat-header small {
+  color: #999;
+  font-size: 12px;
+}
+.track-chat-messages {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.track-chat-empty {
+  color: #999;
+  text-align: center;
+  padding: 24px 0;
+  font-size: 14px;
+}
+.track-chat-msg {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.track-chat-msg.client {
+  align-self: flex-end;
+  background: var(--brand);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.track-chat-msg.staff {
+  align-self: flex-start;
+  background: #f0f0f0;
+  color: #222;
+  border-bottom-left-radius: 4px;
+}
+.track-chat-sender {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+.track-chat-msg p {
+  margin: 0;
+}
+.track-chat-msg time {
+  display: block;
+  font-size: 10px;
+  opacity: 0.6;
+  margin-top: 4px;
+  text-align: right;
+}
+.track-chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+}
+.track-chat-form input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+.track-chat-form input:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+.track-chat-form button {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.track-chat-form button:hover:not(:disabled) {
+  background: #000;
+}
+.track-chat-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.track-chat-error {
+  padding: 0 16px 12px;
+  color: #d32f2f;
+  font-size: 13px;
+}
 @media (max-width: 600px) {
   .track-fields {
     grid-template-columns: 1fr;
@@ -356,6 +610,9 @@ h1 {
   }
   .track-step-label {
     font-size: 9px;
+  }
+  .track-chat-msg {
+    max-width: 90%;
   }
 }
 </style>

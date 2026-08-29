@@ -99,7 +99,7 @@ const activeTable = computed(() => grouped.value.find(([cat]) => cat === tab.val
             <strong>{{ displayPrice }}</strong>
             <small>{{ resultHint }}</small>
             <label class="urgent"><input v-model="urgent" type="checkbox" /> Срочный ремонт +30%</label>
-            <a class="btn-fill" href="#order">Записаться на ремонт</a>
+            <a class="btn-fill btn-sm" href="#order">Записаться на ремонт</a>
           </div>
         </div>
       </div>
@@ -265,6 +265,12 @@ select {
   flex-direction: row;
   align-items: center;
   font-weight: 600;
+}
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 13px;
+  border-radius: 8px;
+  box-shadow: none;
 }
 .tabs {
   display: flex;

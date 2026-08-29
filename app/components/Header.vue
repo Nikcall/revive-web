@@ -50,11 +50,33 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
         </ul>
         <div class="hdr-mobile-extra">
           <a :href="contacts.phone_href">{{ contacts.phone }}</a>
+          <div class="hdr-mobile-social">
+            <a v-if="contacts.telegram" :href="contacts.telegram" target="_blank" rel="nofollow" aria-label="Telegram">
+              <SocialIcon name="telegram" variant="glyph" />
+            </a>
+            <a v-if="contacts.whatsapp" :href="contacts.whatsapp" target="_blank" rel="nofollow" aria-label="WhatsApp">
+              <SocialIcon name="whatsapp" variant="glyph" />
+            </a>
+            <a v-if="contacts.vk" :href="contacts.vk" target="_blank" rel="nofollow" aria-label="VK">
+              <SocialIcon name="vk" variant="glyph" />
+            </a>
+          </div>
           <a class="hdr-track" href="/track">Статус ремонта</a>
           <a class="hdr-cta" href="#order" @click="open = false">Запись</a>
         </div>
       </nav>
       <div class="hdr-end">
+        <div class="hdr-social">
+          <a v-if="contacts.telegram" :href="contacts.telegram" target="_blank" rel="nofollow" aria-label="Telegram">
+            <SocialIcon name="telegram" variant="glyph" />
+          </a>
+          <a v-if="contacts.whatsapp" :href="contacts.whatsapp" target="_blank" rel="nofollow" aria-label="WhatsApp">
+            <SocialIcon name="whatsapp" variant="glyph" />
+          </a>
+          <a v-if="contacts.vk" :href="contacts.vk" target="_blank" rel="nofollow" aria-label="VK">
+            <SocialIcon name="vk" variant="glyph" />
+          </a>
+        </div>
         <a class="hdr-track" href="/track">Статус ремонта</a>
         <a class="hdr-phone" :href="contacts.phone_href">{{ contacts.phone }}</a>
         <a class="hdr-cta" href="#order">Запись</a>
@@ -163,6 +185,23 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
   align-items: center;
   gap: 16px;
   flex-shrink: 0;
+}
+.hdr-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hdr-social a {
+  display: flex;
+  color: #555;
+  transition: color 0.2s;
+}
+.hdr-social a:hover {
+  color: var(--brand);
+}
+.hdr-social :deep(.si-img) {
+  width: 18px;
+  height: 18px;
 }
 .hdr-phone {
   font-size: 15px;
@@ -276,6 +315,18 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
   }
   .hdr-mobile-extra .hdr-cta {
     align-self: flex-start;
+  }
+  .hdr-mobile-social {
+    display: flex;
+    gap: 12px;
+  }
+  .hdr-mobile-social a {
+    display: flex;
+    color: #555;
+  }
+  .hdr-mobile-social :deep(.si-img) {
+    width: 20px;
+    height: 20px;
   }
 }
 </style>
