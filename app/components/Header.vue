@@ -206,6 +206,10 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
   width: 20px;
   height: 20px;
 }
+.hdr-social :deep(.si) {
+  width: 20px;
+  height: 20px;
+}
 .hdr-phone {
   font-size: 15px;
   font-weight: 600;
@@ -328,6 +332,10 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
     color: #555;
   }
   .hdr-mobile-social :deep(.si-img) {
+    width: 20px;
+    height: 20px;
+  }
+  .hdr-mobile-social :deep(.si) {
     width: 20px;
     height: 20px;
   }

@@ -62,8 +62,8 @@ const painted = computed(() => props.variant !== 'radio')
 <style scoped>
 .si {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 20px;
+  height: 20px;
   background-color: currentColor;
   -webkit-mask: var(--si) center / contain no-repeat;
   mask: var(--si) center / contain no-repeat;
