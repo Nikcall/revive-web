@@ -3,17 +3,13 @@ const { content, pageBySlug } = await useCms()
 const page = computed(() => pageBySlug('home'))
 if (!page.value) throw createError({ statusCode: 404, statusMessage: 'Главная не найдена' })
 
-useHead({
+usePageSeo({
   title: page.value.seo_title,
-  meta: [
-    { name: 'description', content: page.value.seo_description },
-    { property: 'og:title', content: 'Ремонт компьютеров, ноутбуков, смартфонов с выездом по Сургуту — REVIVE' },
-    { property: 'og:description', content: 'Ремонт компьютерной, мобильной и цифровой техники в Сургуте. Бесплатная диагностика, выезд мастера, гарантия на все работы. Быстро, честно, удобно!' },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: page.value.canonical || 'https://revive.su/' },
-    { property: 'og:image', content: page.value.og_image || '/og.jpg' },
-  ],
-  link: [{ rel: 'canonical', href: page.value.canonical || '/' }],
+  description: page.value.seo_description,
+  canonical: page.value.canonical,
+  ogTitle: 'Ремонт компьютеров, ноутбуков, смартфонов с выездом по Сургуту — REVIVE',
+  ogDescription: 'Ремонт компьютерной, мобильной и цифровой техники в Сургуте. Бесплатная диагностика, выезд мастера, гарантия на все работы. Быстро, честно, удобно!',
+  ogImage: page.value.og_image,
 })
 </script>
 

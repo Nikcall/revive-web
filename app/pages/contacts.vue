@@ -4,10 +4,10 @@ const page = computed(() => pageBySlug('contacts'))
 const s = computed(() => content.value.settings)
 if (!page.value) throw createError({ statusCode: 404, statusMessage: 'Контакты не найдены' })
 
-useHead({
+usePageSeo({
   title: page.value.seo_title,
-  meta: [{ name: 'description', content: page.value.seo_description }],
-  link: [{ rel: 'canonical', href: page.value.canonical || '/contacts' }],
+  description: page.value.seo_description,
+  canonical: page.value.canonical,
 })
 </script>
 

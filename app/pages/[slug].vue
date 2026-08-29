@@ -14,10 +14,10 @@ if (!service.value) {
   throw createError({ statusCode: 404, statusMessage: 'Услуга не найдена' })
 }
 
-useHead({
+usePageSeo({
   title: service.value.seo_title,
-  meta: [{ name: 'description', content: service.value.seo_description }],
-  link: [{ rel: 'canonical', href: `/${service.value.slug}` }],
+  description: service.value.seo_description,
+  canonical: `/${service.value.slug}`,
 })
 </script>
 

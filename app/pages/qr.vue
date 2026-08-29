@@ -13,17 +13,11 @@ if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Страница не найдена' })
 }
 
-useHead({
+usePageSeo({
   title: page.value.seo_title,
-  meta: [
-    { name: 'description', content: page.value.seo_description },
-    { name: 'robots', content: 'noindex, nofollow' },
-    { property: 'og:title', content: page.value.seo_title },
-    { property: 'og:description', content: page.value.seo_description },
-    { property: 'og:url', content: page.value.canonical || 'https://revive.su/qr' },
-    { property: 'og:type', content: 'website' },
-  ],
-  link: [{ rel: 'canonical', href: page.value.canonical || '/qr' }],
+  description: page.value.seo_description,
+  canonical: page.value.canonical,
+  robots: 'noindex, nofollow',
 })
 
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid'] as const

@@ -4,10 +4,10 @@ const { priceItems } = await useCatalog()
 const page = computed(() => pageBySlug('prices'))
 if (!page.value) throw createError({ statusCode: 404, statusMessage: 'Страница цен не найдена' })
 
-useHead({
+usePageSeo({
   title: page.value.seo_title,
-  meta: [{ name: 'description', content: page.value.seo_description }],
-  link: [{ rel: 'canonical', href: page.value.canonical || '/prices' }],
+  description: page.value.seo_description,
+  canonical: page.value.canonical,
 })
 </script>
 

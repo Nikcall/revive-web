@@ -1,11 +1,9 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
 
-useHead({
+usePageSeo({
   title: 'Статус ремонта — REVIVE',
-  meta: [
-    { name: 'description', content: 'Проверьте статус ремонта вашей техники по номеру заявки и телефону.' },
-  ],
+  description: 'Проверьте статус ремонта вашей техники по номеру заявки и телефону.',
 })
 
 const orderNumber = ref('')
