@@ -1,8 +1,7 @@
-const PRODUCTION_SITE_URL = 'https://revive.su'
+import { PRODUCTION_SITE_URL, isProductionSite } from '#shared/site-env'
 
 export default defineEventHandler((event) => {
   const config = useRuntimeConfig()
-  const siteUrl = String(config.public.siteUrl || '').trim()
 
   setHeader(event, 'Content-Type', 'text/plain; charset=utf-8')
 
@@ -11,7 +10,7 @@ export default defineEventHandler((event) => {
   // когда Яндекс/Google проиндексируют preview-домен как отдельное зеркало сайта.
   // После cutover (NUXT_PUBLIC_SITE_URL=https://revive.su) правило снимается
   // автоматически, без ручного вмешательства.
-  if (siteUrl !== PRODUCTION_SITE_URL) {
+  if (!isProductionSite(config.public.siteUrl)) {
     return 'User-agent: *\nDisallow: /\n'
   }
 
