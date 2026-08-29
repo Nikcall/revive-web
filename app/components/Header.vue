@@ -60,8 +60,10 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
             <a v-if="contacts.vk" :href="contacts.vk" target="_blank" rel="nofollow" aria-label="VK">
               <SocialIcon name="vk" variant="glyph" />
             </a>
+            <a v-if="contacts.max" :href="contacts.max" target="_blank" rel="nofollow" aria-label="MAX">
+              <SocialIcon name="max" variant="glyph" />
+            </a>
           </div>
-          <a class="hdr-track" href="/track">Статус ремонта</a>
           <a class="hdr-cta" href="#order" @click="open = false">Запись</a>
         </div>
       </nav>
@@ -76,8 +78,10 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
           <a v-if="contacts.vk" :href="contacts.vk" target="_blank" rel="nofollow" aria-label="VK">
             <SocialIcon name="vk" variant="glyph" />
           </a>
+          <a v-if="contacts.max" :href="contacts.max" target="_blank" rel="nofollow" aria-label="MAX">
+            <SocialIcon name="max" variant="glyph" />
+          </a>
         </div>
-        <a class="hdr-track" href="/track">Статус ремонта</a>
         <a class="hdr-phone" :href="contacts.phone_href">{{ contacts.phone }}</a>
         <a class="hdr-cta" href="#order">Запись</a>
       </div>
@@ -234,15 +238,6 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
 }
 .hdr-cta:hover {
   background: #000;
-}
-.hdr-track {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--brand);
-  white-space: nowrap;
-}
-.hdr-track:hover {
-  color: #000;
 }
 .hdr-mobile-extra {
   display: none;
