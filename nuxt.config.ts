@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   srcDir: 'app',
   ssr: true,
   css: ['~/assets/css/main.css'],
+
   app: {
     head: {
       htmlAttrs: { lang: 'ru' },
@@ -20,17 +21,18 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   runtimeConfig: {
     crmLeadsUrl: process.env.NUXT_CRM_LEADS_URL || '',
     crmLeadsKey: process.env.NUXT_CRM_LEADS_KEY || '',
     crmPublicPricelistUrl: process.env.NUXT_CRM_PUBLIC_PRICELIST_URL || 'https://crm.revive.su/api/public/pricelist',
     crmTrackUrl: process.env.NUXT_CRM_TRACK_URL || 'https://crm.revive.su',
-    // Только сервер. Браузер ходит в /api/site-settings, не в CMS.
     directusUrl: process.env.NUXT_DIRECTUS_URL || process.env.DIRECTUS_URL || 'http://localhost:8055',
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     },
   },
+
   routeRules: {
     '/': { prerender: false },
     '/prices': { prerender: false },
@@ -45,5 +47,23 @@ export default defineNuxtConfig({
     '/oferta': { prerender: true },
     '/return': { prerender: true },
     '/api/**': { prerender: false },
+  },
+
+  modules: ['@nuxtjs/sitemap'],
+
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://revive.su',
+  },
+
+  sitemap: {
+    sources: ['/api/__sitemap__/urls'],
+    exclude: [
+      '/track',
+      '/qr',
+      '/privacy',
+      '/oferta',
+      '/return',
+      '/api/**',
+    ],
   },
 })

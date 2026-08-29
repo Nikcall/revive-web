@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /track
+Disallow: /qr
+Disallow: /api/
+
+Sitemap: https://revive.su/sitemap.xml
