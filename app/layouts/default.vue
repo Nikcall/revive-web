@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const { content } = await useCms()
 const settings = computed(() => content.value.settings)
+const route = useRoute()
+const showOrderForm = computed(() => route.path !== '/track')
 </script>
 
 <template>
@@ -11,7 +13,7 @@ const settings = computed(() => content.value.settings)
     :cta-text="settings.header_cta_text"
   />
   <slot />
-  <OrderForm :contacts="settings" />
+  <OrderForm v-if="showOrderForm" :contacts="settings" />
   <Footer :settings="settings" :contacts="settings" />
   <SocialLinks :contacts="settings" />
   <CookieBanner :settings="settings" />
