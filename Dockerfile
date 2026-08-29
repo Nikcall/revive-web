@@ -27,7 +27,7 @@ ENV PORT=3000
 ENV HOST=0.0.0.0
 
 RUN addgroup -S revive && adduser -S revive -G revive
-COPY --from=build --chown=revive:revive /app/.output/ ./
+COPY --from=build --chown=revive:revive /app/.output /app/.output
 USER revive
 
 EXPOSE 3000
