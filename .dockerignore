@@ -1,0 +1,15 @@
+node_modules
+.output
+.nuxt
+.git
+.env
+.env.*
+!.env.example
+cms
+data
+deploy
+reference
+scripts
+tmp-*
+README.md
+*.md

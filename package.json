@@ -1,0 +1,28 @@
+{
+  "name": "revive-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "cms:up": "docker compose up -d",
+    "cms:down": "docker compose down",
+    "cms:bootstrap": "node cms/bootstrap.mjs",
+    "cms:services": "node cms/schema/services-prices.mjs",
+    "cms:services:force": "node cms/schema/services-prices.mjs --force",
+    "cms:hero-test": "node cms/hero-roundtrip.mjs",
+    "cms:price-test": "node cms/price-roundtrip.mjs"
+  },
+  "dependencies": {
+    "nuxt": "^4.1.2",
+    "vue": "^3.5.21",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  }
+}

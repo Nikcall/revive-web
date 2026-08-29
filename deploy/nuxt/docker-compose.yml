@@ -1,0 +1,18 @@
+# Nuxt production container. Host network for direct access to host PostgreSQL and CRM.
+# Nginx proxies revive.su → localhost:3000.
+
+services:
+  nuxt:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+    container_name: revive-web
+    restart: unless-stopped
+    network_mode: host
+    mem_limit: 256m
+    env_file: .env
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/']
+      interval: 30s
+      timeout: 5s
+      retries: 3

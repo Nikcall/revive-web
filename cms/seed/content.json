@@ -1,0 +1,2054 @@
+{
+  "settings": {
+    "site_name": "REVIVE",
+    "logo_url": "/logo.webp",
+    "header_cta_text": "Запись",
+    "phone": "+7 (995) 243-19-95",
+    "phone_href": "tel:+79952431995",
+    "email": "service@revive.su",
+    "legal_name": "ИП Вологжанинов Никита Андреевич",
+    "inn": "861205099874",
+    "ogrnip": "325861700024479",
+    "address": "628415, Россия, ХМАО–Югра, г. Сургут, ул. Игоря Киртбая, д. 24/1",
+    "city": "Сургут",
+    "hours": "Ежедневно 09:00–21:00",
+    "telegram": "https://t.me/revivesu",
+    "whatsapp": "https://wa.me/79952431995",
+    "vk": "https://vk.me/revivesu",
+    "cookie_text": "Мы используем файлы cookie, чтобы обеспечить максимальное удобство работы с сайтом.",
+    "nav": [
+      {
+        "label": "Услуги",
+        "href": "/#services",
+        "children": [
+          {
+            "label": "Ноутбуки",
+            "href": "/remont-noutbukov"
+          },
+          {
+            "label": "Смартфоны",
+            "href": "/remont-smartfonov"
+          },
+          {
+            "label": "Системные блоки",
+            "href": "/remont-kompyuterov"
+          },
+          {
+            "label": "Планшеты",
+            "href": "/remont-planshetov"
+          },
+          {
+            "label": "Выезд на дом",
+            "href": "/contacts"
+          },
+          {
+            "label": "Восстановление данных",
+            "href": "/prices"
+          }
+        ]
+      },
+      {
+        "label": "Цены",
+        "href": "/prices"
+      },
+      {
+        "label": "Отзывы",
+        "href": "/#reviews"
+      },
+      {
+        "label": "О нас",
+        "href": "/#about"
+      },
+      {
+        "label": "Вопрос-ответ",
+        "href": "/#faq"
+      }
+    ],
+    "max": "https://max.ru/u/f9LHodD0cOJZzpvfdZb-Qn-1IOwYxEp2EpJYyVE4Yhym5XSZv3TYIRjt6Es",
+    "hero_title": "Ремонт компьютерной и мобильной техники",
+    "hero_subtitle": "Диагностика и ремонт техники в Сургуте",
+    "hero_button_text": "Оставить заявку",
+    "hero_button_url": "#order"
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "title": "Главная",
+      "h1": "Ремонт компьютерной и мобильной техники",
+      "seo_title": "Ремонт компьютеров, ноутбуков и смартфонов в Сургуте — REVIVE",
+      "seo_description": "Ремонт компьютеров, ноутбуков, смартфонов и планшетов в Сургуте. Бесплатная диагностика, честные цены, гарантия и выезд мастера на дом или в офис.",
+      "canonical": "https://revive.su/",
+      "og_image": "/og.jpg",
+      "blocks": [
+        {
+          "type": "hero",
+          "visible": true,
+          "chip_label": "Сервисный центр",
+          "chip_city": "Сургут",
+          "line1_prefix": "Ремонт",
+          "line1_accent": "компьютерной",
+          "line2_prefix": "и",
+          "line2_typed": "мобильной",
+          "line2_suffix": "техники",
+          "tagline": "Ноутбуки, смартфоны, планшеты, компьютеры.\nБыстро, честно, с гарантией до 6 месяцев.\nВыезд мастера по всему Сургуту.",
+          "cta_primary_text": "Записаться на ремонт",
+          "cta_primary_href": "#order",
+          "cta_secondary_text": "Смотреть прайс",
+          "cta_secondary_href": "/prices",
+          "core_title": "REVIVE",
+          "core_subtitle": "SERVICE CENTER",
+          "stats": [
+            {
+              "value": 500,
+              "suffix": "+",
+              "label": "Ремонтов"
+            },
+            {
+              "value": 0,
+              "suffix": " ₽",
+              "label": "Диагностика",
+              "static": "0 ₽"
+            },
+            {
+              "value": 6,
+              "suffix": " мес",
+              "label": "Гарантия"
+            },
+            {
+              "value": null,
+              "suffix": "",
+              "label": "Дня на ремонт",
+              "static": "1–3"
+            }
+          ],
+          "marquee": [
+            "Ремонт ноутбуков",
+            "Ремонт смартфонов",
+            "Ремонт планшетов",
+            "Ремонт компьютеров",
+            "Бесплатная диагностика",
+            "Гарантия 6 месяцев",
+            "Выезд по Сургуту",
+            "Apple · Samsung · Lenovo · ASUS",
+            "Без скрытых платежей"
+          ]
+        },
+        {
+          "type": "repair_cases",
+          "visible": true,
+          "items": [
+            {
+              "slug": "iphone13-back",
+              "title": "iPhone 13 Pro — задняя крышка + АКБ",
+              "text": "Трещины на задней панели, не работала беспроводная зарядка. Замена крышки и аккумулятора.",
+              "tags": [
+                "Замена крышки",
+                "Замена АКБ",
+                "Беспроводная зарядка"
+              ],
+              "price_label": "уточняйте",
+              "before_url": "/images/cases/iphone13-before.webp",
+              "after_url": "/images/cases/iphone13-after.webp"
+            },
+            {
+              "slug": "vivobook-overheat",
+              "title": "ASUS VivoBook — перегрев и зависания",
+              "text": "CPU 95°C, тормозил каждые 10 мин. Кулер полностью забит пылью.",
+              "tags": [
+                "Замена термопасты",
+                "Чистка от пыли"
+              ],
+              "price_label": "3 500 ₽",
+              "before_url": "/images/cases/vivobook-before.webp",
+              "after_url": "/images/cases/vivobook-after.webp"
+            },
+            {
+              "slug": "asus-motherboard",
+              "title": "ASUS — замена термопасты на чипах",
+              "text": "Высохшая термопаста на CPU и GPU, ноутбук перегревался и отключался. Чистка и нанесение термопасты.",
+              "tags": [
+                "Замена термопасты",
+                "CPU + GPU"
+              ],
+              "price_label": "3 500 ₽",
+              "before_url": "/images/cases/asus-mb-before.webp",
+              "after_url": "/images/cases/asus-mb-after.webp"
+            },
+            {
+              "slug": "asus-tuf-keyboard",
+              "title": "ASUS TUF Gaming — залитая клавиатура",
+              "text": "Клавиатура перестала работать после залития. Полная замена за 1 день, RGB подсветка сохранена.",
+              "tags": [
+                "Залитие",
+                "Замена клавиатуры",
+                "RGB"
+              ],
+              "price_label": "уточняйте",
+              "before_url": "/images/cases/asus-tuf-before.webp",
+              "after_url": "/images/cases/asus-tuf-after.webp"
+            },
+            {
+              "slug": "pc-hdd",
+              "title": "Системный блок — не запускался",
+              "text": "Нет изображения, посторонние звуки. Диагностика — мёртвый HDD.",
+              "tags": [
+                "HDD → SSD",
+                "Windows 11"
+              ],
+              "price_label": "3 200 ₽",
+              "before_url": "/images/cases/pc-hdd-before.svg",
+              "after_url": "/images/cases/pc-hdd-after.svg"
+            },
+            {
+              "slug": "samsung-water",
+              "title": "Samsung Galaxy S21 — залит водой",
+              "text": "Упал в воду, экран мигал, не заряжался. Данные полностью сохранены.",
+              "tags": [
+                "Чистка окисления",
+                "Данные целы"
+              ],
+              "price_label": "2 800 ₽",
+              "before_url": "/images/cases/samsung-before.svg",
+              "after_url": "/images/cases/samsung-after.svg"
+            },
+            {
+              "slug": "thinkpad-keyboard",
+              "title": "Lenovo ThinkPad — клавиатура залита",
+              "text": "Кофе, несколько клавиш не работали, язычки сломаны. Замена за 1 день.",
+              "tags": [
+                "Замена клавиатуры",
+                "1 день"
+              ],
+              "price_label": "2 200 ₽",
+              "before_url": "/images/cases/thinkpad-before.svg",
+              "after_url": "/images/cases/thinkpad-after.svg"
+            },
+            {
+              "slug": "ipad-battery",
+              "title": "iPad Air — аккумулятор вздулся",
+              "text": "Разряжался за 1.5 ч, крышка отходила. Замена с гарантией 6 мес.",
+              "tags": [
+                "Замена АКБ",
+                "Гарантия 6 мес"
+              ],
+              "price_label": "3 500 ₽",
+              "before_url": "/images/cases/ipad-before.svg",
+              "after_url": "/images/cases/ipad-after.svg"
+            }
+          ]
+        },
+        {
+          "type": "reviews",
+          "visible": true,
+          "items": [
+            {
+              "author": "Владимир",
+              "service": "Замена стекла + АКБ",
+              "text": "Обращался в данный сервис с целью замены заднего стекла, аккумулятора и настройки беспроводной зарядки. Все сделано очень качественно и быстро. Рекомендую данный сервис!",
+              "rating": 5
+            },
+            {
+              "author": "Татьяна Т.",
+              "service": "Ремонт ноутбука",
+              "text": "Хочу выразить огромную благодарность за то, что вернули мой ноутбук к жизни. Золотые руки у мастера. Ноутбук работает лучше, чем когда его купили — и отремонтировали очень быстро. Очень рекомендую!",
+              "rating": 5
+            },
+            {
+              "author": "Мурад",
+              "service": "Восстановление после воды",
+              "text": "Ремонтировал смартфон после воды. Мастер честно предупредил о рисках, но всё прошло отлично — телефон работает, данные сохранились!",
+              "rating": 5
+            },
+            {
+              "author": "Айгуль",
+              "service": "Замена дисплея",
+              "text": "Разбитый экран на iPhone. Сделали быстро, оригинальный дисплей был в наличии. Телефон как новый — ещё и защитное стекло в подарок!",
+              "rating": 5
+            },
+            {
+              "author": "Константин",
+              "service": "SSD + Windows",
+              "text": "Менял жёсткий диск на SSD с сохранением всех данных. Ничего не потерялось, компьютер работает в разы быстрее. Приятно удивила гарантия!",
+              "rating": 5
+            },
+            {
+              "author": "Павел",
+              "service": "Ремонт ноутбука",
+              "text": "Понравился подход — ничего не скрывали, показали старые детали после замены. Теперь уверен, что обращаюсь к честным специалистам.",
+              "rating": 5
+            },
+            {
+              "author": "Тамара",
+              "service": "Настройка ПК",
+              "text": "Благодарна за скидку для пенсионеров. Мастер не только починил, но и объяснил как избежать поломок в будущем. Очень внимательный подход!",
+              "rating": 5
+            },
+            {
+              "author": "Виталий",
+              "service": "Игровой ноутбук",
+              "text": "Игровой ноутбук — думал обойдётся дорого, но нашли оптимальное решение и сделали скидку для студентов. Спасибо за честность!",
+              "rating": 5
+            },
+            {
+              "author": "Сергей",
+              "service": "Ремонт планшета",
+              "text": "Сдавал планшет жены. Быстро нашли причину, предложили варианты. Остановились на замене аккумулятора. Всё аккуратно, цена адекватная.",
+              "rating": 5
+            },
+            {
+              "author": "Михаил",
+              "service": "Замена матрицы",
+              "text": "После плохого опыта в другом месте боялся снова обращаться. Здесь всё идеально: объяснили причину, согласовали цену, сделали за один день.",
+              "rating": 5
+            }
+          ]
+        },
+        {
+          "type": "service_advantages",
+          "visible": true,
+          "show_catalog": true
+        },
+        {
+          "type": "cta",
+          "visible": true,
+          "badge": "🎁 СКИДКА 10% НА ПЕРВЫЙ РЕМОНТ",
+          "title": "",
+          "subtitle": "Ремонт с уважением — к вам и к вашей технике. Всё честно. Как для себя.",
+          "cta_text": "ЗАПИСАТЬСЯ СО СКИДКОЙ",
+          "cta_href": "#order",
+          "image": "/images/covers/promo.jpg"
+        },
+        {
+          "type": "price_table",
+          "visible": true
+        },
+        {
+          "type": "text_image",
+          "visible": true,
+          "variant": "steps",
+          "eyebrow": "ПРОФЕССИОНАЛЬНО И С ПРОЗРАЧНЫМИ ЦЕНАМИ",
+          "title": "Просто оставьте заявку, а мы восстановим вашу технику всего в три этапа!",
+          "cover_title": "Решим любые проблемы — от настройки до сложного ремонта",
+          "cover_image": "/images/covers/steps.jpg",
+          "quote": "Мы дорожим доверием каждого клиента. Если Вы уже пользовались нашими услугами, будем очень признательны за пару слов о Вашем опыте. Отправьте Ваш отзыв на service@revive.su или напишите в удобный для Вас мессенджер. Спасибо, что помогаете нам совершенствоваться!",
+          "steps": [
+            {
+              "title": "ЗАЯВКА",
+              "text": "Позвоните нам или оставьте заявку на сайте — опишите проблему. И мы договоримся о передаче техники.",
+              "icon": "/images/icons/step-1.svg"
+            },
+            {
+              "title": "Бесплатная диагностика (при условии дальнейшего ремонта)",
+              "text": "Мастер проведет бесплатную диагностику и озвучит решение.",
+              "icon": "/images/icons/step-2.svg"
+            },
+            {
+              "title": "РЕМОНТ",
+              "text": "Мастер устранит проблему — вы получите рабочее устройство с гарантией.",
+              "icon": "/images/icons/step-3.svg"
+            }
+          ]
+        },
+        {
+          "type": "service_advantages",
+          "visible": true,
+          "variant": "care"
+        },
+        {
+          "type": "text_image",
+          "visible": true,
+          "id": "about",
+          "eyebrow": "О НАС",
+          "title": "REVIVE — это не просто сервисный центр",
+          "cover_title": "Ваши устройства в надежных руках",
+          "cover_image": "/images/covers/hands.jpg",
+          "images": [
+            "/images/covers/about-1.webp",
+            "/images/covers/about-2.png",
+            "/images/covers/about-3.jpg"
+          ],
+          "html": "<p>Это мастерская, где каждое устройство получает второй шанс, а его владелец — спокойствие и уверенность в результате.</p><p>Мы начали свой путь с простой идеи: техника должна служить вашему комфорту, а не создавать проблемы. За время работы мы восстановили более 500 устройств — и каждый раз подходим к делу так, будто это первый и самый важный ремонт.</p><h3>Наши специалисты</h3><p>Наши мастера — профессионалы с многолетним опытом и искренней страстью к своему делу. Для нас каждое устройство — не просто электроника, а хранитель ваших воспоминаний, документов и привычного ритма жизни. Мы берёмся за каждый ремонт с личной ответственностью, потому что знаем: вы доверяете нам действительно важное.</p><h3>Почему выбирают REVIVE?</h3><p><strong>Забота о вашем спокойствии.</strong> Мы заботимся не только об устройстве, но и о вашем спокойствии. Гарантируем уверенность в результате и полную безопасность ваших данных.</p><p><strong>Качество без компромиссов.</strong> Используем оригинальные запчасти или проверенные аналоги, современное оборудование и строгий контроль на каждом этапе. На все виды ремонта даём гарантию до 6 месяцев.</p><p><strong>Прозрачность.</strong> Диагностика бесплатна, если вы решаете сделать ремонт у нас. Если нет — стоимость обговаривается заранее и фиксируется до начала работ. Никаких скрытых платежей.</p><p><strong>Скорость.</strong> Большинство ремонтов завершаем в течение суток — вы быстро возвращаетесь к привычному ритму жизни.</p><p><strong>Доверие клиентов.</strong> За время работы мы восстановили более 500 устройств от брендов Apple, Samsung, Xiaomi, Lenovo, ASUS, HP и других. Но наша главная гордость — это клиенты, которые возвращаются к нам снова и рекомендуют REVIVE своим близким.</p><h3>Что мы ремонтируем?</h3><p>Мы выполняем ремонт любой сложности.</p><p><strong>Смартфоны</strong> — замена экрана, аккумулятора, восстановление после залития, ремонт разъёмов.</p><p><strong>Планшеты</strong> — замена дисплея, стекла, аккумулятора, чистка и диагностика.</p><p><strong>Ноутбуки</strong> — замена матрицы, клавиатуры, термопасты, чистка от пыли, ремонт материнской платы.</p><p><strong>Системные блоки</strong> — диагностика, замена комплектующих, чистка, восстановление после сбоёв.</p><p>От простой замены стекла до сложного восстановления материнских плат — мы справляемся даже с самыми непростыми задачами. В работе используем профессиональные паяльные станции, микроскопы и диагностические стенды.</p><h3>Наше обещание</h3><p>REVIVE — это внимание к деталям, открытость и забота о каждом клиенте. Мы не просто чиним технику — мы возвращаем ей надёжность, а вам — уверенность в завтрашнем дне.</p><p>Ваше доверие — наша главная ценность, и мы делаем всё, чтобы его заслужить.</p><p><strong>Готовы вернуть вашу технику к жизни?</strong> Позвоните нам или оставьте заявку на сайте — мы оперативно свяжемся с вами, расскажем, как решить проблему, и вернём вашему устройству прежнюю надёжность.</p>"
+        },
+        {
+          "type": "faq",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "slug": "prices",
+      "title": "Цены",
+      "h1": "Прайс-лист REVIVE",
+      "seo_title": "Цены на ремонт техники в Сургуте — REVIVE",
+      "seo_description": "Ориентировочные цены на все виды работ. Точная стоимость — после бесплатной диагностики.",
+      "canonical": "https://revive.su/prices",
+      "og_image": "",
+      "blocks": [
+        {
+          "type": "price_table",
+          "visible": true
+        },
+        {
+          "type": "faq",
+          "visible": true
+        },
+        {
+          "type": "cta",
+          "visible": true,
+          "title": "Нужна точная цена?",
+          "subtitle": "Оставьте заявку — назовём стоимость после диагностики.",
+          "cta_text": "Оставить заявку",
+          "cta_href": "#order"
+        }
+      ]
+    },
+    {
+      "slug": "contacts",
+      "title": "Контакты",
+      "h1": "Контакты REVIVE в Сургуте",
+      "seo_title": "Контакты сервисного центра REVIVE — Сургут",
+      "seo_description": "Телефон, адрес и мессенджеры сервисного центра REVIVE в Сургуте. Выезд мастера по городу.",
+      "canonical": "https://revive.su/contacts",
+      "og_image": "",
+      "blocks": [
+        {
+          "type": "cta",
+          "visible": true,
+          "title": "Свяжитесь с нами",
+          "subtitle": "Телефон, мессенджеры или форма заявки — ответим быстро.",
+          "cta_text": "Написать в WhatsApp",
+          "cta_href": "https://wa.me/79952431995"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "slug": "remont-noutbukov",
+      "name": "Ноутбуки",
+      "h1": "Ремонт ноутбуков в Сургуте",
+      "short_description": "Чистка, термопаста, клавиатура, экран, аккумулятор, восстановление после залития.",
+      "price_from": 600,
+      "diagnostic_price": 0,
+      "warranty": "до 6 месяцев",
+      "hero_image": "",
+      "seo_title": "Ремонт ноутбуков в Сургуте — REVIVE",
+      "seo_description": "Ремонт ноутбуков в Сургуте: чистка, замена матрицы, клавиатуры, аккумулятора. Бесплатная диагностика при ремонте.",
+      "sort": 1,
+      "blocks": [
+        {
+          "type": "service_advantages",
+          "visible": true
+        },
+        {
+          "type": "price_table",
+          "visible": true
+        },
+        {
+          "type": "faq",
+          "visible": true
+        },
+        {
+          "type": "cta",
+          "visible": true,
+          "title": "Записаться на ремонт ноутбука",
+          "subtitle": "Опишите проблему — перезвоним и согласуем время.",
+          "cta_text": "Оставить заявку",
+          "cta_href": "#order"
+        }
+      ]
+    },
+    {
+      "slug": "remont-kompyuterov",
+      "name": "Компьютеры",
+      "h1": "Ремонт компьютеров в Сургуте",
+      "short_description": "Диагностика, замена комплектующих, апгрейд, чистка, Windows.",
+      "price_from": 300,
+      "diagnostic_price": 0,
+      "warranty": "до 6 месяцев",
+      "hero_image": "",
+      "seo_title": "Ремонт компьютеров в Сургуте — REVIVE",
+      "seo_description": "Ремонт системных блоков и апгрейд ПК в Сургуте. Диагностика бесплатно при ремонте.",
+      "sort": 2,
+      "blocks": [
+        {
+          "type": "service_advantages",
+          "visible": true
+        },
+        {
+          "type": "price_table",
+          "visible": true
+        },
+        {
+          "type": "faq",
+          "visible": true
+        },
+        {
+          "type": "cta",
+          "visible": true,
+          "title": "Записаться на ремонт компьютера",
+          "cta_text": "Оставить заявку",
+          "cta_href": "#order"
+        }
+      ]
+    },
+    {
+      "slug": "remont-smartfonov",
+      "name": "Смартфоны",
+      "h1": "Ремонт смартфонов в Сургуте",
+      "short_description": "Экраны, аккумуляторы, влага, разъёмы. Apple и Android.",
+      "price_from": 600,
+      "diagnostic_price": 0,
+      "warranty": "до 6 месяцев",
+      "hero_image": "",
+      "seo_title": "Ремонт смартфонов в Сургуте — REVIVE",
+      "seo_description": "Ремонт смартфонов в Сургуте: замена дисплея, АКБ, восстановление после воды.",
+      "sort": 3,
+      "blocks": [
+        {
+          "type": "service_advantages",
+          "visible": true
+        },
+        {
+          "type": "price_table",
+          "visible": true
+        },
+        {
+          "type": "faq",
+          "visible": true
+        },
+        {
+          "type": "cta",
+          "visible": true,
+          "title": "Записаться на ремонт смартфона",
+          "cta_text": "Оставить заявку",
+          "cta_href": "#order"
+        }
+      ]
+    },
+    {
+      "slug": "remont-planshetov",
+      "name": "Планшеты",
+      "h1": "Ремонт планшетов в Сургуте",
+      "short_description": "Дисплеи, аккумуляторы, корпуса, восстановление после влаги.",
+      "price_from": 800,
+      "diagnostic_price": 0,
+      "warranty": "до 6 месяцев",
+      "hero_image": "",
+      "seo_title": "Ремонт планшетов в Сургуте — REVIVE",
+      "seo_description": "Ремонт планшетов и iPad в Сургуте. Диагностика бесплатно при ремонте.",
+      "sort": 4,
+      "blocks": [
+        {
+          "type": "service_advantages",
+          "visible": true
+        },
+        {
+          "type": "price_table",
+          "visible": true
+        },
+        {
+          "type": "faq",
+          "visible": true
+        },
+        {
+          "type": "cta",
+          "visible": true,
+          "title": "Записаться на ремонт планшета",
+          "cta_text": "Оставить заявку",
+          "cta_href": "#order"
+        }
+      ]
+    }
+  ],
+  "prices": [
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Установка/восстановление/клонирование Windows",
+      "group": "ПО и настройка",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 1
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Установка MS Office 2016/2019/2021 (без лицензии)",
+      "group": "ПО и настройка",
+      "price_from": 900,
+      "price_to": 900,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 2
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Установка офисных программ (без лицензии)",
+      "group": "ПО и настройка",
+      "price_from": 900,
+      "price_to": 900,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 3
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Сброс пароля входа в Windows",
+      "group": "ПО и настройка",
+      "price_from": 900,
+      "price_to": 900,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 4
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Установка прикладного ПО (Office, антивирусы, драйверы)",
+      "group": "ПО и настройка",
+      "price_from": 600,
+      "price_to": 600,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 5
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Настройка и оптимизация системы",
+      "group": "ПО и настройка",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 6
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Удаление вирусов, баннеров, рекламного ПО",
+      "group": "ПО и настройка",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 7
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Установка и настройка антивируса",
+      "group": "ПО и настройка",
+      "price_from": 400,
+      "price_to": 400,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 8
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Восстановление Windows после сбоев",
+      "group": "ПО и настройка",
+      "price_from": 1000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 9
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Восстановление удалённых файлов и документов",
+      "group": "ПО и настройка",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 10
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Создание загрузочной флешки, резервных копий",
+      "group": "ПО и настройка",
+      "price_from": 400,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 11
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Настройка e-mail и облачных сервисов",
+      "group": "ПО и настройка",
+      "price_from": 500,
+      "price_to": 500,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 12
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Перенос данных между устройствами или в облако",
+      "group": "ПО и настройка",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 13
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Установка и настройка браузеров, плагинов",
+      "group": "ПО и настройка",
+      "price_from": 300,
+      "price_to": 300,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 14
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Настройка принтеров, сканеров, МФУ",
+      "group": "ПО и настройка",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 15
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Установка / настройка ПО",
+      "name": "Комплексная настройка системы и установка ПО",
+      "group": "ПО и настройка",
+      "price_from": 2000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 16
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Диагностика ноутбука",
+      "group": "Диагностика",
+      "price_from": 0,
+      "price_to": 0,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 17
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Снятие пароля (без перепрошивки BIOS)",
+      "group": "Типовой ремонт",
+      "price_from": 900,
+      "price_to": 900,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 18
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Ремонт материнской платы",
+      "group": "Типовой ремонт",
+      "price_from": 3000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 19
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Восстановление/обновление BIOS",
+      "group": "Типовой ремонт",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 20
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Чистка системы охлаждения, замена термоинтерфейсов",
+      "group": "Типовой ремонт",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 21
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Замена HDD→SSD (без стоимости SSD)",
+      "group": "Типовой ремонт",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 22
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Апгрейд оперативной памяти (без стоимости памяти)",
+      "group": "Типовой ремонт",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 23
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Замена матрицы/экрана (без стоимости матрицы)",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 24
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Ремонт корпуса/крышки",
+      "group": "Типовой ремонт",
+      "price_from": 3200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 25
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Замена клавиатуры (без стоимости клавиатуры)",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 26
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Замена аккумулятора (без стоимости аккумулятора)",
+      "group": "Типовой ремонт",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 27
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Замена или ремонт разъёма питания",
+      "group": "Типовой ремонт",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 28
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Замена/ремонт USB, HDMI, аудиоразъёмов",
+      "group": "Типовой ремонт",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 29
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Замена вентилятора (кулера)",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 30
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Восстановление данных с HDD/SSD/флешки",
+      "group": "Типовой ремонт",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 31
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Удаление вирусов, троянов, рекламы",
+      "group": "Типовой ремонт",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 32
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Установка и настройка драйверов",
+      "group": "Типовой ремонт",
+      "price_from": 400,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 33
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Восстановление работоспособности Windows",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 34
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Оптимизация работы ноутбука",
+      "group": "Типовой ремонт",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 35
+    },
+    {
+      "service_slug": "remont-noutbukov",
+      "category": "Ноутбуки",
+      "name": "Ремонт/замена петель экрана",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 36
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Диагностика системного блока",
+      "group": "Диагностика",
+      "price_from": 0,
+      "price_to": 0,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 37
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Обновление/перепрошивка BIOS",
+      "group": "Типовой ремонт",
+      "price_from": 400,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 38
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Замена HDD/SSD (без стоимости накопителя)",
+      "group": "Типовой ремонт",
+      "price_from": 300,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 39
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Замена CPU, системы охлаждения (без стоимости)",
+      "group": "Типовой ремонт",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 40
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Чистка корпуса и системы охлаждения",
+      "group": "Типовой ремонт",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 41
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Апгрейд HDD→SSD (без стоимости SSD)",
+      "group": "Типовой ремонт",
+      "price_from": 300,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 42
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Апгрейд оперативной памяти (без стоимости)",
+      "group": "Типовой ремонт",
+      "price_from": 300,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 43
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Замена блока питания (без стоимости БП)",
+      "group": "Типовой ремонт",
+      "price_from": 300,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 44
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Сборка/переустановка комплектующих",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 45
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Замена/ремонт разъёмов (USB, аудио, HDMI и др.)",
+      "group": "Типовой ремонт",
+      "price_from": 400,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 46
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Ремонт/замена материнской платы (пайка)",
+      "group": "Типовой ремонт",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 47
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Восстановление данных с HDD/SSD/флешки",
+      "group": "Типовой ремонт",
+      "price_from": 1000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 48
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Удаление вирусов, рекламного ПО",
+      "group": "Типовой ремонт",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 49
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Установка и настройка драйверов",
+      "group": "Типовой ремонт",
+      "price_from": 300,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 50
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Восстановление работоспособности Windows",
+      "group": "Типовой ремонт",
+      "price_from": 1000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 51
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Оптимизация системы для игр/работы",
+      "group": "Типовой ремонт",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 52
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Сброс пароля Windows/BIOS",
+      "group": "Типовой ремонт",
+      "price_from": 500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 53
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Настройка периферии (принтеры, сканеры, Wi-Fi и др.)",
+      "group": "Типовой ремонт",
+      "price_from": 400,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 54
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Комплексная чистка с полной разборкой",
+      "group": "Типовой ремонт",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 55
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Системные блоки",
+      "name": "Сборка ПК «под ключ»",
+      "group": "Типовой ремонт",
+      "price_from": 2000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 56
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Диагностика моноблока",
+      "group": "Диагностика",
+      "price_from": 0,
+      "price_to": 0,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 57
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Установка/восстановление Windows",
+      "group": "Моноблоки",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 58
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Установка драйверов и ПО",
+      "group": "Моноблоки",
+      "price_from": 500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 59
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Замена HDD/SSD (без стоимости накопителя)",
+      "group": "Моноблоки",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 60
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Замена оперативной памяти (без стоимости)",
+      "group": "Моноблоки",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 61
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Замена процессора (без стоимости)",
+      "group": "Моноблоки",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 62
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Чистка системы охлаждения, замена термопасты",
+      "group": "Моноблоки",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 63
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Ремонт или замена блока питания (без стоимости)",
+      "group": "Моноблоки",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 64
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Ремонт материнской платы (пайка)",
+      "group": "Моноблоки",
+      "price_from": 1800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 65
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Замена/ремонт разъёмов (USB, питание, аудио и др.)",
+      "group": "Моноблоки",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 66
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Замена экрана/матрицы (без стоимости)",
+      "group": "Моноблоки",
+      "price_from": 2500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 67
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Восстановление данных с HDD/SSD/флешки",
+      "group": "Моноблоки",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 68
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Удаление вирусов и рекламного ПО",
+      "group": "Моноблоки",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 69
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Оптимизация и ускорение работы моноблока",
+      "group": "Моноблоки",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 70
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Сброс пароля Windows/BIOS",
+      "group": "Моноблоки",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 71
+    },
+    {
+      "service_slug": "remont-kompyuterov",
+      "category": "Моноблоки",
+      "name": "Комплексная чистка с полной разборкой",
+      "group": "Моноблоки",
+      "price_from": 1800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 72
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Диагностика смартфона",
+      "group": "Диагностика",
+      "price_from": 0,
+      "price_to": 0,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 73
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Восстановление прошивки",
+      "group": "Типовой ремонт",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 74
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Сброс пароля/разблокировка",
+      "group": "Типовой ремонт",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 75
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Замена стекла/сенсора (без стоимости деталей)",
+      "group": "Типовой ремонт",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 76
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Замена дисплея в сборе (без стоимости)",
+      "group": "Типовой ремонт",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 77
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Замена аккумулятора (без стоимости)",
+      "group": "Типовой ремонт",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 78
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Ремонт/замена разъёма зарядки",
+      "group": "Типовой ремонт",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 79
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Ремонт/замена разъёма наушников",
+      "group": "Типовой ремонт",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 80
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Ремонт динамика/микрофона/вибромотора",
+      "group": "Типовой ремонт",
+      "price_from": 600,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 81
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Замена камеры (без стоимости камеры)",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 82
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Восстановление данных (фото, контакты и др.)",
+      "group": "Типовой ремонт",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 83
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Чистка после попадания влаги",
+      "group": "Типовой ремонт",
+      "price_from": 1000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 84
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Замена корпуса/крышки",
+      "group": "Типовой ремонт",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 85
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Замена кнопок (включения, громкости)",
+      "group": "Типовой ремонт",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 86
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Установка и настройка приложений",
+      "group": "Типовой ремонт",
+      "price_from": 300,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 87
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Смартфоны",
+      "name": "Перенос данных на новое устройство",
+      "group": "Типовой ремонт",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 88
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Диагностика планшета",
+      "group": "Диагностика",
+      "price_from": 0,
+      "price_to": 0,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 89
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Восстановление прошивки",
+      "group": "Типовой ремонт",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 90
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Сброс пароля/разблокировка",
+      "group": "Типовой ремонт",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 91
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Замена экрана/дисплея (без стоимости)",
+      "group": "Типовой ремонт",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 92
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Замена стекла/сенсора (без стоимости)",
+      "group": "Типовой ремонт",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 93
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Замена аккумулятора (без стоимости)",
+      "group": "Типовой ремонт",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 94
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Ремонт/замена разъёма зарядки",
+      "group": "Типовой ремонт",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 95
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Ремонт материнской платы",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 96
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Замена камеры",
+      "group": "Типовой ремонт",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 97
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Ремонт/замена кнопок",
+      "group": "Типовой ремонт",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 98
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Восстановление данных",
+      "group": "Типовой ремонт",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 99
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Чистка после попадания влаги",
+      "group": "Типовой ремонт",
+      "price_from": 1000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 100
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Установка и настройка приложений",
+      "group": "Типовой ремонт",
+      "price_from": 400,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 101
+    },
+    {
+      "service_slug": "remont-planshetov",
+      "category": "Планшеты",
+      "name": "Перенос данных на другое устройство",
+      "group": "Типовой ремонт",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 102
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Диагностика устройств Apple",
+      "group": "Диагностика",
+      "price_from": 0,
+      "price_to": 0,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 103
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Перепрошивка iOS/macOS",
+      "group": "Apple",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 104
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Помощь с восстановлением Apple ID (при наличии документов)",
+      "group": "Apple",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 105
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Восстановление/обновление macOS",
+      "group": "Apple",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 106
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Замена экрана/стекла (без стоимости)",
+      "group": "Apple",
+      "price_from": 1500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 107
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Замена дисплея в сборе (без стоимости)",
+      "group": "Apple",
+      "price_from": 2500,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 108
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Замена батареи (без стоимости)",
+      "group": "Apple",
+      "price_from": 1000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 109
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Замена разъёма Lightning/USB-C (без стоимости)",
+      "group": "Apple",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 110
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Ремонт камеры/модуля объектива",
+      "group": "Apple",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 111
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Восстановление Face ID/Touch ID",
+      "group": "Apple",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 112
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Лечение после попадания влаги",
+      "group": "Apple",
+      "price_from": 1200,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 113
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Ремонт/замена кнопок (включения, Home, громкости)",
+      "group": "Apple",
+      "price_from": 900,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 114
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Восстановление данных",
+      "group": "Apple",
+      "price_from": 2000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 115
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Установка и настройка ПО/macOS/iOS",
+      "group": "Apple",
+      "price_from": 800,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 116
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Перенос данных на другое устройство",
+      "group": "Apple",
+      "price_from": 1000,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 117
+    },
+    {
+      "service_slug": "remont-smartfonov",
+      "category": "Apple устройства",
+      "name": "Оптимизация и ускорение работы",
+      "group": "Apple",
+      "price_from": 700,
+      "price_to": null,
+      "diagnostic_price": 0,
+      "urgent_multiplier": 1.3,
+      "active": true,
+      "sort": 118
+    }
+  ],
+  "faq": [
+    {
+      "question": "Как вызвать мастера/оформить заявку?",
+      "answer": "Просто оставьте заявку на сайте, напишите нам в WhatsApp/Telegram или позвоните. Мы подскажем, что делать дальше и согласуем удобное время передачи устройства.",
+      "sort": 1
+    },
+    {
+      "question": "Сколько времени занимает ремонт?",
+      "answer": "80 % ремонтов выполняются за 1–3 дня. Сроки и стоимость согласуем заранее. Наша цель — вернуть ваше устройство в работу как можно скорее.",
+      "sort": 2
+    },
+    {
+      "question": "Как происходит передача и возврат устройства?",
+      "answer": "Мы приедем сами или пришлём курьера. При передаче устройства оформляется фото- или видеофиксация, а также квитанция. Возврат — так же лично в руки или через курьера.",
+      "sort": 3
+    },
+    {
+      "question": "Могу ли я сам привезти или забрать устройство?",
+      "answer": "Да, по предварительной договорённости вы можете передать или забрать устройство лично.",
+      "sort": 4
+    },
+    {
+      "question": "В каких районах работаете?",
+      "answer": "Обслуживаем все районы города и ближайшие населённые пункты. Уточните ваш адрес при заказе, и мы согласуем время приезда.",
+      "sort": 5
+    },
+    {
+      "question": "Нужно ли платить за выезд/диагностику?",
+      "answer": "Диагностика бесплатная, если вы соглашаетесь на ремонт. Если ремонт не потребуется — стоимость диагностики озвучим заранее.",
+      "sort": 6
+    },
+    {
+      "question": "Какие способы оплаты доступны?",
+      "answer": "Можно оплатить наличными, по карте, по QR-коду или через СБП. После ремонта вы получаете чек и гарантийный талон.",
+      "sort": 7
+    },
+    {
+      "question": "Как узнать статус ремонта?",
+      "answer": "Мы всегда на связи в мессенджерах, по телефону и почте — сообщаем о каждом этапе ремонта и можем прислать фотоотчёт.",
+      "sort": 8
+    },
+    {
+      "question": "Безопасно ли отдавать устройство?",
+      "answer": "Да — мы всё фиксируем на фото, оформляем акт приёма и возврата. Ваши данные и техника под защитой.",
+      "sort": 9
+    },
+    {
+      "question": "Что делать, если проблема повторится?",
+      "answer": "Просто обратитесь — мы устраним неисправность бесплатно по гарантии, если она связана с прошедшим ремонтом.",
+      "sort": 10
+    },
+    {
+      "question": "Можно ли удалить личные данные с устройства?",
+      "answer": "Конечно! Можем проконсультировать, как сделать это самостоятельно, или удалить ваши данные по вашей просьбе.",
+      "sort": 11
+    },
+    {
+      "question": "Работаете ли вы с техникой Apple/смартфонами/планшетами?",
+      "answer": "Да, работаем с большинством устройств — ноутбуки, ПК, моноблоки, смартфоны, планшеты и техника Apple.",
+      "sort": 12
+    },
+    {
+      "question": "Сколько стоит ремонт?",
+      "answer": "Диагностика бесплатная, а стоимость ремонта рассчитывается прозрачно после проверки. Например, замена экрана — 2000 ₽.",
+      "sort": 13
+    },
+    {
+      "question": "Даете ли вы гарантию на работы?",
+      "answer": "На все виды ремонта мы предоставляем гарантию до 6 месяцев. На работы по восстановлению после попадания влаги — гарантия 1 день.",
+      "sort": 14
+    }
+  ]
+}

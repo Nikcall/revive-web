@@ -1,0 +1,35 @@
+# Directus on the same VPS as CRM. Separate compose, separate DB, separate user.
+# Postgres is the host instance (127.0.0.1:5432). Port 5432 is not published.
+# Directus listens on 8055; UFW allows only 22/80/443, Nginx proxies cms.revive.su.
+
+services:
+  directus:
+    image: directus/directus:11.9.3
+    container_name: revive-cms
+    restart: unless-stopped
+    network_mode: host
+    mem_limit: 512m
+    env_file: .env
+    volumes:
+      - revive_web_uploads:/directus/uploads
+    environment:
+      KEY: ${KEY}
+      SECRET: ${SECRET}
+      DB_CLIENT: pg
+      DB_HOST: 127.0.0.1
+      DB_PORT: '5432'
+      DB_DATABASE: revive_web
+      DB_USER: directus_user
+      DB_PASSWORD: ${DB_PASSWORD}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      PUBLIC_URL: ${PUBLIC_URL:-https://cms.revive.su}
+      HOST: '127.0.0.1'
+      PORT: '8055'
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'true'
+      TELEMETRY: 'false'
+      WEBSOCKETS_ENABLED: 'true'
+
+volumes:
+  revive_web_uploads:

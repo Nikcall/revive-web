@@ -1,0 +1,50 @@
+services:
+  database:
+    image: postgres:16-alpine
+    container_name: revive-web-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-revive_web}
+      POSTGRES_USER: ${POSTGRES_USER:-directus}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-directus_local_change_me}
+    volumes:
+      - revive_web_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-directus} -d ${POSTGRES_DB:-revive_web}']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    ports:
+      - '5433:5432'
+
+  directus:
+    image: directus/directus:11.9.3
+    container_name: revive-web-cms
+    restart: unless-stopped
+    ports:
+      - '8055:8055'
+    volumes:
+      - revive_web_uploads:/directus/uploads
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      KEY: ${DIRECTUS_KEY:-replace-with-32-char-random-key-value}
+      SECRET: ${DIRECTUS_SECRET:-replace-with-32-char-random-secret-val}
+      DB_CLIENT: pg
+      DB_HOST: database
+      DB_PORT: '5432'
+      DB_DATABASE: ${POSTGRES_DB:-revive_web}
+      DB_USER: ${POSTGRES_USER:-directus}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-directus_local_change_me}
+      ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL:-admin@revive.su}
+      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD:-ReviveCmsLocal1!}
+      PUBLIC_URL: ${DIRECTUS_URL:-http://localhost:8055}
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'true'
+      TELEMETRY: 'false'
+      WEBSOCKETS_ENABLED: 'true'
+
+volumes:
+  revive_web_pg:
+  revive_web_uploads:
