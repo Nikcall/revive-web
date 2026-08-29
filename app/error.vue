@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import '~/assets/css/main.css'
-
 const props = defineProps<{
   error: { statusCode: number; statusMessage?: string; message?: string }
 }>()
