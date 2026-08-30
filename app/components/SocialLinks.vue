@@ -1,9 +1,22 @@
 <script setup lang="ts">
 import type { CmsContacts } from '~/types/cms'
 
-defineProps<{ contacts: CmsContacts }>()
+const props = defineProps<{ contacts: CmsContacts }>()
 const open = ref(false)
 const showTop = ref(false)
+const { contacts } = props
+
+const socialItems = computed(() => {
+  const items = [
+    { name: 'telegram', href: contacts.telegram, label: 'Telegram' },
+    { name: 'whatsapp', href: contacts.whatsapp, label: 'WhatsApp' },
+    { name: 'vk', href: contacts.vk, label: 'VK' },
+  ]
+  if (contacts.max) {
+    items.push({ name: 'max', href: contacts.max, label: 'MAX' })
+  }
+  return items
+})
 
 function onScroll() {
   showTop.value = (window.scrollY || document.documentElement.scrollTop) > 400
@@ -37,46 +50,24 @@ onUnmounted(() => {
         <path d="M6 14l6-6 6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
-    <div v-if="open" class="fab-list">
-      <a
-        class="fab-item telegram"
-        :href="contacts.telegram"
-        target="_blank"
-        rel="nofollow"
-        aria-label="Telegram"
-      >
-        <SocialIcon name="telegram" variant="circle" />
-      </a>
-      <a
-        class="fab-item whatsapp"
-        :href="contacts.whatsapp"
-        target="_blank"
-        rel="nofollow"
-        aria-label="WhatsApp"
-      >
-        <SocialIcon name="whatsapp" variant="circle" />
-      </a>
-      <a
-        class="fab-item vk"
-        :href="contacts.vk"
-        target="_blank"
-        rel="nofollow"
-        aria-label="VK"
-      >
-        <SocialIcon name="vk" variant="circle" />
-      </a>
-      <a
-        v-if="contacts.max"
-        class="fab-item max"
-        :href="contacts.max"
-        target="_blank"
-        rel="nofollow"
-        aria-label="MAX"
-      >
-        <SocialIcon name="max" variant="circle" />
-      </a>
-    </div>
-    <button class="fab-btn" type="button" :aria-label="open ? 'Закрыть' : 'Написать'" @click="open = !open">
+    <Transition name="fab-list">
+      <div v-if="open" class="fab-list">
+        <a
+          v-for="(item, i) in socialItems"
+          :key="item.name"
+          class="fab-item"
+          :class="item.name"
+          :href="item.href"
+          target="_blank"
+          rel="nofollow"
+          :aria-label="item.label"
+          :style="{ transitionDelay: `${i * 50}ms` }"
+        >
+          <SocialIcon :name="item.name" variant="circle" />
+        </a>
+      </div>
+    </Transition>
+    <button class="fab-btn" :class="{ open }" type="button" :aria-label="open ? 'Закрыть' : 'Написать'" @click="open = !open">
       <SocialIcon :name="open ? 'close' : 'write'" />
     </button>
   </div>
@@ -109,6 +100,10 @@ onUnmounted(() => {
 .fab-btn :deep(.si) {
   width: 28px;
   height: 26px;
+  transition: transform 0.3s;
+}
+.fab-btn.open :deep(.si) {
+  transform: rotate(135deg);
 }
 .fab-list {
   display: flex;
@@ -130,6 +125,29 @@ onUnmounted(() => {
 .fab-item.whatsapp { color: #27d061; }
 .fab-item.vk { color: #0077ff; }
 .fab-item.max { color: #000; }
+
+/* Stagger animation */
+.fab-list-enter-active .fab-item {
+  animation: fab-pop 0.25s ease-out both;
+}
+.fab-list-leave-active .fab-item {
+  animation: fab-pop 0.15s ease-in both reverse;
+}
+@keyframes fab-pop {
+  from { opacity: 0; transform: scale(0.6) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Transition wrapper */
+.fab-list-enter-active,
+.fab-list-leave-active {
+  transition: opacity 0.2s;
+}
+.fab-list-enter-from,
+.fab-list-leave-to {
+  opacity: 0;
+}
+
 .top-btn {
   width: 48px;
   height: 48px;
