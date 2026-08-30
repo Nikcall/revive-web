@@ -213,6 +213,20 @@
   height: 2px;
   background: #e0e0e0;
 }
+.mock-progress::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  height: 2px;
+  width: calc(50% - 16px);
+  background: var(--brand);
+  animation: fill-line 1.5s ease-out forwards;
+}
+@keyframes fill-line {
+  from { width: 0; }
+  to { width: calc(50% - 16px); }
+}
 .mock-step {
   display: flex;
   flex-direction: column;
@@ -233,7 +247,11 @@
 }
 .mock-step.active .step-dot {
   background: var(--brand);
-  box-shadow: 0 0 0 4px rgba(253, 81, 25, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(253, 81, 25, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(253, 81, 25, 0); }
 }
 .mock-step span {
   font-size: 10px;
@@ -248,6 +266,11 @@
   background: var(--soft);
   border-radius: 12px;
   padding: 12px 14px;
+  animation: fade-in 0.8s ease-out 1s both;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .msg-in {
   font-size: 12px;
