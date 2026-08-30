@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     directusUrl: '',
     public: {
       siteUrl: '',
+      yandexMetrikaId: '',
     },
   },
 
