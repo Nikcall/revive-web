@@ -17,8 +17,8 @@ const files: Record<string, Record<string, string>> = {
     vk: '/icons/circ-vk.svg',
     phone: '/icons/circ-phone.svg',
     email: '/icons/circ-email.svg',
-    max: '/icons/soc-max.svg',
-    maxmessenger: '/icons/soc-max.svg',
+    max: '/icons/circ-max.svg',
+    maxmessenger: '/icons/soc-maxmessenger.svg',
   },
   radio: {
     phone: '/icons/radio-phone.svg',

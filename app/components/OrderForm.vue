@@ -113,13 +113,13 @@ async function onSubmit() {
         <p class="lead">Позвоните нам прямо сейчас<br />или напишите в мессенджеры —<br />мы всегда на связи!</p>
         <div class="soc">
           <a :href="props.contacts.telegram" target="_blank" rel="nofollow" aria-label="Telegram">
-            <SocialIcon name="telegram" variant="circle" />
+            <SocialIcon name="telegram" variant="glyph" />
           </a>
           <a :href="props.contacts.whatsapp" target="_blank" rel="nofollow" aria-label="WhatsApp">
-            <SocialIcon name="whatsapp" variant="circle" />
+            <SocialIcon name="whatsapp" variant="glyph" />
           </a>
           <a :href="props.contacts.vk" target="_blank" rel="nofollow" aria-label="VK">
-            <SocialIcon name="vk" variant="circle" />
+            <SocialIcon name="vk" variant="glyph" />
           </a>
           <a
             v-if="props.contacts.max"
@@ -128,13 +128,13 @@ async function onSubmit() {
             rel="nofollow"
             aria-label="MAX"
           >
-            <SocialIcon name="max" variant="circle" />
+            <SocialIcon name="max" variant="glyph" />
           </a>
           <a :href="props.contacts.phone_href" aria-label="Телефон">
-            <SocialIcon name="phone" variant="circle" />
+            <SocialIcon name="phone" variant="glyph" />
           </a>
           <a :href="`mailto:${props.contacts.email}`" aria-label="Почта">
-            <SocialIcon name="email" variant="circle" />
+            <SocialIcon name="email" variant="glyph" />
           </a>
         </div>
       </div>
@@ -225,14 +225,22 @@ h2 {
   align-items: center;
 }
 .soc a {
-  color: #000;
   display: grid;
   place-items: center;
+  color: #555;
   transition: color 0.2s;
   padding: 7px;
 }
 .soc a:hover {
   color: var(--brand);
+}
+.soc :deep(.si-img) {
+  width: 22px;
+  height: 22px;
+}
+.soc :deep(.si) {
+  width: 22px;
+  height: 22px;
 }
 form {
   position: relative;
