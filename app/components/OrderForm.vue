@@ -154,7 +154,7 @@ async function onSubmit() {
           <div class="channels">
             <label v-for="item in channels" :key="item.value">
               <input v-model="channel" type="radio" :value="item.value" />
-              <SocialIcon :name="item.value" variant="radio" />
+              <SocialIcon :name="item.value" variant="glyph" />
               {{ item.label }}
             </label>
           </div>
@@ -285,6 +285,14 @@ textarea {
   align-items: center;
   gap: 6px;
   cursor: pointer;
+}
+.channels :deep(.si-img) {
+  width: 18px;
+  height: 18px;
+}
+.channels :deep(.si) {
+  width: 18px;
+  height: 18px;
 }
 .submit {
   border-radius: 10px;
