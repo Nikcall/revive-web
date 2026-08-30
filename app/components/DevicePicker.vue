@@ -43,14 +43,16 @@ const expanded = ref<number | null>(null)
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" /></svg>
           </NuxtLink>
           <div class="problems">
-            <NuxtLink
-              v-for="problem in device.problems"
-              :key="problem"
-              :to="device.href"
-              class="problem"
-            >
-              {{ problem }}
-            </NuxtLink>
+            <div class="problems-inner">
+              <NuxtLink
+                v-for="problem in device.problems"
+                :key="problem"
+                :to="device.href"
+                class="problem"
+              >
+                {{ problem }}
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
@@ -134,13 +136,20 @@ const expanded = ref<number | null>(null)
   transform: rotate(90deg);
 }
 .problems {
-  display: none;
-  padding: 0 20px 16px;
-  gap: 8px;
+  display: grid;
+  grid-template-rows: 0fr;
+  padding: 0 20px;
+  transition: grid-template-rows 0.25s ease, padding 0.25s ease;
+}
+.problems-inner {
+  display: flex;
   flex-wrap: wrap;
+  gap: 8px;
+  overflow: hidden;
 }
 .device.open .problems {
-  display: flex;
+  grid-template-rows: 1fr;
+  padding: 0 20px 16px;
 }
 .problem {
   display: inline-block;
@@ -163,6 +172,6 @@ const expanded = ref<number | null>(null)
 @media (max-width: 580px) {
   .grid { grid-template-columns: 1fr; }
   .picker { padding: 48px 0; }
-  .problems { display: flex !important; }
+  .problems { grid-template-rows: 1fr; padding: 0 20px 16px; }
 }
 </style>
