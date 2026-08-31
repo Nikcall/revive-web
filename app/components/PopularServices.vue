@@ -7,12 +7,16 @@ const props = defineProps<{
 
 const POPULAR: Record<string, string[]> = {
   'remont-noutbukov': [
-    'Профилактика / замена кулера',
-    'Замена дисплейного модуля (в сборе)',
+    'Диагностика ноутбука',
+    'Чистка и обслуживание офисного ноутбука',
+    'Чистка игрового ноутбука',
+    'Ремонт материнской платы',
+    'Замена матрицы',
     'Замена клавиатуры',
+    'Замена разъёма питания',
+    'Ремонт корпуса и петель',
     'Замена аккумулятора',
-    'Модернизация накопителя HDD / SSD',
-    'Восстановление после попадания жидкости',
+    'Замена накопителя HDD / SSD',
   ],
   'remont-smartfonov': [
     'Замена дисплея',
@@ -84,10 +88,15 @@ function priceLabel(item: CatalogPrice) {
           <a class="card-cta" href="#order">Заказать</a>
         </div>
       </div>
+      <div v-if="!popularItems.length" class="empty">
+        <p>Не нашли нужную работу?</p>
+        <p>В полном прайс-листе доступны все услуги по ремонту.</p>
+      </div>
       <NuxtLink to="/prices" class="all-link">
-        Посмотреть все цены
+        {{ popularItems.length ? 'Посмотреть все цены' : 'Посмотреть все цены' }}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
       </NuxtLink>
+      <p class="note">Цены указаны за работу. Стоимость запчастей и комплектующих рассчитывается отдельно.</p>
     </div>
   </section>
 </template>
@@ -190,6 +199,21 @@ function priceLabel(item: CatalogPrice) {
 .all-link svg {
   width: 16px;
   height: 16px;
+}
+.note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--dim);
+  text-align: center;
+  line-height: 1.5;
+}
+.empty {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.empty p {
+  color: var(--dim);
+  font-size: 15px;
 }
 @media (max-width: 880px) {
   .grid { grid-template-columns: 1fr 1fr; }
