@@ -29,7 +29,6 @@ body {
   background: linear-gradient(160deg, #ffffff 0%, #f0f0f0 100%);
   color: var(--text);
   font-family: Rubik, sans-serif;
-  overflow-x: hidden;
 }
 
 a {
@@ -40,6 +39,10 @@ a {
 img {
   max-width: 100%;
   display: block;
+}
+
+section {
+  overflow: clip;
 }
 
 button,
