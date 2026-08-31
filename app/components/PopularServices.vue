@@ -83,7 +83,7 @@ const popularItems = computed(() => {
       const ib = names.indexOf(b.name)
       return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib)
     })
-    .slice(0, 6)
+    .slice(0, 10)
 })
 
 function priceLabel(item: CatalogPrice) {

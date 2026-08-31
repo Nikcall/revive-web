@@ -1,140 +1,73 @@
 <script setup lang="ts">
 import type { CatalogPrice } from '#shared/catalog'
+import { catalogPriceLabel } from '#shared/catalog'
 
 const props = defineProps<{
   catalogPrices?: CatalogPrice[]
+  serviceSlug?: string
 }>()
 
-const categories = [
-  { id: 'notebook', label: 'Ноутбуки', icon: 'laptop' },
-  { id: 'pc', label: 'Системные блоки', icon: 'pc' },
-  { id: 'monoblock', label: 'Моноблоки', icon: 'monitor' },
-  { id: 'smartphone', label: 'Смартфоны', icon: 'phone' },
-  { id: 'tablet', label: 'Планшеты', icon: 'tablet' },
-  { id: 'apple', label: 'Apple', icon: 'apple' },
-  { id: 'software', label: 'ПО', icon: 'software' },
-]
-
-const activeTab = ref('notebook')
-
-const priceData: Record<string, { title: string; rows: string[][] }> = {
-  notebook: {
-    title: 'Ноутбуки',
-    rows: [
-      ['Диагностика ноутбука', 'Бесплатно'],
-      ['Чистка и обслуживание офисного ноутбука', '2 900 ₽'],
-      ['Чистка игрового ноутбука / CPU + GPU', '3 900 ₽'],
-      ['Компонентный ремонт материнской платы', 'от 6 900 ₽'],
-      ['Замена матрицы', 'от 2 990 ₽'],
-      ['Замена клавиатуры', 'от 1 990 ₽'],
-      ['Замена разъёма питания', 'от 3 990 ₽'],
-      ['Ремонт корпуса и петель', 'от 3 990 ₽'],
-      ['Замена аккумулятора', 'от 1 990 ₽'],
-      ['Замена накопителя HDD / SSD', 'от 1 490 ₽'],
-    ],
-  },
-  pc: {
-    title: 'Системные блоки',
-    rows: [
-      ['Диагностика системного блока', 'Бесплатно'],
-      ['Комплексная чистка ПК', 'от 3 500 ₽'],
-      ['Компонентный ремонт материнской платы', 'от 4 000 ₽'],
-      ['Ремонт разъёмов', 'от 1 500 ₽'],
-      ['Замена накопителя HDD / SSD', 'от 800 ₽'],
-      ['Установка / увеличение оперативной памяти', 'от 800 ₽'],
-      ['Замена блока питания', 'от 800 ₽'],
-      ['Замена процессора / системы охлаждения', 'от 1 000 ₽'],
-      ['Сборка ПК', 'от 3 000 ₽'],
-      ['Апгрейд ПК', 'от 2 000 ₽'],
-    ],
-  },
-  monoblock: {
-    title: 'Моноблоки',
-    rows: [
-      ['Диагностика моноблока', 'Бесплатно'],
-      ['Комплексное обслуживание системы охлаждения', 'от 3 500 ₽'],
-      ['Замена HDD / SSD', 'от 1 200 ₽'],
-      ['Установка / увеличение оперативной памяти', 'от 1 200 ₽'],
-      ['Компонентный ремонт материнской платы', 'от 4 000 ₽'],
-      ['Ремонт системы питания', 'от 2 500 ₽'],
-      ['Ремонт USB / Audio и других разъёмов', 'от 1 500 ₽'],
-      ['Замена матрицы', 'от 2 500 ₽'],
-      ['Апгрейд моноблока', 'от 2 000 ₽'],
-    ],
-  },
-  smartphone: {
-    title: 'Смартфоны',
-    rows: [
-      ['Диагностика смартфона', 'Бесплатно'],
-      ['Замена дисплейного модуля', 'от 1 990 ₽'],
-      ['Замена аккумулятора', 'от 1 490 ₽'],
-      ['Ремонт разъёма зарядки', 'от 1 990 ₽'],
-      ['Замена задней крышки / корпуса', 'от 1 490 ₽'],
-      ['Замена камеры', 'от 1 990 ₽'],
-      ['Ремонт динамика / микрофона', 'от 1 490 ₽'],
-      ['Компонентный ремонт материнской платы', 'от 5 900 ₽'],
-      ['Восстановление после попадания жидкости', 'по оценке'],
-      ['Перенос данных на другое устройство', 'от 1 490 ₽'],
-      ['Восстановление данных', 'от 3 490 ₽'],
-    ],
-  },
-  tablet: {
-    title: 'Планшеты',
-    rows: [
-      ['Диагностика планшета', 'Бесплатно'],
-      ['Замена дисплейного модуля', 'от 2 490 ₽'],
-      ['Замена сенсорного стекла / тачскрина', 'от 2 490 ₽'],
-      ['Замена аккумулятора', 'от 1 490 ₽'],
-      ['Ремонт разъёма зарядки', 'от 1 990 ₽'],
-      ['Компонентный ремонт материнской платы', 'от 4 900 ₽'],
-      ['Замена камеры', 'от 1 490 ₽'],
-      ['Ремонт кнопок / шлейфов', 'от 1 490 ₽'],
-      ['Диагностика после попадания жидкости', 'от 2 990 ₽'],
-      ['Восстановление / перенос данных', 'от 3 490 ₽'],
-    ],
-  },
-  apple: {
-    title: 'Apple устройства',
-    rows: [
-      ['Диагностика устройства Apple', 'от 0 ₽'],
-      ['Замена дисплейного модуля', 'от 3 490 ₽'],
-      ['Замена аккумулятора', 'от 2 990 ₽'],
-      ['Ремонт разъёма зарядки', 'от 2 990 ₽'],
-      ['Ремонт камеры', 'от 2 490 ₽'],
-      ['Ремонт Face ID / Touch ID', 'от 7 900 ₽'],
-      ['Компонентный ремонт материнской платы', 'от 6 900 ₽'],
-      ['Восстановление после попадания жидкости', 'от 5 900 ₽'],
-      ['Восстановление iOS / iPadOS', '1 990 ₽'],
-      ['Восстановление / установка macOS', 'от 3 490 ₽'],
-      ['Перенос пользовательских данных', 'от 1 490 ₽'],
-    ],
-  },
-  software: {
-    title: 'Программное обеспечение',
-    rows: [
-      ['Установка и настройка Windows 10/11', '2 490 ₽'],
-      ['Установка Windows с сохранением пользовательских данных', '3 490 ₽'],
-      ['Восстановление Windows без переустановки', 'от 2 490 ₽'],
-      ['Клонирование HDD / SSD', 'от 2 490 ₽'],
-      ['Установка и настройка драйверов', 'от 1 490 ₽'],
-      ['Установка и настройка пользовательского ПО', 'от 1 490 ₽'],
-      ['Установка и настройка Microsoft Office', 'от 1 990 ₽'],
-      ['Обновление Windows и системных компонентов', 'от 1 490 ₽'],
-      ['Перенос пользовательских данных', 'от 1 490 ₽'],
-      ['Восстановление удалённых / повреждённых данных', 'от 3 490 ₽'],
-      ['Комплексная настройка компьютера «под ключ»', 'от 4 490 ₽'],
-    ],
-  },
+const TAB_LABELS: Record<string, string> = {
+  'Смартфоны (Samsung, Xiaomi, Android)': 'Смартфоны',
+  'Планшеты Android': 'Планшеты Android',
+  'ПО / Windows / macOS': 'ПО',
+  iPhone: 'iPhone',
+  iPad: 'iPad',
+  MacBook: 'MacBook',
+  iMac: 'iMac',
+  Ноутбуки: 'Ноутбуки',
+  'Системные блоки / ПК': 'Системные блоки / ПК',
+  Моноблоки: 'Моноблоки',
+  'Дополнительные услуги': 'Доп. услуги',
 }
 
-const activeData = computed(() => priceData[activeTab.value])
+const TAB_ORDER = [
+  'Ноутбуки',
+  'Системные блоки / ПК',
+  'Моноблоки',
+  'Смартфоны (Samsung, Xiaomi, Android)',
+  'Планшеты Android',
+  'iPhone',
+  'iPad',
+  'MacBook',
+  'iMac',
+  'ПО / Windows / macOS',
+  'Дополнительные услуги',
+]
+
+const items = computed(() => props.catalogPrices || [])
+
+const tabs = computed(() => {
+  const seen = new Set(items.value.map((p) => p.category_name))
+  return TAB_ORDER.filter((name) => seen.has(name))
+})
+
+const activeTab = ref('')
+watch(tabs, (list) => {
+  if (list.length && !list.includes(activeTab.value)) {
+    activeTab.value = list[0]
+  }
+}, { immediate: true })
+
+const activeItems = computed(() =>
+  items.value.filter((p) => p.category_name === activeTab.value),
+)
+
+const groupedByGroup = computed(() => {
+  const map = new Map<string, CatalogPrice[]>()
+  for (const item of activeItems.value) {
+    const g = item.group || ''
+    if (!map.has(g)) map.set(g, [])
+    map.get(g)!.push(item)
+  }
+  return map
+})
 
 const urgent = ref(false)
 const device = ref('')
 const group = ref('')
 const service = ref('')
 
-const items = computed(() => props.catalogPrices || [])
 const devices = computed(() => [...new Set(items.value.map((p) => p.category_name))])
 const groups = computed(() =>
   [...new Set(items.value.filter((p) => p.category_name === device.value).map((p) => p.group))],
@@ -208,24 +141,31 @@ watch(group, () => { service.value = '' })
       </div>
 
       <p class="section-label">Прайс-лист</p>
-      <div class="tabs">
+      <div v-if="tabs.length" class="tabs">
         <button
-          v-for="cat in categories"
-          :key="cat.id"
+          v-for="cat in tabs"
+          :key="cat"
           type="button"
-          :class="{ active: activeTab === cat.id }"
-          @click="activeTab = cat.id"
-        >{{ cat.label }}</button>
+          :class="{ active: activeTab === cat }"
+          @click="activeTab = cat"
+        >{{ TAB_LABELS[cat] || cat }}</button>
       </div>
-      <div v-if="activeData" class="table">
-        <h3>{{ activeData.title }}</h3>
-        <ul>
-          <li v-for="row in activeData.rows" :key="row[0]">
-            <span>{{ row[0] }}</span>
-            <b :class="{ free: row[1] === 'Бесплатно' }">{{ row[1] }}</b>
-          </li>
-        </ul>
-      </div>
+      <template v-for="cat in tabs" :key="cat">
+        <div v-if="activeTab === cat" class="table">
+          <h3>{{ TAB_LABELS[cat] || cat }}</h3>
+          <template v-for="[, groupItems] in groupedByGroup" :key="groupItems[0]?.group">
+            <template v-if="groupItems[0]?.group">
+              <p class="group-label">{{ groupItems[0].group }}</p>
+            </template>
+            <ul>
+              <li v-for="item in groupItems" :key="item.key || item.name">
+                <span>{{ item.name }}</span>
+                <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
+              </li>
+            </ul>
+          </template>
+        </div>
+      </template>
 
       <p class="note">
         Цены указаны за работу. Стоимость запчастей и комплектующих рассчитывается отдельно после диагностики и согласования.
@@ -393,11 +333,25 @@ select {
   border-radius: 14px;
   padding: 20px;
   border: 1px solid var(--border);
+  margin-bottom: 16px;
 }
 .table h3 {
   font-size: 18px;
   font-weight: 800;
   margin-bottom: 14px;
+}
+.group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin: 16px 0 6px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.group-label:first-child {
+  margin-top: 0;
 }
 .table li {
   display: flex;
