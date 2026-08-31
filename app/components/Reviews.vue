@@ -1,11 +1,32 @@
 <script setup lang="ts">
 import type { CmsReview } from '~/types/cms'
 
-const props = defineProps<{ reviews: CmsReview[] }>()
+const props = defineProps<{ reviews?: CmsReview[] }>()
+
+const fallbackReviews: CmsReview[] = [
+  {
+    author: 'Татьяна Т.',
+    text: 'Хочу выразить огромную благодарность за то, что вернули мой ноутбук к жизни. Золотые руки у мастера. Ноутбук работает лучше, чем когда его купили. Очень быстро отремонтировали. Очень рекомендую!',
+    service: 'Ремонт ноутбука',
+  },
+  {
+    author: 'Владимир',
+    text: 'Обращался с целью замены заднего стекла, аккумулятора и настройки беспроводной зарядки. Все сделано очень качественно и быстро. Рекомендую данный сервис!',
+    service: 'Ремонт iPhone',
+  },
+  {
+    author: 'Ярославна А.',
+    text: 'Хотела бы поблагодарить сервис REVIVE за быстрый и качественный ремонт ноутбука! Специалист объяснил всё максимально понятно, простым и доступным языком. Работа была выполнена в оговорённые сроки, что для меня было очень важно, так как я работаю удаленно.',
+    service: 'Ремонт ноутбука',
+  },
+]
+
+const allReviews = computed(() => props.reviews?.length ? props.reviews : fallbackReviews)
+
 const index = ref(0)
 const visible = 3
 
-const max = computed(() => Math.max(0, props.reviews.length - visible))
+const max = computed(() => Math.max(0, allReviews.value.length - visible))
 function prev() {
   index.value = Math.max(0, index.value - 1)
 }
@@ -27,10 +48,10 @@ const palettes = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6']
           <button type="button" :disabled="index >= max" @click="next">→</button>
         </div>
       </div>
-      <p class="sb">Более 500 ремонтов — и каждый клиент доверяет нам снова</p>
+      <p class="sb">500+ ремонтов в личной практике мастера — и каждый клиент доволен</p>
       <div class="outer">
         <div class="track" :style="{ transform: `translateX(-${index * (100 / visible)}%)` }">
-          <article v-for="(item, i) in reviews" :key="item.author + i" class="card">
+          <article v-for="(item, i) in allReviews" :key="item.author + i" class="card">
             <div class="stars">★★★★★</div>
             <p>{{ item.text }}</p>
             <div class="bot">
