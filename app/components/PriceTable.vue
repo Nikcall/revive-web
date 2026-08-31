@@ -8,11 +8,12 @@ const props = defineProps<{
 }>()
 
 const DEVICE_TABS = [
-  { id: 'notebook', label: 'Ноутбуки', categories: ['Ноутбуки', 'MacBook'] },
-  { id: 'pc', label: 'Системные блоки', categories: ['Системные блоки / ПК', 'iMac'] },
+  { id: 'notebook', label: 'Ноутбуки', categories: ['Ноутбуки'] },
+  { id: 'pc', label: 'Системные блоки', categories: ['Системные блоки / ПК'] },
   { id: 'monoblock', label: 'Моноблоки', categories: ['Моноблоки'] },
-  { id: 'smartphone', label: 'Смартфоны', categories: ['Смартфоны (Samsung, Xiaomi, Android)', 'iPhone'] },
-  { id: 'tablet', label: 'Планшеты', categories: ['Планшеты Android', 'iPad'] },
+  { id: 'smartphone', label: 'Смартфоны', categories: ['Смартфоны (Samsung, Xiaomi, Android)'] },
+  { id: 'tablet', label: 'Планшеты', categories: ['Планшеты Android'] },
+  { id: 'apple', label: 'Apple', categories: ['iPhone', 'iPad', 'MacBook', 'iMac'] },
   { id: 'software', label: 'ПО', categories: ['ПО / Windows / macOS'] },
   { id: 'additional', label: 'Доп. услуги', categories: ['Дополнительные услуги'] },
 ]
