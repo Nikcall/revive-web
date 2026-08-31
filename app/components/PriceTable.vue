@@ -7,50 +7,25 @@ const props = defineProps<{
   serviceSlug?: string
 }>()
 
-const TAB_LABELS: Record<string, string> = {
-  'Смартфоны (Samsung, Xiaomi, Android)': 'Смартфоны',
-  'Планшеты Android': 'Планшеты Android',
-  'ПО / Windows / macOS': 'ПО',
-  iPhone: 'iPhone',
-  iPad: 'iPad',
-  MacBook: 'MacBook',
-  iMac: 'iMac',
-  Ноутбуки: 'Ноутбуки',
-  'Системные блоки / ПК': 'Системные блоки / ПК',
-  Моноблоки: 'Моноблоки',
-  'Дополнительные услуги': 'Доп. услуги',
-}
-
-const TAB_ORDER = [
-  'Ноутбуки',
-  'Системные блоки / ПК',
-  'Моноблоки',
-  'Смартфоны (Samsung, Xiaomi, Android)',
-  'Планшеты Android',
-  'iPhone',
-  'iPad',
-  'MacBook',
-  'iMac',
-  'ПО / Windows / macOS',
-  'Дополнительные услуги',
+const DEVICE_TABS = [
+  { id: 'notebook', label: 'Ноутбуки', categories: ['Ноутбуки', 'MacBook'] },
+  { id: 'pc', label: 'Системные блоки', categories: ['Системные блоки / ПК', 'iMac'] },
+  { id: 'monoblock', label: 'Моноблоки', categories: ['Моноблоки'] },
+  { id: 'smartphone', label: 'Смартфоны', categories: ['Смартфоны (Samsung, Xiaomi, Android)', 'iPhone'] },
+  { id: 'tablet', label: 'Планшеты', categories: ['Планшеты Android', 'iPad'] },
+  { id: 'software', label: 'ПО', categories: ['ПО / Windows / macOS'] },
+  { id: 'additional', label: 'Доп. услуги', categories: ['Дополнительные услуги'] },
 ]
 
+const activeTab = ref('notebook')
 const items = computed(() => props.catalogPrices || [])
 
-const tabs = computed(() => {
-  const seen = new Set(items.value.map((p) => p.category_name))
-  return TAB_ORDER.filter((name) => seen.has(name))
-})
-
-const activeTab = ref('')
-watch(tabs, (list) => {
-  if (list.length && !list.includes(activeTab.value)) {
-    activeTab.value = list[0]
-  }
-}, { immediate: true })
+const activeCategories = computed(() =>
+  DEVICE_TABS.find((t) => t.id === activeTab.value)?.categories || [],
+)
 
 const activeItems = computed(() =>
-  items.value.filter((p) => p.category_name === activeTab.value),
+  items.value.filter((p) => activeCategories.value.includes(p.category_name)),
 )
 
 const groupedByGroup = computed(() => {
@@ -141,31 +116,27 @@ watch(group, () => { service.value = '' })
       </div>
 
       <p class="section-label">Прайс-лист</p>
-      <div v-if="tabs.length" class="tabs">
+      <div class="tabs">
         <button
-          v-for="cat in tabs"
-          :key="cat"
+          v-for="tab in DEVICE_TABS"
+          :key="tab.id"
           type="button"
-          :class="{ active: activeTab === cat }"
-          @click="activeTab = cat"
-        >{{ TAB_LABELS[cat] || cat }}</button>
+          :class="{ active: activeTab === tab.id }"
+          @click="activeTab = tab.id"
+        >{{ tab.label }}</button>
       </div>
-      <template v-for="cat in tabs" :key="cat">
-        <div v-if="activeTab === cat" class="table">
-          <h3>{{ TAB_LABELS[cat] || cat }}</h3>
-          <template v-for="[, groupItems] in groupedByGroup" :key="groupItems[0]?.group">
-            <template v-if="groupItems[0]?.group">
-              <p class="group-label">{{ groupItems[0].group }}</p>
-            </template>
-            <ul>
-              <li v-for="item in groupItems" :key="item.key || item.name">
-                <span>{{ item.name }}</span>
-                <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
-              </li>
-            </ul>
-          </template>
-        </div>
-      </template>
+      <div class="table">
+        <h3>{{ DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
+        <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
+          <p v-if="groupName" class="group-label">{{ groupName }}</p>
+          <ul>
+            <li v-for="item in groupItems" :key="item.key || item.name">
+              <span>{{ item.name }}</span>
+              <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
+            </li>
+          </ul>
+        </template>
+      </div>
 
       <p class="note">
         Цены указаны за работу. Стоимость запчастей и комплектующих рассчитывается отдельно после диагностики и согласования.
