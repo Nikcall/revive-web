@@ -73,6 +73,20 @@ const groupedByGroup = computed(() => {
   return map
 })
 
+const allGroupsByTab = computed(() => {
+  if (!props.showAll) return []
+  return DEVICE_TABS.map((tab) => {
+    const catItems = items.value.filter((p) => tab.categories.includes(p.category_name))
+    const map = new Map<string, CatalogPrice[]>()
+    for (const item of catItems) {
+      const g = item.group || ''
+      if (!map.has(g)) map.set(g, [])
+      map.get(g)!.push(item)
+    }
+    return { tab, groups: map }
+  }).filter((entry) => entry.groups.size > 0)
+})
+
 const urgent = ref(false)
 const device = ref('')
 const group = ref('')
@@ -150,33 +164,50 @@ watch(group, () => { service.value = '' })
         </div>
       </div>
 
-      <p class="section-label">Популярные услуги</p>
-      <div class="tabs">
-        <button
-          v-for="tab in DEVICE_TABS"
-          :key="tab.id"
-          type="button"
-          :class="{ active: activeTab === tab.id }"
-          @click="activeTab = tab.id"
-        >{{ tab.label }}</button>
-      </div>
-      <div class="table">
-        <h3>{{ DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
-        <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
-          <p v-if="groupName" class="group-label">{{ groupName }}</p>
-          <ul>
-            <li v-for="item in groupItems" :key="item.key || item.name">
-              <span>{{ item.name }}</span>
-              <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
-            </li>
-          </ul>
-        </template>
-      </div>
+      <template v-if="showAll">
+        <p class="section-label">Прайс-лист</p>
+        <div v-for="entry in allGroupsByTab" :key="entry.tab.id" class="table" style="margin-bottom: 24px">
+          <h3>{{ entry.tab.label }}</h3>
+          <template v-for="[groupName, groupItems] in entry.groups" :key="groupName">
+            <p v-if="groupName" class="group-label">{{ groupName }}</p>
+            <ul>
+              <li v-for="item in groupItems" :key="item.key || item.name">
+                <span>{{ item.name }}</span>
+                <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
+              </li>
+            </ul>
+          </template>
+        </div>
+      </template>
+      <template v-else>
+        <p class="section-label">Популярные услуги</p>
+        <div class="tabs">
+          <button
+            v-for="tab in DEVICE_TABS"
+            :key="tab.id"
+            type="button"
+            :class="{ active: activeTab === tab.id }"
+            @click="activeTab = tab.id"
+          >{{ tab.label }}</button>
+        </div>
+        <div class="table">
+          <h3>{{ DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
+          <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
+            <p v-if="groupName" class="group-label">{{ groupName }}</p>
+            <ul>
+              <li v-for="item in groupItems" :key="item.key || item.name">
+                <span>{{ item.name }}</span>
+                <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
+              </li>
+            </ul>
+          </template>
+        </div>
+      </template>
 
       <p class="note">
         Цены указаны за работу. Стоимость запчастей и комплектующих рассчитывается отдельно после диагностики и согласования.
       </p>
-      <NuxtLink to="/prices" class="all-link">
+      <NuxtLink v-if="!showAll" to="/prices" class="all-link">
         Посмотреть все цены
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
       </NuxtLink>
