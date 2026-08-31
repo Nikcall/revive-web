@@ -79,13 +79,16 @@ const allGroupsByTab = computed(() => {
     const catItems = items.value
       .filter((p) => tab.categories.includes(p.category_name))
       .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+    const multiService = tab.categories.length > 1
     const map = new Map<string, CatalogPrice[]>()
+    const order: string[] = []
     for (const item of catItems) {
       const g = item.group || ''
-      if (!map.has(g)) map.set(g, [])
-      map.get(g)!.push(item)
+      const key = multiService ? `${item.service_name}||${g}` : g
+      if (!map.has(key)) { map.set(key, []); order.push(key) }
+      map.get(key)!.push(item)
     }
-    return { tab, groups: map }
+    return { tab, groups: map, order }
   }).filter((entry) => entry.groups.size > 0)
 })
 
@@ -170,10 +173,11 @@ watch(group, () => { service.value = '' })
         <p class="section-label">Прайс-лист</p>
         <div v-for="entry in allGroupsByTab" :key="entry.tab.id" class="table" style="margin-bottom: 24px">
           <h3>{{ entry.tab.label }}</h3>
-          <template v-for="[groupName, groupItems] in entry.groups" :key="groupName">
-            <p v-if="groupName" class="group-label">{{ groupName }}</p>
+          <template v-for="key in entry.order" :key="key">
+            <p v-if="key.includes('||')" class="service-label">{{ key.split('||')[0] }}</p>
+            <p v-if="key.split('||').pop()" class="group-label">{{ key.split('||').pop() }}</p>
             <ul>
-              <li v-for="item in groupItems" :key="item.key || item.name">
+              <li v-for="item in entry.groups.get(key)" :key="item.key || item.name">
                 <span>{{ item.name }}</span>
                 <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
               </li>
@@ -388,6 +392,14 @@ select {
   margin: 16px 0 6px;
   padding: 4px 0;
   border-bottom: 1px solid var(--border);
+}
+.service-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111;
+  margin: 20px 0 4px;
+  padding: 6px 0;
+  border-bottom: 2px solid var(--brand);
 }
 .group-label:first-child {
   margin-top: 0;
