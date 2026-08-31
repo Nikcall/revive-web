@@ -13,11 +13,15 @@ declare global {
   }
 }
 
-let metrikaInitialized = false
+export default defineNuxtPlugin((nuxtApp) => {
+  const config = useRuntimeConfig()
 
-function loadMetrika(counterId: number, app: any) {
-  if (metrikaInitialized) return
-  metrikaInitialized = true
+  const counterId = Number(config.public.yandexMetrikaId)
+
+  if (!counterId) {
+    console.warn('[Metrika] Counter ID is not configured')
+    return
+  }
 
   if (!window.ym) {
     const ym = function (...args: any[]) {
@@ -26,15 +30,19 @@ function loadMetrika(counterId: number, app: any) {
       a?: any[]
       l?: number
     }
+
     ym.l = Date.now()
     window.ym = ym
   }
 
   const metrikaSrc = 'https://mc.yandex.ru/metrika/tag.js'
+
   if (!document.querySelector(`script[src="${metrikaSrc}"]`)) {
     const script = document.createElement('script')
+
     script.async = true
     script.src = metrikaSrc
+
     document.head.appendChild(script)
   }
 
@@ -51,39 +59,25 @@ function loadMetrika(counterId: number, app: any) {
 
   const sendHit = () => {
     const currentUrl = window.location.href
-    if (currentUrl === lastUrl) return
+
+    if (currentUrl === lastUrl) {
+      return
+    }
+
     window.ym?.(counterId, 'hit', currentUrl, {
       title: document.title,
       referer: previousUrl,
     })
+
     previousUrl = currentUrl
     lastUrl = currentUrl
   }
 
-  sendHit()
+  nuxtApp.hook('app:mounted', () => {
+    sendHit()
+  })
 
-  app.hook('app:mounted', () => sendHit())
-  app.hook('page:finish', () => sendHit())
-}
-
-export default defineNuxtPlugin((app) => {
-  const config = useRuntimeConfig()
-  const counterId = Number(config.public.yandexMetrikaId)
-
-  if (!counterId) {
-    console.warn('[Metrika] Counter ID is not configured')
-    return
-  }
-
-  const consent = useCookie<'accepted' | 'rejected' | null>('revive_cookie_consent')
-
-  if (consent.value === 'accepted') {
-    loadMetrika(counterId, app)
-  } else {
-    watch(consent, (val) => {
-      if (val === 'accepted') {
-        loadMetrika(counterId, app)
-      }
-    })
-  }
+  nuxtApp.hook('page:finish', () => {
+    sendHit()
+  })
 })
