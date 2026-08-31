@@ -76,7 +76,9 @@ const groupedByGroup = computed(() => {
 const allGroupsByTab = computed(() => {
   if (!props.showAll) return []
   return DEVICE_TABS.map((tab) => {
-    const catItems = items.value.filter((p) => tab.categories.includes(p.category_name))
+    const catItems = items.value
+      .filter((p) => tab.categories.includes(p.category_name))
+      .sort((a, b) => (a.sort || 0) - (b.sort || 0))
     const map = new Map<string, CatalogPrice[]>()
     for (const item of catItems) {
       const g = item.group || ''
