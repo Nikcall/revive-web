@@ -2,27 +2,37 @@
 import type { CmsSettings } from '~/types/cms'
 
 defineProps<{ settings: CmsSettings }>()
-const show = ref(false)
 
-onMounted(() => {
-  show.value = localStorage.getItem('revive-cookie') !== '1'
-})
+const consent = useCookie<'accepted' | 'rejected' | null>(
+  'revive_cookie_consent',
+  {
+    default: () => null,
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: 'lax',
+    path: '/',
+  }
+)
 
-function dismiss(accepted: boolean) {
-  localStorage.setItem('revive-cookie', accepted ? 'accepted' : 'rejected')
-  show.value = false
+const visible = computed(() => consent.value === null)
+
+function accept() {
+  consent.value = 'accepted'
+}
+
+function reject() {
+  consent.value = 'rejected'
 }
 </script>
 
 <template>
-  <div v-if="show" class="cookie" role="alertdialog" aria-label="Уведомление о cookie">
+  <div v-if="visible" class="cookie" role="alertdialog" aria-label="Уведомление о cookie">
     <p>
       {{ settings.cookie_text }}
       <NuxtLink to="/privacy">Политика конфиденциальности</NuxtLink>
     </p>
     <div class="cookie-btns">
-      <button type="button" class="cookie-reject" @click="dismiss(false)">Отклонить</button>
-      <button type="button" class="cookie-accept" @click="dismiss(true)">Принять</button>
+      <button type="button" class="cookie-reject" @click="reject">Отклонить</button>
+      <button type="button" class="cookie-accept" @click="accept">Принять</button>
     </div>
   </div>
 </template>

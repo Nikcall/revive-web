@@ -13,15 +13,11 @@ declare global {
   }
 }
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const config = useRuntimeConfig()
+let metrikaInitialized = false
 
-  const counterId = Number(config.public.yandexMetrikaId)
-
-  if (!counterId) {
-    console.warn('[Metrika] Counter ID is not configured')
-    return
-  }
+function loadMetrika(counterId: number, app: any) {
+  if (metrikaInitialized) return
+  metrikaInitialized = true
 
   if (!window.ym) {
     const ym = function (...args: any[]) {
@@ -30,19 +26,15 @@ export default defineNuxtPlugin((nuxtApp) => {
       a?: any[]
       l?: number
     }
-
     ym.l = Date.now()
     window.ym = ym
   }
 
   const metrikaSrc = 'https://mc.yandex.ru/metrika/tag.js'
-
   if (!document.querySelector(`script[src="${metrikaSrc}"]`)) {
     const script = document.createElement('script')
-
     script.async = true
     script.src = metrikaSrc
-
     document.head.appendChild(script)
   }
 
@@ -59,25 +51,39 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const sendHit = () => {
     const currentUrl = window.location.href
-
-    if (currentUrl === lastUrl) {
-      return
-    }
-
+    if (currentUrl === lastUrl) return
     window.ym?.(counterId, 'hit', currentUrl, {
       title: document.title,
       referer: previousUrl,
     })
-
     previousUrl = currentUrl
     lastUrl = currentUrl
   }
 
-  nuxtApp.hook('app:mounted', () => {
-    sendHit()
-  })
+  sendHit()
 
-  nuxtApp.hook('page:finish', () => {
-    sendHit()
-  })
+  app.hook('app:mounted', () => sendHit())
+  app.hook('page:finish', () => sendHit())
+}
+
+export default defineNuxtPlugin((app) => {
+  const config = useRuntimeConfig()
+  const counterId = Number(config.public.yandexMetrikaId)
+
+  if (!counterId) {
+    console.warn('[Metrika] Counter ID is not configured')
+    return
+  }
+
+  const consent = useCookie<'accepted' | 'rejected' | null>('revive_cookie_consent')
+
+  if (consent.value === 'accepted') {
+    loadMetrika(counterId, app)
+  } else {
+    watch(consent, (val) => {
+      if (val === 'accepted') {
+        loadMetrika(counterId, app)
+      }
+    })
+  }
 })
