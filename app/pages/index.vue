@@ -56,5 +56,6 @@ useJsonLd({
       :prices="content.prices"
       :faq="content.faq"
     />
+    <RepairCases />
   </main>
 </template>
