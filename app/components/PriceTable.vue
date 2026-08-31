@@ -5,20 +5,129 @@ const props = defineProps<{
   catalogPrices?: CatalogPrice[]
 }>()
 
-const prices = [
-  { name: 'Установка Windows', price: 'от 3 000 ₽' },
-  { name: 'Установка Windows с сохранением данных', price: 'от 3 800 ₽' },
-  { name: 'Восстановление запуска Windows после сбоя', price: 'от 1 500 ₽' },
-  { name: 'Клонирование системы на SSD / HDD', price: 'от 1 500 ₽' },
-  { name: 'Установка и настройка драйверов', price: 'от 800 ₽' },
-  { name: 'Установка и настройка пользовательского ПО', price: 'от 800 ₽' },
-  { name: 'Установка Microsoft Office', price: 'от 900 ₽' },
-  { name: 'Удаление вредоносного и рекламного ПО', price: 'от 1 200 ₽' },
-  { name: 'Настройка и оптимизация Windows', price: 'от 1 500 ₽' },
-  { name: 'Перенос пользовательских данных', price: 'от 1 500 ₽' },
-  { name: 'Восстановление удалённых данных', price: 'от 2 000 ₽' },
-  { name: 'Комплексная настройка компьютера', price: 'от 2 500 ₽' },
+const categories = [
+  { id: 'notebook', label: 'Ноутбуки', icon: 'laptop' },
+  { id: 'pc', label: 'Системные блоки', icon: 'pc' },
+  { id: 'monoblock', label: 'Моноблоки', icon: 'monitor' },
+  { id: 'smartphone', label: 'Смартфоны', icon: 'phone' },
+  { id: 'tablet', label: 'Планшеты', icon: 'tablet' },
+  { id: 'apple', label: 'Apple', icon: 'apple' },
+  { id: 'software', label: 'ПО', icon: 'software' },
 ]
+
+const activeTab = ref('notebook')
+
+const priceData: Record<string, { title: string; rows: string[][] }> = {
+  notebook: {
+    title: 'Ноутбуки',
+    rows: [
+      ['Диагностика ноутбука', 'Бесплатно'],
+      ['Чистка и обслуживание офисного ноутбука', '2 900 ₽'],
+      ['Чистка игрового ноутбука / CPU + GPU', '3 900 ₽'],
+      ['Компонентный ремонт материнской платы', 'от 4 000 ₽'],
+      ['Замена матрицы', 'от …'],
+      ['Замена клавиатуры', 'от …'],
+      ['Замена разъёма питания', 'от …'],
+      ['Ремонт корпуса и петель', 'от …'],
+      ['Замена аккумулятора', 'от …'],
+      ['Замена накопителя HDD / SSD', 'от …'],
+    ],
+  },
+  pc: {
+    title: 'Системные блоки',
+    rows: [
+      ['Диагностика системного блока', 'Бесплатно'],
+      ['Комплексная чистка ПК', 'от 3 500 ₽'],
+      ['Компонентный ремонт материнской платы', 'от 4 000 ₽'],
+      ['Ремонт разъёмов', 'от 1 500 ₽'],
+      ['Замена накопителя HDD / SSD', 'от 800 ₽'],
+      ['Установка / увеличение оперативной памяти', 'от 800 ₽'],
+      ['Замена блока питания', 'от 800 ₽'],
+      ['Замена процессора / системы охлаждения', 'от 1 000 ₽'],
+      ['Сборка ПК', 'от 3 000 ₽'],
+      ['Апгрейд ПК', 'от 2 000 ₽'],
+    ],
+  },
+  monoblock: {
+    title: 'Моноблоки',
+    rows: [
+      ['Диагностика моноблока', 'Бесплатно'],
+      ['Комплексное обслуживание системы охлаждения', 'от 3 500 ₽'],
+      ['Замена HDD / SSD', 'от 1 200 ₽'],
+      ['Установка / увеличение оперативной памяти', 'от 1 200 ₽'],
+      ['Компонентный ремонт материнской платы', 'от 4 000 ₽'],
+      ['Ремонт системы питания', 'от 2 500 ₽'],
+      ['Ремонт USB / Audio и других разъёмов', 'от 1 500 ₽'],
+      ['Замена матрицы', 'от 2 500 ₽'],
+      ['Апгрейд моноблока', 'от 2 000 ₽'],
+    ],
+  },
+  smartphone: {
+    title: 'Смартфоны',
+    rows: [
+      ['Диагностика смартфона', 'Бесплатно'],
+      ['Замена дисплейного модуля', 'от …'],
+      ['Замена аккумулятора', 'от …'],
+      ['Ремонт разъёма зарядки', 'от …'],
+      ['Замена задней крышки / корпуса', 'от …'],
+      ['Замена камеры', 'от …'],
+      ['Ремонт динамика / микрофона', 'от …'],
+      ['Компонентный ремонт материнской платы', 'от …'],
+      ['Диагностика после попадания жидкости', 'от …'],
+      ['Восстановление / перенос данных', 'от …'],
+    ],
+  },
+  tablet: {
+    title: 'Планшеты',
+    rows: [
+      ['Диагностика планшета', 'Бесплатно'],
+      ['Замена дисплейного модуля', 'от …'],
+      ['Замена сенсорного стекла / тачскрина', 'от …'],
+      ['Замена аккумулятора', 'от …'],
+      ['Ремонт разъёма зарядки', 'от …'],
+      ['Компонентный ремонт материнской платы', 'от …'],
+      ['Замена камеры', 'от …'],
+      ['Ремонт кнопок / шлейфов', 'от …'],
+      ['Диагностика после попадания жидкости', 'от …'],
+      ['Восстановление / перенос данных', 'от …'],
+    ],
+  },
+  apple: {
+    title: 'Apple устройства',
+    rows: [
+      ['Диагностика устройства Apple', 'Бесплатно'],
+      ['Замена дисплейного модуля', 'от …'],
+      ['Замена аккумулятора', 'от …'],
+      ['Ремонт разъёма зарядки', 'от …'],
+      ['Ремонт камеры', 'от …'],
+      ['Ремонт Face ID / Touch ID', 'после диагностики'],
+      ['Компонентный ремонт материнской платы', 'от …'],
+      ['Восстановление после попадания жидкости', 'после диагностики'],
+      ['Восстановление iOS / iPadOS', 'от …'],
+      ['Восстановление / установка macOS', 'от …'],
+      ['Перенос пользовательских данных', 'от …'],
+    ],
+  },
+  software: {
+    title: 'Программное обеспечение',
+    rows: [
+      ['Установка Windows', 'от 3 000 ₽'],
+      ['Установка Windows с сохранением данных', 'от 3 800 ₽'],
+      ['Восстановление запуска Windows после сбоя', 'от 1 500 ₽'],
+      ['Клонирование системы на SSD / HDD', 'от 1 500 ₽'],
+      ['Установка и настройка драйверов', 'от 800 ₽'],
+      ['Установка и настройка пользовательского ПО', 'от 800 ₽'],
+      ['Установка Microsoft Office', 'от 900 ₽'],
+      ['Удаление вредоносного и рекламного ПО', 'от 1 200 ₽'],
+      ['Настройка и оптимизация Windows', 'от 1 500 ₽'],
+      ['Перенос пользовательских данных', 'от 1 500 ₽'],
+      ['Восстановление удалённых данных', 'от 2 000 ₽'],
+      ['Комплексная настройка компьютера', 'от 2 500 ₽'],
+    ],
+  },
+}
+
+const activeData = computed(() => priceData[activeTab.value])
 
 const urgent = ref(false)
 const device = ref('')
@@ -26,7 +135,6 @@ const group = ref('')
 const service = ref('')
 
 const items = computed(() => props.catalogPrices || [])
-
 const devices = computed(() => [...new Set(items.value.map((p) => p.category))])
 const groups = computed(() =>
   [...new Set(items.value.filter((p) => p.category === device.value).map((p) => p.group))],
@@ -51,13 +159,8 @@ const resultHint = computed(() =>
   selected.value ? 'Без стоимости запчастей · Точная цена после диагностики' : 'Выберите услугу выше',
 )
 
-watch(device, () => {
-  group.value = ''
-  service.value = ''
-})
-watch(group, () => {
-  service.value = ''
-})
+watch(device, () => { group.value = ''; service.value = '' })
+watch(group, () => { service.value = '' })
 </script>
 
 <template>
@@ -69,8 +172,6 @@ watch(group, () => {
 
       <div v-if="items.length">
         <p class="section-label">Калькулятор стоимости</p>
-        <h3 class="calc-title">Узнайте стоимость ремонта</h3>
-        <p class="calc-lead">Выберите устройство, тип проблемы и конкретную услугу — получите ориентировочную цену</p>
         <div class="calc-card">
           <div class="calc-stripe" aria-hidden="true" />
           <div class="calc">
@@ -99,7 +200,7 @@ watch(group, () => {
               <span>Ориентировочная стоимость работ</span>
               <strong>{{ displayPrice }}</strong>
               <small>{{ resultHint }}</small>
-              <label class="urgent"><input v-model="urgent" type="checkbox" /> Срочный ремонт +30%</label>
+              <label class="urgent-cb"><input v-model="urgent" type="checkbox" /> Срочный ремонт +30%</label>
               <a class="btn-fill btn-sm" href="#order">Записаться на ремонт</a>
             </div>
           </div>
@@ -107,14 +208,27 @@ watch(group, () => {
       </div>
 
       <p class="section-label">Прайс-лист</p>
-      <div class="table">
-        <div v-for="item in prices" :key="item.name" class="row">
-          <span>{{ item.name }}</span>
-          <b>{{ item.price }}</b>
-        </div>
+      <div class="tabs">
+        <button
+          v-for="cat in categories"
+          :key="cat.id"
+          type="button"
+          :class="{ active: activeTab === cat.id }"
+          @click="activeTab = cat.id"
+        >{{ cat.label }}</button>
       </div>
+      <div v-if="activeData" class="table">
+        <h3>{{ activeData.title }}</h3>
+        <ul>
+          <li v-for="row in activeData.rows" :key="row[0]">
+            <span>{{ row[0] }}</span>
+            <b :class="{ free: row[1] === 'Бесплатно' }">{{ row[1] }}</b>
+          </li>
+        </ul>
+      </div>
+
       <p class="note">
-        Стоимость указана за работу. Лицензии на Windows, Microsoft Office, антивирусы и другое платное программное обеспечение приобретаются клиентом отдельно.
+        Цены указаны за работу. Стоимость запчастей и комплектующих рассчитывается отдельно после диагностики и согласования.
       </p>
       <NuxtLink to="/prices" class="all-link">
         Посмотреть все цены
@@ -171,21 +285,12 @@ watch(group, () => {
   color: var(--dim);
   margin: 8px 0 8px;
 }
-.calc-title {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-.calc-lead {
-  color: var(--dim);
-  margin-bottom: 20px;
-  max-width: 640px;
-}
 .calc-card {
   background: #fff;
   border-radius: 16px;
   border: 1px solid var(--border);
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 40px;
 }
 .calc-stripe {
   height: 6px;
@@ -246,14 +351,11 @@ select {
   letter-spacing: -0.03em;
   font-weight: 800;
 }
-.result.ready strong {
-  color: var(--brand);
-}
 .result small {
   color: var(--dim);
   font-weight: 400;
 }
-.urgent {
+.urgent-cb {
   flex-direction: row;
   align-items: center;
   font-weight: 600;
@@ -265,13 +367,39 @@ select {
   box-shadow: none;
   width: fit-content;
 }
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.tabs button {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tabs button.active,
+.tabs button:hover {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
 .table {
   background: #fff;
   border-radius: 14px;
   padding: 20px;
   border: 1px solid var(--border);
 }
-.row {
+.table h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+.table li {
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -280,8 +408,19 @@ select {
   border-bottom: 1px solid var(--border);
   font-size: 14px;
 }
-.row:last-child {
+.table li:last-child {
   border-bottom: 0;
+}
+.table b {
+  color: var(--brand);
+  white-space: nowrap;
+}
+.table b.free {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  padding: 2px 10px;
+  border-radius: 100px;
+  font-size: 12px;
 }
 .note {
   margin-top: 20px;
@@ -312,11 +451,12 @@ select {
   .calc { grid-template-columns: 1fr; }
   .result strong { font-size: 36px; }
 }
-@media (max-width: 480px) {
+@media (max-width: 580px) {
   .price { padding: 48px 0; }
   .wrap { padding: 0 16px; }
-  .calc-title { font-size: 22px; }
   .result strong { font-size: 28px; }
   .result { padding: 12px; }
+  .tabs { display: none; }
+  .table li { font-size: 13px; }
 }
 </style>
