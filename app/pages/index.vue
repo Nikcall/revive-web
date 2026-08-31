@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { content, pageBySlug } = await useCms()
+const { priceItems } = await useCatalog()
 const page = computed(() => pageBySlug('home'))
 if (!page.value) throw createError({ statusCode: 404, statusMessage: 'Главная не найдена' })
 
@@ -55,6 +56,7 @@ useJsonLd({
       :services="content.services"
       :prices="content.prices"
       :faq="content.faq"
+      :catalog-prices="priceItems"
     />
     <RepairCases />
   </main>
