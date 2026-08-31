@@ -158,7 +158,7 @@ function stepsOf(block: CmsBlock) {
         active: true,
       }]"
     />
-    <PriceList v-else-if="block.type === 'price_table'" :prices="tablePrices(block)" terms="" />
+    <PriceTable v-else-if="block.type === 'price_table'" />
     <RepairSteps
       v-else-if="block.type === 'text_image' && block.variant === 'steps'"
       :eyebrow="String(block.eyebrow || 'Профессионально и с прозрачными ценами')"
