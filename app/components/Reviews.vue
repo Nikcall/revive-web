@@ -48,7 +48,7 @@ const palettes = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6']
           <button type="button" :disabled="index >= max" @click="next">→</button>
         </div>
       </div>
-      <p class="sb">500+ ремонтов в личной практике мастера — и каждый клиент доволен</p>
+      <p class="sb">Более 500 ремонтов — и каждый клиент доверяет нам снова</p>
       <div class="outer">
         <div class="track" :style="{ transform: `translateX(-${index * (100 / visible)}%)` }">
           <article v-for="(item, i) in allReviews" :key="item.author + i" class="card">
