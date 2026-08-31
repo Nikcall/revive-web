@@ -135,12 +135,12 @@ const group = ref('')
 const service = ref('')
 
 const items = computed(() => props.catalogPrices || [])
-const devices = computed(() => [...new Set(items.value.map((p) => p.category))])
+const devices = computed(() => [...new Set(items.value.map((p) => p.category_name))])
 const groups = computed(() =>
-  [...new Set(items.value.filter((p) => p.category === device.value).map((p) => p.group))],
+  [...new Set(items.value.filter((p) => p.category_name === device.value).map((p) => p.group))],
 )
 const services = computed(() =>
-  items.value.filter((p) => p.category === device.value && p.group === group.value),
+  items.value.filter((p) => p.category_name === device.value && p.group === group.value),
 )
 const selected = computed(() => services.value.find((p) => p.name === service.value))
 
