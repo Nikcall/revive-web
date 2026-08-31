@@ -5,6 +5,7 @@ import { catalogPriceLabel } from '#shared/catalog'
 const props = defineProps<{
   catalogPrices?: CatalogPrice[]
   serviceSlug?: string
+  showAll?: boolean
 }>()
 
 const DEVICE_TABS = [
@@ -18,6 +19,28 @@ const DEVICE_TABS = [
   { id: 'additional', label: 'Доп. услуги', categories: ['Дополнительные услуги'] },
 ]
 
+const FEATURED_GROUPS: Record<string, string[]> = {
+  notebook: ['Диагностика', 'Типовой ремонт', 'Замена матрицы', 'Замена клавиатуры', 'Замена аккумулятора', 'Замена SSD / HDD', 'Ремонт разъёма питания', 'Ремонт корпуса / петель', 'Компонентный ремонт материнской платы', 'Чистка'],
+  pc: ['Диагностика', 'Ремонт материнской платы', 'Замена комплектующих', 'Сборка и обслуживание'],
+  monoblock: ['Диагностика', 'Замена', 'Компонентный ремонт', 'BGA-ремонт', 'Профилактика охлаждения', 'Ремонт блока питания'],
+  smartphone: ['Диагностика', 'Типовой ремонт', 'Компонентный ремонт'],
+  tablet: ['Диагностика', 'Замена', 'Ремонт', 'Компонентный ремонт', 'Разборка'],
+  apple: ['Диагностика', 'Типовой ремонт', 'Компонентный ремонт', 'Чистка', 'Замена'],
+  software: ['Установка', 'Настройка', 'Восстановление', 'Перенос', 'Обновление', 'Сброс'],
+  additional: ['Данные', 'Услуги', 'Сборка', 'Настройка', 'Выезд', 'Игровые'],
+}
+
+const FEATURED_LIMIT: Record<string, number> = {
+  notebook: 10,
+  pc: 10,
+  monoblock: 10,
+  smartphone: 10,
+  tablet: 10,
+  apple: 10,
+  software: 10,
+  additional: 10,
+}
+
 const activeTab = ref('notebook')
 const items = computed(() => props.catalogPrices || [])
 
@@ -29,9 +52,20 @@ const activeItems = computed(() =>
   items.value.filter((p) => activeCategories.value.includes(p.category_name)),
 )
 
+const featuredItems = computed(() => {
+  if (props.showAll) return activeItems.value
+  const tabId = activeTab.value
+  const groups = FEATURED_GROUPS[tabId]
+  const limit = FEATURED_LIMIT[tabId] || 10
+  if (!groups) return activeItems.value.slice(0, limit)
+  return activeItems.value
+    .filter((item) => groups.some((g) => item.group?.includes(g) || item.name?.includes(g)))
+    .slice(0, limit)
+})
+
 const groupedByGroup = computed(() => {
   const map = new Map<string, CatalogPrice[]>()
-  for (const item of activeItems.value) {
+  for (const item of featuredItems.value) {
     const g = item.group || ''
     if (!map.has(g)) map.set(g, [])
     map.get(g)!.push(item)
@@ -65,7 +99,7 @@ const displayPrice = computed(() => {
 })
 
 const resultHint = computed(() =>
-  selected.value ? 'Без стоимости запчастей · Точная цена после диагностики' : 'Выберите услугу выше',
+  selected.value ? 'Без стоимости запчастей · Финальная цена после диагностики' : 'Выберите услугу выше',
 )
 
 watch(device, () => { group.value = ''; service.value = '' })
@@ -77,10 +111,10 @@ watch(group, () => { service.value = '' })
     <div class="wrap">
       <p class="ol"><span class="dot" />Прозрачные цены</p>
       <h2 class="brand-title">Прайс-лист — <span class="re">RE</span>VIVE</h2>
-      <p class="lead">Ориентировочные цены на все виды работ. Точная стоимость — после бесплатной диагностики.</p>
+      <p class="lead">Ориентировочные цены на основные виды работ. Точную стоимость согласуем после диагностики и до начала ремонта.</p>
 
       <div v-if="items.length">
-        <p class="section-label">Калькулятор стоимости</p>
+        <p class="section-label">Узнать примерную стоимость</p>
         <div class="calc-card">
           <div class="calc-stripe" aria-hidden="true" />
           <div class="calc">
@@ -116,7 +150,7 @@ watch(group, () => { service.value = '' })
         </div>
       </div>
 
-      <p class="section-label">Прайс-лист</p>
+      <p class="section-label">Популярные услуги</p>
       <div class="tabs">
         <button
           v-for="tab in DEVICE_TABS"

@@ -41,6 +41,7 @@ if (content.value.faq?.length) {
       :prices="content.prices"
       :faq="content.faq"
       :catalog-prices="priceItems"
+      :show-all-prices="true"
     />
   </main>
 </template>

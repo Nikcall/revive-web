@@ -11,6 +11,7 @@ const props = defineProps<{
   faq: CmsFaq[]
   serviceSlug?: string
   catalogPrices?: CatalogPrice[]
+  showAllPrices?: boolean
 }>()
 
 const DEFAULT_ADVANTAGES = [
@@ -158,7 +159,7 @@ function stepsOf(block: CmsBlock) {
         active: true,
       }]"
     />
-    <PriceTable v-else-if="block.type === 'price_table'" :catalog-prices="catalogPrices" :service-slug="serviceSlug" />
+    <PriceTable v-else-if="block.type === 'price_table'" :catalog-prices="catalogPrices" :service-slug="serviceSlug" :show-all="showAllPrices" />
     <RepairSteps
       v-else-if="block.type === 'text_image' && block.variant === 'steps'"
       :eyebrow="String(block.eyebrow || 'Профессионально и с прозрачными ценами')"
