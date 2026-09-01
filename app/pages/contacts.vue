@@ -75,4 +75,8 @@ useJsonLd({
 h1 { font-size: clamp(28px, 6vw, 48px); margin-bottom: 20px; }
 ul { list-style: none; font-size: 18px; line-height: 1.9; margin-bottom: 16px; }
 p { color: #666; }
+@media (max-width: 480px) {
+  .page { padding-top: calc(var(--header-h) + 20px); padding-bottom: 32px; }
+  ul { font-size: 16px; line-height: 1.8; }
+}
 </style>

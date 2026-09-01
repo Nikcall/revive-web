@@ -238,5 +238,6 @@ h2 { text-align: center; font-size: clamp(22px, 3.5vw, 30px); font-weight: 800; 
   .hero-meta { gap: 8px; }
   .meta-chip { font-size: 12px; padding: 5px 12px; }
   .steps-grid { grid-template-columns: 1fr; }
+  .adv-bar, .services, .steps, .models-section, .brands-section { padding: 48px 0; }
 }
 </style>

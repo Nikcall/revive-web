@@ -187,4 +187,10 @@ h1 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 16px; line-height: 1.15; 
   .hero-cta { display: block; text-align: center; }
   .signs-grid, .steps-grid, .inc-grid { grid-template-columns: 1fr; }
 }
+@media (max-width: 480px) {
+  .hero { padding: 32px 0 40px; }
+  .signs, .steps, .includes, .brands-section { padding: 48px 0; }
+  .badge-temp { font-size: 28px; }
+  .price-val { font-size: 28px; }
+}
 </style>

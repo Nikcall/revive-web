@@ -150,6 +150,9 @@ h2 span {
   color: rgba(255, 255, 255, 0.72);
   min-height: 110px;
 }
+@media (max-width: 880px) {
+  .card p { min-height: 0; }
+}
 .bot {
   display: flex;
   align-items: center;

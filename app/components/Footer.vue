@@ -108,6 +108,13 @@ a:hover {
   color: var(--brand);
 }
 @media (max-width: 700px) {
-  .links { font-size: 15px; gap: 12px 20px; }
+  .ft { padding: 36px 0 48px; }
+  .links { font-size: 14px; gap: 10px 16px; }
+  .soc { gap: 10px; }
+}
+@media (max-width: 480px) {
+  .ft { padding: 28px 0 36px; }
+  .copy { font-size: 13px; }
+  .links { font-size: 13px; gap: 8px 14px; }
 }
 </style>
