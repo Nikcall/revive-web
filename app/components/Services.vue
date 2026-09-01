@@ -133,4 +133,13 @@ h3 {
   .grid { grid-template-columns: 1fr; }
   .sec { padding: 64px 0 40px; }
 }
+@media (max-width: 480px) {
+  .sec { padding: 48px 0 32px; }
+  .ol { font-size: 22px; margin-bottom: 28px; }
+  .card { padding: 20px 16px; }
+  .card img { width: 64px; height: 64px; }
+  h3 { font-size: 17px; }
+  .from { font-size: 16px; }
+  .cta-row { margin-top: 28px; }
+}
 </style>

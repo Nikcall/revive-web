@@ -172,4 +172,13 @@ onUnmounted(() => {
 .top-btn:hover {
   transform: translateY(-2px);
 }
+@media (max-width: 480px) {
+  .fab { right: 14px; bottom: 14px; }
+  .fab-btn { width: 48px; height: 48px; padding: 12px; }
+  .fab-btn :deep(.si) { width: 24px; height: 24px; }
+  .fab-item { width: 42px; height: 42px; }
+  .fab-item :deep(.si) { width: 24px; height: 24px; }
+  .top-btn { width: 42px; height: 42px; }
+  .top-btn svg { width: 18px; height: 18px; }
+}
 </style>

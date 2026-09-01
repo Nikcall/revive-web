@@ -98,4 +98,10 @@ h2 {
     padding: 20px 0;
   }
 }
+@media (max-width: 480px) {
+  .inner { padding: 16px 0; }
+  h2 { font-size: 16px; }
+  .sub { font-size: 13px; }
+  .badge { font-size: 11px; padding: 6px 10px; }
+}
 </style>

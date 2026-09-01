@@ -155,4 +155,10 @@ th {
   table, tbody, tr, th, td { display: block; width: 100%; }
   th { border-bottom: 0; }
 }
+@media (max-width: 480px) {
+  .legal { padding: calc(var(--header-h) + 24px) 0 40px; }
+  .intro, p, li, td { font-size: 16px; line-height: 1.65; }
+  h2 { font-size: 18px; }
+  th, td { padding: 10px 12px; font-size: 14px; }
+}
 </style>

@@ -114,4 +114,9 @@ p a {
     flex: 1;
   }
 }
+@media (max-width: 480px) {
+  .cookie { padding: 12px 14px; gap: 10px; bottom: 80px; }
+  p { font-size: 13px; }
+  .cookie-accept, .cookie-reject { padding: 10px 14px; font-size: 11px; }
+}
 </style>

@@ -94,4 +94,7 @@ p {
   button { padding: 16px; font-size: 15px; }
   p { padding: 0 16px 14px; font-size: 15px; }
 }
+@media (max-width: 880px) {
+  .faq { padding: 72px 0; }
+}
 </style>

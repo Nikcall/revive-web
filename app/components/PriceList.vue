@@ -329,10 +329,28 @@ li {
   .calc { grid-template-columns: 1fr; }
   .result strong { font-size: 36px; }
 }
+@media (max-width: 580px) {
+  .wrap { padding: 0 16px; }
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding-bottom: 4px;
+    margin-bottom: 16px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { white-space: nowrap; flex-shrink: 0; padding: 8px 14px; font-size: 12px; }
+  .calc { padding: 16px; gap: 12px; }
+  .calc-title { font-size: 22px; }
+  li { font-size: 13px; flex-direction: column; gap: 4px; }
+}
 @media (max-width: 480px) {
   .price { padding: 48px 0; }
-  .calc-title { font-size: 22px; }
+  .calc-title { font-size: 20px; }
   .result strong { font-size: 28px; }
   .result { padding: 12px; }
+  .conditions { font-size: 13px; }
 }
 </style>

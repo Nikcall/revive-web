@@ -137,4 +137,11 @@ h1 span {
   color: #808080;
   font-weight: 700;
 }
+@media (max-width: 480px) {
+  .qr { padding: 32px 16px 28px; }
+  .logo { width: 96px; height: 96px; border-radius: 22px; }
+  h1 { font-size: 20px; margin: 16px 0 8px; }
+  .sub { font-size: 14px; margin-bottom: 20px; }
+  .btn { max-width: 240px; font-size: 15px; padding: 10px 20px; min-height: 44px; }
+}
 </style>

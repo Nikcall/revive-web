@@ -53,4 +53,10 @@ const brands = [
   max-width: 600px;
   margin: 0 auto;
 }
+@media (max-width: 480px) {
+  .brands { padding: 32px 0; }
+  .list { gap: 8px 16px; }
+  .brand { font-size: 13px; }
+  .disclaimer { font-size: 10px; }
+}
 </style>
