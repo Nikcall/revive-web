@@ -54,8 +54,9 @@
 @media (max-width: 640px) {
   .track-tab {
     top: auto;
-    bottom: 88px;
-    right: 16px;
+    bottom: 80px;
+    right: auto;
+    left: 16px;
     transform: none;
     padding: 10px 10px;
     gap: 6px;
