@@ -643,6 +643,9 @@ function iconSvg(name: string) {
     width: calc(50% - 8px);
   }
   .adv-bar { grid-template-columns: 1fr 1fr; }
+  .adv:nth-child(2) { border-right: none; }
+  .adv:nth-child(3) { border-top: 1px solid var(--border); }
+  .adv:nth-child(4) { border-top: 1px solid var(--border); }
   .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .stat-sep { display: none; }
   .tagline { max-width: 100%; }

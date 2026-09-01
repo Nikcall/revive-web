@@ -491,7 +491,24 @@ select {
   .wrap { padding: 0 16px; }
   .result strong { font-size: 28px; }
   .result { padding: 12px; }
-  .tabs { display: none; }
-  .table li { font-size: 13px; }
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding-bottom: 4px;
+    margin-bottom: 16px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .table li { font-size: 13px; flex-direction: column; gap: 4px; }
+  .table b { font-size: 14px; }
+  .calc { padding: 16px; gap: 12px; }
 }
 </style>

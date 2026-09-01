@@ -104,6 +104,14 @@ p a {
     right: 12px;
     bottom: 88px;
     max-width: none;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cookie-btns {
+    justify-content: stretch;
+  }
+  .cookie-btns button {
+    flex: 1;
   }
 }
 </style>

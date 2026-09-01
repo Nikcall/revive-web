@@ -137,4 +137,8 @@ textarea {
   .wrap {
     padding: 0 16px;
   }
+  .btn-fill {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
 }

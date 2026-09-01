@@ -349,7 +349,10 @@ textarea {
   .submit { width: 100%; }
 }
 @media (max-width: 480px) {
-  .order { padding: 56px 0; }
+  .order { padding: 48px 0; }
   .soc { gap: 6px; }
+  h2 { font-size: 22px; }
+  .channels { gap: 8px 12px; font-size: 12px; }
+  input, textarea { padding: 14px; font-size: 15px; }
 }
 </style>

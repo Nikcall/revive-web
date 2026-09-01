@@ -203,5 +203,6 @@ function iconFor(device: string): string {
   .grid { grid-template-columns: 1fr; }
   .wrap { padding: 0 16px; }
   .cases { padding: 48px 0; }
+  .card { padding: 18px; gap: 14px; }
 }
 </style>

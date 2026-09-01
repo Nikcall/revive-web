@@ -103,4 +103,9 @@ h2 {
   .body-wrap { padding: 48px 24px 64px; }
   .gallery { grid-template-columns: 1fr; }
 }
+@media (max-width: 480px) {
+  .body-wrap { padding: 32px 16px 48px; }
+  .body { font-size: 15px; }
+  .gallery img { height: 180px; }
+}
 </style>

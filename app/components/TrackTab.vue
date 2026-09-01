@@ -53,15 +53,25 @@
 }
 @media (max-width: 640px) {
   .track-tab {
-    padding: 12px 8px;
-    gap: 8px;
+    top: auto;
+    bottom: 88px;
+    right: 16px;
+    transform: none;
+    padding: 10px 10px;
+    gap: 6px;
+    border-radius: 12px;
+  }
+  .track-tab:hover {
+    transform: none;
   }
   .icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
   .label {
-    font-size: 11px;
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 10px;
   }
 }
 </style>
