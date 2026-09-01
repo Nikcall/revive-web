@@ -95,8 +95,19 @@ hr {
   font-size: 15px;
   font-weight: 600;
 }
+.copy {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.8;
+}
 .copy span {
-  color: rgb(255, 133, 98);
+  color: rgba(255, 133, 98, 0.65);
+}
+.copy a {
+  color: rgba(255, 255, 255, 0.5);
+}
+.copy a:hover {
+  color: var(--brand);
 }
 .disclaimer {
   margin-top: 20px;
