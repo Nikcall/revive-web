@@ -73,24 +73,7 @@ const groupedByGroup = computed(() => {
   return map
 })
 
-const allGroupsByTab = computed(() => {
-  if (!props.showAll) return []
-  return DEVICE_TABS.map((tab) => {
-    const catItems = items.value
-      .filter((p) => tab.categories.includes(p.category_name))
-      .sort((a, b) => (a.sort || 0) - (b.sort || 0))
-    const multiService = tab.categories.length > 1
-    const map = new Map<string, CatalogPrice[]>()
-    const order: string[] = []
-    for (const item of catItems) {
-      const g = item.group || ''
-      const key = multiService ? `${item.service_name}||${g}` : g
-      if (!map.has(key)) { map.set(key, []); order.push(key) }
-      map.get(key)!.push(item)
-    }
-    return { tab, groups: map, order }
-  }).filter((entry) => entry.groups.size > 0)
-})
+
 
 const urgent = ref(false)
 const device = ref('')
@@ -171,13 +154,21 @@ watch(group, () => { service.value = '' })
 
       <template v-if="showAll">
         <p class="section-label">Прайс-лист</p>
-        <div v-for="entry in allGroupsByTab" :key="entry.tab.id" class="table" style="margin-bottom: 24px">
-          <h3>{{ entry.tab.label }}</h3>
-          <template v-for="key in entry.order" :key="key">
-            <p v-if="key.includes('||')" class="service-label">{{ key.split('||')[0] }}</p>
-            <p v-if="key.split('||').pop()" class="group-label">{{ key.split('||').pop() }}</p>
+        <div class="tabs">
+          <button
+            v-for="tab in DEVICE_TABS"
+            :key="tab.id"
+            type="button"
+            :class="{ active: activeTab === tab.id }"
+            @click="activeTab = tab.id"
+          >{{ tab.label }}</button>
+        </div>
+        <div class="table">
+          <h3>{{ DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
+          <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
+            <p v-if="groupName" class="group-label">{{ groupName }}</p>
             <ul>
-              <li v-for="item in entry.groups.get(key)" :key="item.key || item.name">
+              <li v-for="item in groupItems" :key="item.key || item.name">
                 <span>{{ item.name }}</span>
                 <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
               </li>
