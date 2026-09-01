@@ -107,11 +107,21 @@ const groups = computed(() =>
   )].sort(),
 )
 
-const services = computed(() =>
-  items.value
-    .filter((p) => p.category_name === device.value && p.group === group.value)
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0)),
-)
+const hasGroups = computed(() => groups.value.length > 0)
+
+const services = computed(() => {
+  if (!device.value) return []
+  if (hasGroups.value) {
+    return group.value
+      ? items.value
+          .filter((p) => p.category_name === device.value && p.group === group.value)
+          .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+      : []
+  }
+  return items.value
+    .filter((p) => p.category_name === device.value)
+    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+})
 const selected = computed(() => services.value.find((p) => p.name === service.value))
 
 const displayPrice = computed(() => {
@@ -131,6 +141,7 @@ const resultHint = computed(() =>
 
 watch(device, () => { group.value = ''; service.value = '' })
 watch(group, () => { service.value = '' })
+watch(hasGroups, (v) => { if (!v) group.value = '' })
 </script>
 
 <template>
@@ -154,14 +165,17 @@ watch(group, () => { service.value = '' })
             </label>
             <label>
               <span class="step"><i>2</i> Тип проблемы</span>
-              <select v-model="group" :disabled="!device">
+              <select v-model="group" :disabled="!device || !hasGroups" :style="{ display: hasGroups ? '' : 'none' }">
                 <option value="">— сначала устройство —</option>
                 <option v-for="g in groups" :key="g" :value="g">{{ g }}</option>
+              </select>
+              <select v-if="!hasGroups" disabled>
+                <option>Услуги ниже</option>
               </select>
             </label>
             <label>
               <span class="step"><i>3</i> Услуга</span>
-              <select v-model="service" :disabled="!group">
+              <select v-model="service" :disabled="!device || (hasGroups && !group)">
                 <option value="">— сначала тип —</option>
                 <option v-for="s in services" :key="s.key || s.name" :value="s.name">{{ s.name }}</option>
               </select>
