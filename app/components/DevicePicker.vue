@@ -2,8 +2,8 @@
 const devices = [
   { name: 'Ноутбук', icon: 'laptop', href: '/remont-noutbukov' },
   { name: 'Смартфон', icon: 'phone', href: '/remont-smartfonov' },
-  { name: 'iPhone', icon: 'iphone', href: '/prices' },
-  { name: 'MacBook', icon: 'laptop', href: '/prices' },
+  { name: 'iPhone', icon: 'iphone', href: '/remont-iphone' },
+  { name: 'MacBook', icon: 'laptop', href: '/remont-noutbukov' },
   { name: 'Системный блок', icon: 'pc', href: '/remont-kompyuterov' },
   { name: 'Планшет', icon: 'tablet', href: '/remont-planshetov' },
 ]
