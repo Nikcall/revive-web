@@ -4,7 +4,7 @@ definePageMeta({ layout: 'default' })
 const route = useRoute()
 const activeCategory = (route.query.category as string) || ''
 
-const { posts } = usePosts({ limit: 20, category: activeCategory || undefined })
+const { posts } = await usePosts({ limit: 20, category: activeCategory || undefined })
 
 const categories = [
   { label: 'Все', value: '' },

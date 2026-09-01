@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const slug = route.params.slug as string
-const { post } = usePost(slug)
+const { post } = await usePost(slug)
 
 if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: 'Статья не найдена' })

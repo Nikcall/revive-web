@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const slug = route.params.slug as string
-const { caseItem } = useCase(slug)
+const { caseItem } = await useCase(slug)
 
 if (!caseItem.value) {
   throw createError({ statusCode: 404, statusMessage: 'Кейс не найден' })

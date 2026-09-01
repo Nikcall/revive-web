@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
 
-const { cases } = useCases({ limit: 20 })
+const { cases } = await useCases({ limit: 20 })
 
 useHead({
   title: 'Реальные ремонты — REVIVE Service',
