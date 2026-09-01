@@ -1,76 +1,64 @@
 <script setup lang="ts">
-const cases = [
-  {
-    device: 'Gigabyte B450M DS3H',
-    icon: 'motherboard',
-    symptom: 'Нет запуска, POST 00',
-    diagnosis: 'Повреждён дроссель в цепи питания чипсета. Диагностика показала неисправный контроллер преобразователя питания.',
-    fix: 'Замена контроллера и повреждённого дросселя. Проверка напряжений и температурного режима.',
-    result: 'Плата снова прошла POST и запустилась.',
-    tags: ['Материнская плата', 'Компонентный ремонт', 'Цепи питания'],
-  },
-  {
-    device: 'Системный блок',
-    icon: 'pc',
-    symptom: 'Синий экран UNEXPECTED_KERNEL_MODE_TRAP',
-    diagnosis: 'Последовательная аппаратная диагностика выявила неисправный модуль оперативной памяти.',
-    fix: 'Замена модуля оперативной памяти.',
-    result: 'Система прошла повторное тестирование без повторных сбоев.',
-    tags: ['ПК', 'Диагностика', 'ОЗУ'],
-  },
-  {
-    device: 'iPhone 12 mini',
-    icon: 'phone',
-    symptom: 'Face ID не работает',
-    diagnosis: 'Требуется работа с компонентами шлейфа Face ID и датчиков под микроскопом.',
-    fix: 'Перенос необходимых элементов с контролем контактных площадок и качества пайки.',
-    result: 'Face ID восстановлен. Сложные работы выполняются с увеличением и контролем температуры.',
-    tags: ['Смартфон', 'Микропайка', 'Face ID'],
-  },
-]
+const { cases } = await useCases({ featured: true, limit: 3 })
 
 const iconSvg: Record<string, string> = {
   motherboard: '<rect x="2" y="4" width="20" height="14" rx="2"/><path d="M0 20h24"/>',
   pc: '<rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1"/>',
   phone: '<rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="17" r="1"/>',
+  default: '<rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="16" y2="11"/>',
+}
+
+function iconFor(device: string): string {
+  const d = device.toLowerCase()
+  if (d.includes('материн') || d.includes('gigabyte') || d.includes('asus')) return iconSvg.motherboard
+  if (d.includes('системн') || d.includes('пк') || d.includes('pc')) return iconSvg.pc
+  if (d.includes('iphone') || d.includes('смартфон') || d.includes('samsung') || d.includes('xiaomi') || d.includes('android')) return iconSvg.phone
+  if (d.includes('ноутбук') || d.includes('macbook')) return iconSvg.motherboard
+  if (d.includes('моноблок') || d.includes('imac')) return iconSvg.pc
+  return iconSvg.default
 }
 </script>
 
 <template>
-  <section class="cases">
+  <section v-if="cases.length" class="cases">
     <div class="wrap">
       <div class="head">
         <span class="eyebrow">Реальные ремонты</span>
         <h2 class="title">Что мы <span>ремонтируем</span></h2>
-        <p class="subtitle">Три примера из практики — от компонентного ремонта плат до микропайки смартфонов</p>
+        <p class="subtitle">Примеры из практики — от компонентного ремонта плат до микропайки смартфонов</p>
       </div>
       <div class="grid">
-        <article v-for="item in cases" :key="item.device" class="card">
+        <NuxtLink
+          v-for="item in cases"
+          :key="item.id"
+          :to="`/cases/${item.slug}`"
+          class="card"
+        >
           <div class="card-head">
-            <div class="device-icon" v-html="iconSvg[item.icon]" />
+            <div class="device-icon" v-html="iconFor(item.device)" />
             <div>
               <h3 class="device">{{ item.device }}</h3>
-              <span class="symptom">{{ item.symptom }}</span>
+              <span class="symptom">{{ item.problem }}</span>
             </div>
           </div>
           <div class="steps">
-            <div class="step">
+            <div v-if="item.diagnostics" class="step">
               <span class="step-label">Диагностика</span>
-              <p>{{ item.diagnosis }}</p>
+              <p>{{ item.diagnostics }}</p>
             </div>
-            <div class="step">
+            <div v-if="item.repair" class="step">
               <span class="step-label">Что сделали</span>
-              <p>{{ item.fix }}</p>
+              <p>{{ item.repair }}</p>
             </div>
-            <div class="step">
+            <div v-if="item.result" class="step">
               <span class="step-label">Результат</span>
               <p>{{ item.result }}</p>
             </div>
           </div>
-          <div class="tags">
+          <div v-if="item.tags?.length" class="tags">
             <span v-for="tag in item.tags" :key="tag">{{ tag }}</span>
           </div>
-        </article>
+        </NuxtLink>
       </div>
     </div>
   </section>
@@ -133,6 +121,8 @@ const iconSvg: Record<string, string> = {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  text-decoration: none;
+  color: inherit;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .card:hover {

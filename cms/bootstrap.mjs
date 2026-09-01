@@ -9,6 +9,7 @@ import { readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { applyServicesPricesSchema } from './schema/services-prices.mjs'
+import { applyCasesSchema } from './schema/cases-schema.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIRECTUS = process.env.DIRECTUS_URL || 'http://localhost:8055'
@@ -130,13 +131,14 @@ for (const col of COLLECTIONS) {
 }
 
 await applyServicesPricesSchema(api, token)
+await applyCasesSchema(api, token)
 
 const roles = await api('/roles?filter[name][_eq]=Public', {}, token)
 const publicId = roles.data?.[0]?.id
 if (publicId) {
   const perms = await api(`/permissions?filter[role][_eq]=${publicId}&filter[action][_eq]=read&limit=-1`, {}, token)
   const have = new Set((perms.data || []).map((p) => p.collection))
-  for (const name of COLLECTIONS.map((c) => c.collection)) {
+  for (const name of [...COLLECTIONS.map((c) => c.collection), 'cases']) {
     if (have.has(name)) continue
     await api('/permissions', {
       method: 'POST',
@@ -181,6 +183,56 @@ if (await empty('pages')) {
 if (await empty('faq')) {
   await api('/items/faq', { method: 'POST', body: JSON.stringify(seed.faq) }, token)
   console.log(`+ faq (${seed.faq.length})`)
+}
+
+// Seed cases (3 examples from practice)
+if (await empty('cases')) {
+  const casesSeed = [
+    {
+      title: 'Gigabyte B450M DS3H — нет старта',
+      slug: 'gigabyte-b450m-post-00',
+      device: 'Gigabyte B450M DS3H',
+      problem: 'Нет запуска, POST 00. Материнская плата не подаёт признаков жизни.',
+      diagnostics: 'Повреждён дроссель в цепи питания чипсета. Диагностика показала неисправный контроллер преобразователя питания.',
+      repair: 'Замена контроллера и повреждённого дросселя. Проверка напряжений и температурного режима.',
+      result: 'Плата снова прошла POST и запустилась.',
+      tags: ['Материнская плата', 'Компонентный ремонт', 'Цепи питания'],
+      featured: true,
+      sort: 1,
+      status: 'published',
+      published_at: new Date().toISOString(),
+    },
+    {
+      title: 'Системный блок — синий экран',
+      slug: 'system-block-bsod-unexpected-kernel',
+      device: 'Системный блок',
+      problem: 'Синий экран UNEXPECTED_KERNEL_MODE_TRAP. Периодические зависания.',
+      diagnostics: 'Последовательная аппаратная диагностика выявила неисправный модуль оперативной памяти.',
+      repair: 'Замена модуля оперативной памяти.',
+      result: 'Система прошла повторное тестирование без повторных сбоев.',
+      tags: ['ПК', 'Диагностика', 'ОЗУ'],
+      featured: true,
+      sort: 2,
+      status: 'published',
+      published_at: new Date().toISOString(),
+    },
+    {
+      title: 'iPhone 12 mini — Face ID не работает',
+      slug: 'iphone-12-mini-face-id',
+      device: 'iPhone 12 mini',
+      problem: 'Face ID перестал работать после падения.',
+      diagnostics: 'Требуется работа с компонентами шлейфа Face ID и датчиков под микроскопом.',
+      repair: 'Перенос необходимых элементов с контролем контактных площадок и качества пайки.',
+      result: 'Face ID восстановлен. Сложные работы выполняются с увеличением и контролем температуры.',
+      tags: ['Смартфон', 'Микропайка', 'Face ID'],
+      featured: true,
+      sort: 3,
+      status: 'published',
+      published_at: new Date().toISOString(),
+    },
+  ]
+  await api('/items/cases', { method: 'POST', body: JSON.stringify(casesSeed) }, token)
+  console.log(`+ cases (${casesSeed.length})`)
 }
 
 console.log(`Готово. Админка: ${DIRECTUS}  (${EMAIL})`)

@@ -14,7 +14,8 @@
     "cms:services": "node cms/schema/services-prices.mjs",
     "cms:services:force": "node cms/schema/services-prices.mjs --force",
     "cms:hero-test": "node cms/hero-roundtrip.mjs",
-    "cms:price-test": "node cms/price-roundtrip.mjs"
+    "cms:price-test": "node cms/price-roundtrip.mjs",
+    "cms:cases": "node cms/schema/cases.mjs"
   },
   "dependencies": {
     "@nuxtjs/sitemap": "^8.5.0",

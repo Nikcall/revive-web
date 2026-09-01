@@ -10,13 +10,28 @@ export type CmsPromo = {
   active: boolean
 }
 export type CmsCase = {
+  id?: number
   slug: string
   title: string
-  text: string
+  device: string
+  problem: string
+  diagnostics: string
+  repair: string
+  result: string
+  cover_image: string
+  gallery: string[]
+  before_image: string
+  after_image: string
   tags: string[]
-  price_label: string
-  before_url: string
-  after_url: string
+  published_at: string
+  featured: boolean
+  sort: number
+  status: string
+  /** Legacy fields for backwards compat */
+  text?: string
+  price_label?: string
+  before_url?: string
+  after_url?: string
 }
 export type CmsReview = { author: string; service: string; text: string; rating: number }
 
