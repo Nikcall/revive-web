@@ -63,7 +63,7 @@ onUnmounted(() => {
           :aria-label="item.label"
           :style="{ transitionDelay: `${i * 50}ms` }"
         >
-          <SocialIcon :name="item.name" variant="circle" />
+          <SocialIcon :name="item.name" variant="glyph" />
         </a>
       </div>
     </Transition>
@@ -90,16 +90,16 @@ onUnmounted(() => {
   border-radius: 50%;
   border: 0;
   background: #fff;
-  color: #000;
+  color: #111;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
   cursor: pointer;
-  padding: 12px;
+  padding: 14px;
   display: grid;
   place-items: center;
 }
 .fab-btn :deep(.si) {
   width: 28px;
-  height: 26px;
+  height: 28px;
   transition: transform 0.3s;
 }
 .fab-btn.open :deep(.si) {
@@ -112,22 +112,24 @@ onUnmounted(() => {
   gap: 10px;
 }
 .fab-item {
-  width: 54px;
-  height: 54px;
-  color: #fff;
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.16));
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
   transition: transform 0.15s;
   display: grid;
   place-items: center;
-  border-radius: 50%;
 }
 .fab-item:hover {
-  transform: scale(1.06);
+  transform: scale(1.1);
 }
-.fab-item.telegram { background: #1d98dc; }
-.fab-item.whatsapp { background: #27d061; }
-.fab-item.vk { background: #0077ff; }
-.fab-item.max { background: #000; }
+.fab-item :deep(.si) {
+  width: 28px;
+  height: 28px;
+}
+.fab-item.telegram { color: #1d98dc; }
+.fab-item.whatsapp { color: #25d366; }
+.fab-item.vk { color: #0077ff; }
+.fab-item.max { color: #000; }
 
 /* Stagger animation */
 .fab-list-enter-active .fab-item {
