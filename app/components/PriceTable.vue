@@ -73,6 +73,28 @@ const groupedByGroup = computed(() => {
   return map
 })
 
+const duplicateNames = computed(() => {
+  const counts = new Map<string, number>()
+  for (const item of featuredItems.value) {
+    counts.set(item.name, (counts.get(item.name) || 0) + 1)
+  }
+  return counts
+})
+
+const CATEGORY_LABELS: Record<string, string> = {
+  iPhone: 'iPhone',
+  iPad: 'iPad',
+  MacBook: 'MacBook',
+  iMac: 'iMac',
+  'Ноутбуки': 'Ноутбук',
+  'Системные блоки / ПК': 'ПК',
+  'Моноблоки': 'Моноблок',
+  'Смартфоны (Samsung, Xiaomi, Android)': 'Samsung/Xiaomi',
+  'Планшеты Android': 'Планшет',
+  'ПО / Windows / macOS': 'ПО',
+  'Дополнительные услуги': 'Доп. услуги',
+}
+
 
 
 const urgent = ref(false)
@@ -208,7 +230,10 @@ watch(hasGroups, (v) => { if (!v) group.value = '' })
             <p v-if="groupName" class="group-label">{{ groupName }}</p>
             <ul>
               <li v-for="item in groupItems" :key="item.key || item.name">
-                <span>{{ item.name }}</span>
+                <span>
+                  {{ item.name }}
+                  <small v-if="duplicateNames.get(item.name) > 1" class="cat-hint">{{ CATEGORY_LABELS[item.category_name] || item.category_name }}</small>
+                </span>
                 <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
               </li>
             </ul>
@@ -232,7 +257,10 @@ watch(hasGroups, (v) => { if (!v) group.value = '' })
             <p v-if="groupName" class="group-label">{{ groupName }}</p>
             <ul>
               <li v-for="item in groupItems" :key="item.key || item.name">
-                <span>{{ item.name }}</span>
+                <span>
+                  {{ item.name }}
+                  <small v-if="duplicateNames.get(item.name) > 1" class="cat-hint">{{ CATEGORY_LABELS[item.category_name] || item.category_name }}</small>
+                </span>
                 <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
               </li>
             </ul>
@@ -456,6 +484,18 @@ select {
   padding: 2px 10px;
   border-radius: 100px;
   font-size: 12px;
+}
+.cat-hint {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dim);
+  background: rgba(255,133,98,0.08);
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  vertical-align: middle;
+  line-height: 1.4;
 }
 .note {
   margin-top: 20px;
