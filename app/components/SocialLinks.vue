@@ -112,19 +112,22 @@ onUnmounted(() => {
   gap: 10px;
 }
 .fab-item {
-  width: 50px;
-  height: 50px;
-  color: #111;
+  width: 54px;
+  height: 54px;
+  color: #fff;
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.16));
   transition: transform 0.15s;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
 }
 .fab-item:hover {
   transform: scale(1.06);
 }
-.fab-item.telegram { color: #1d98dc; }
-.fab-item.whatsapp { color: #27d061; }
-.fab-item.vk { color: #0077ff; }
-.fab-item.max { color: #000; }
+.fab-item.telegram { background: #1d98dc; }
+.fab-item.whatsapp { background: #27d061; }
+.fab-item.vk { background: #0077ff; }
+.fab-item.max { background: #000; }
 
 /* Stagger animation */
 .fab-list-enter-active .fab-item {
