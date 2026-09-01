@@ -41,7 +41,21 @@ const FEATURED_LIMIT: Record<string, number> = {
   additional: 10,
 }
 
+const SLUG_TO_TAB: Record<string, string> = {
+  'remont-noutbukov': 'notebook',
+  'remont-kompyuterov': 'pc',
+  'remont-smartfonov': 'smartphone',
+  'remont-planshetov': 'tablet',
+  'remont-iphone': 'apple',
+  'chistka-noutbuka': 'notebook',
+}
+
+const defaultTab = computed(() =>
+  (props.serviceSlug && SLUG_TO_TAB[props.serviceSlug]) || 'notebook',
+)
+
 const activeTab = ref('notebook')
+watch(defaultTab, (v) => { activeTab.value = v }, { immediate: true })
 const items = computed(() => props.catalogPrices || [])
 
 const activeCategories = computed(() =>
