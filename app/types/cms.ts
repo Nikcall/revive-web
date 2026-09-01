@@ -178,6 +178,23 @@ export type CmsFaq = {
   sort: number
 }
 
+export type CmsPost = {
+  id?: number
+  slug: string
+  title: string
+  excerpt: string
+  content: string
+  cover_image: string
+  category: string
+  published_at: string
+  author: string
+  seo_title: string
+  seo_description: string
+  featured: boolean
+  sort: number
+  status: string
+}
+
 export type CmsContent = {
   settings: CmsSettings
   pages: CmsPage[]

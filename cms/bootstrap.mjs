@@ -10,6 +10,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { applyServicesPricesSchema } from './schema/services-prices.mjs'
 import { applyCasesSchema } from './schema/cases-schema.mjs'
+import { applyPostsSchema } from './schema/posts-schema.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIRECTUS = process.env.DIRECTUS_URL || 'http://localhost:8055'
@@ -132,13 +133,14 @@ for (const col of COLLECTIONS) {
 
 await applyServicesPricesSchema(api, token)
 await applyCasesSchema(api, token)
+await applyPostsSchema(api, token)
 
 const roles = await api('/roles?filter[name][_eq]=Public', {}, token)
 const publicId = roles.data?.[0]?.id
 if (publicId) {
   const perms = await api(`/permissions?filter[role][_eq]=${publicId}&filter[action][_eq]=read&limit=-1`, {}, token)
   const have = new Set((perms.data || []).map((p) => p.collection))
-  for (const name of [...COLLECTIONS.map((c) => c.collection), 'cases']) {
+  for (const name of [...COLLECTIONS.map((c) => c.collection), 'cases', 'posts']) {
     if (have.has(name)) continue
     await api('/permissions', {
       method: 'POST',
@@ -233,6 +235,86 @@ if (await empty('cases')) {
   ]
   await api('/items/cases', { method: 'POST', body: JSON.stringify(casesSeed) }, token)
   console.log(`+ cases (${casesSeed.length})`)
+}
+
+if (process.env.CMS_FORCE_SEED || process.env.CMS_SEED_POSTS) {
+  const existingPosts = await api('/items/posts?limit=-1', {}, token)
+  const existingSlugs = new Set((existingPosts.data || []).map((p) => p.slug))
+
+  const postsSeed = [
+    {
+      slug: 'how-to-choose-ssd',
+      title: 'Как выбрать SSD для ноутбука или ПК',
+      excerpt: 'NVMe vs SATA, M.2 vs 2.5 дюйма — разбираемся, какой диск подойдёт именно вам.',
+      content: `<h2>Какой SSD выбрать</h2>
+<p>SSD — самое простое и доступное ускорение компьютера. Замена HDD на SSD ускоряет загрузку системы в 5–10 раз, но важно выбрать правильный интерфейс и форм-фактор.</p>
+
+<h3>NVMe vs SATA</h3>
+<p><strong>SATA III</strong> — максимальная скорость ~550 МБ/с. Подходит для офисных задач и повседневной работы.</p>
+<p><strong>NVMe (PCIe)</strong> — скорость от 1500 до 7000 МБ/с в зависимости от поколения. Нужен для видеообработки, игр, работы с большими файлами.</p>
+
+<h3>M.2 vs 2.5"</h3>
+<p><strong>M.2</strong> — компактный форм-фактор для ноутбуков и современных ПК. Проверьте, поддерживает ли ваша плата NVMe или только SATA.</p>
+<p><strong>2.5"</strong> — корпусной форм-фактор. Подходит для старых ноутбуков и десктопов. Заменяется без вскрытия корпуса.</p>
+
+<h3>На что обратить внимание</h3>
+<ul>
+<li><strong>Терабайты записи (TBW)</strong> — ресурс диска. Бюджетные модели — 100–300 TBW, хорошие — от 600 TBW.</li>
+<li><strong>DRAM-кэш</strong> — ускоряет случайные операции. Диски без DRAM дешевле, но медленнее при большом объёме файлов.</li>
+<li><strong>Размер</strong> — 256 ГБ достаточно для системы, 512 ГБ для системы + программ, 1 ТБ для рабочих задач.</li>
+</ul>
+
+<blockquote>В REVIVE Service подбираем SSD под конкретную задачу и бюджет. Привезите ноутбук — определим, какой слот и интерфейс доступны.</blockquote>`,
+      cover_image: '',
+      category: 'general',
+      author: 'REVIVE Service',
+      seo_title: 'Как выбрать SSD для ноутбука или ПК — REVIVE Service',
+      seo_description: 'NVMe vs SATA, M.2 vs 2.5" — разбираемся, какой SSD подойдёт для вашего компьютера.',
+      featured: true,
+      sort: 1,
+      status: 'published',
+      published_at: new Date().toISOString(),
+    },
+    {
+      slug: 'laptop-does-not-turn-on',
+      title: 'Ноутбук не включается: что проверить самостоятельно',
+      excerpt: 'Прежде чем нести в ремонт — 5 простых проверок, которые помогут понять причину.',
+      content: `<h2>Ноутбук не включается</h2>
+<p>Не паникуйте. Прежде чем планировать дорогой ремонт, проверьте 5 простых вещей — иногда проблема решается за минуту.</p>
+
+<h3>1. Проверьте заряд</h3>
+<p>Подключите зарядное устройство и подождите 15–30 минут. Индикатор заряда горит? Если нет — попробуйте другую розетку и другое зарядное.</p>
+
+<h3>2. Сброс питания</h3>
+<p>Отключите зарядку, удерживайте кнопку включения 15–20 секунд, затем подключите зарядку и включите. Это сбрасывает ошибки контроллера питания.</p>
+
+<h3>3. Внешний экран</h3>
+<p>Подключите внешний монитор через HDMI. Если изображение есть — проблема в шлейфе или матрице, а не в системной плате.</p>
+
+<h3>4. Память</h3>
+<p>Если есть доступ к слотам RAM — извлеките планки и вставьте заново. Окисление контактов — частая причина отказа.</p>
+
+<h3>5. Накопитель</h3>
+<p>Извлеките SSD/HDD. Если ноутбук включается без диска — проблема в накопителе или коротком по питанию.</p>
+
+<blockquote>Если ничего не помогает — приезжайте. Диагностика бесплатная, скажем точную стоимость до начала ремонта.</blockquote>`,
+      cover_image: '',
+      category: 'notebooks',
+      author: 'REVIVE Service',
+      seo_title: 'Ноутбук не включается — что проверить до ремонта',
+      seo_description: '5 простых проверок, если ноутбук не включается. Бесплатная диагностика в REVIVE Service, Сургут.',
+      featured: false,
+      sort: 2,
+      status: 'published',
+      published_at: new Date().toISOString(),
+    },
+  ]
+
+  const postsToAdd = postsSeed.filter((p) => !existingSlugs.has(p.slug))
+  if (postsToAdd.length) {
+    await api('/items/posts', { method: 'POST', body: JSON.stringify(postsToAdd) }, token)
+    console.log(`+ posts (${postsToAdd.length})`)
+  }
 }
 
 console.log(`Готово. Админка: ${DIRECTUS}  (${EMAIL})`)

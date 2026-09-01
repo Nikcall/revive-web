@@ -30,7 +30,7 @@ const CASES_FIELDS = [
   f('cases', 'before_image', 'string', { note: 'Фото «до» ремонта' }),
   f('cases', 'after_image', 'string', { note: 'Фото «после» ремонта' }),
   f('cases', 'tags', 'json', { note: 'Теги: ["Материнская плата","Микропайка"]' }),
-  f('cases', 'published_at', 'datetime', { interface: 'datetime', note: 'Дата публикации' }),
+  f('cases', 'published_at', 'dateTime', { interface: 'datetime', note: 'Дата публикации' }),
   f('cases', 'featured', 'boolean', { default_value: false, note: 'Показывать на главной' }),
   f('cases', 'sort', 'integer', { default_value: 0, note: 'Порядок (меньше = выше)' }),
   f('cases', 'status', 'string', { interface: 'select-dropdown', options: { choices: [{ text: 'Опубликован', value: 'published' }, { text: 'Черновик', value: 'draft' }] }, default_value: 'draft' }),
