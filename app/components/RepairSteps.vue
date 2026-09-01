@@ -60,7 +60,7 @@ const list = computed(() => props.steps || [])
 .veil {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.6);
 }
 .cover p {
   position: relative;
