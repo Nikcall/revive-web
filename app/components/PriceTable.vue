@@ -80,12 +80,37 @@ const device = ref('')
 const group = ref('')
 const service = ref('')
 
-const devices = computed(() => [...new Set(items.value.map((p) => p.category_name))])
+const DEVICE_MAP: { crm: string; label: string }[] = [
+  { crm: 'Ноутбуки', label: 'Ноутбук' },
+  { crm: 'Системные блоки / ПК', label: 'Системный блок' },
+  { crm: 'Моноблоки', label: 'Моноблок' },
+  { crm: 'Смартфоны (Samsung, Xiaomi, Android)', label: 'Смартфон' },
+  { crm: 'Планшеты Android', label: 'Планшет Android' },
+  { crm: 'iPhone', label: 'iPhone' },
+  { crm: 'iPad', label: 'iPad' },
+  { crm: 'MacBook', label: 'MacBook' },
+  { crm: 'iMac', label: 'iMac' },
+  { crm: 'ПО / Windows / macOS', label: 'ПО / софт' },
+  { crm: 'Дополнительные услуги', label: 'Доп. услуги' },
+]
+
+const devices = computed(() => {
+  const crmNames = [...new Set(items.value.map((p) => p.category_name))]
+  return DEVICE_MAP.filter((d) => crmNames.includes(d.crm))
+})
+
 const groups = computed(() =>
-  [...new Set(items.value.filter((p) => p.category_name === device.value).map((p) => p.group))],
+  [...new Set(
+    items.value
+      .filter((p) => p.category_name === device.value && p.group)
+      .map((p) => p.group!),
+  )].sort(),
 )
+
 const services = computed(() =>
-  items.value.filter((p) => p.category_name === device.value && p.group === group.value),
+  items.value
+    .filter((p) => p.category_name === device.value && p.group === group.value)
+    .sort((a, b) => (a.sort || 0) - (b.sort || 0)),
 )
 const selected = computed(() => services.value.find((p) => p.name === service.value))
 
@@ -124,7 +149,7 @@ watch(group, () => { service.value = '' })
               <span class="step"><i>1</i> Устройство</span>
               <select v-model="device">
                 <option value="">— выберите —</option>
-                <option v-for="d in devices" :key="d" :value="d">{{ d }}</option>
+                <option v-for="d in devices" :key="d.crm" :value="d.crm">{{ d.label }}</option>
               </select>
             </label>
             <label>
@@ -138,7 +163,7 @@ watch(group, () => { service.value = '' })
               <span class="step"><i>3</i> Услуга</span>
               <select v-model="service" :disabled="!group">
                 <option value="">— сначала тип —</option>
-                <option v-for="s in services" :key="s.name" :value="s.name">{{ s.name }}</option>
+                <option v-for="s in services" :key="s.key || s.name" :value="s.name">{{ s.name }}</option>
               </select>
             </label>
             <div class="result" :class="{ ready: Boolean(selected) }">
