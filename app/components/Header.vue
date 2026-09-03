@@ -143,6 +143,7 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
   letter-spacing: 0.04em;
   position: relative;
   white-space: nowrap;
+  text-align: center;
 }
 .hdr-nav > ul > li > a::after {
   content: '';
@@ -301,23 +302,28 @@ function onNavClick(event: MouseEvent, item: CmsNavItem) {
   }
   .hdr-nav > ul {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     padding: 8px 0;
   }
   .sub {
     position: static;
     box-shadow: none;
-    padding-left: 12px;
+    padding-left: 0;
+    text-align: center;
   }
   .hdr-mobile-extra {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
-    padding: 8px 16px 20px;
+    padding: 12px 16px 24px;
     font-size: 16px;
   }
   .hdr-mobile-extra .hdr-cta {
-    align-self: flex-start;
+    width: 100%;
+    text-align: center;
+    padding: 14px 18px;
+    font-size: 15px;
   }
   .hdr-mobile-social {
     display: flex;

@@ -53,26 +53,23 @@
 }
 @media (max-width: 640px) {
   .track-tab {
-    top: auto;
-    bottom: 80px;
-    right: auto;
-    left: 16px;
-    transform: none;
-    padding: 10px 10px;
-    gap: 6px;
-    border-radius: 12px;
+    top: 30%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 12px 6px;
+    gap: 8px;
+    border-radius: 10px 0 0 10px;
   }
   .track-tab:hover {
-    transform: none;
+    transform: translateY(-50%) translateX(-2px);
   }
   .icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
   .label {
-    writing-mode: horizontal-tb;
-    transform: none;
     font-size: 10px;
+    letter-spacing: 0.02em;
   }
 }
 </style>

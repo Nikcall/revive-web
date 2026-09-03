@@ -167,6 +167,7 @@ async function onSubmit() {
             required
             autocomplete="tel"
             inputmode="tel"
+            maxlength="18"
             placeholder="+7 (995) 000-00-00"
             @input="onPhoneInput"
           />
@@ -352,7 +353,11 @@ textarea {
   .order { padding: 48px 0; }
   .soc { gap: 6px; }
   h2 { font-size: 22px; }
-  .channels { gap: 8px 12px; font-size: 12px; }
+  .channels { gap: 6px 8px; font-size: 11px; }
+  .channels label { gap: 4px; padding: 5px 8px; border-radius: 6px; border: 1px solid #ddd; }
+  .channels input[type="radio"] { display: none; }
+  .channels input[type="radio"]:checked + :deep(*) { color: var(--brand); }
+  .channels :deep(.si-img), .channels :deep(.si) { width: 14px; height: 14px; }
   input, textarea { padding: 14px; font-size: 15px; }
 }
 </style>
