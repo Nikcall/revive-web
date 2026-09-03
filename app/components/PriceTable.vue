@@ -56,11 +56,23 @@ const defaultTab = computed(() =>
 
 const activeTab = ref('notebook')
 watch(defaultTab, (v) => { activeTab.value = v }, { immediate: true })
+watch(activeTab, (v) => { if (v !== 'apple') appleSubTab.value = 'iPhone' })
 const items = computed(() => props.catalogPrices || [])
 
-const activeCategories = computed(() =>
-  DEVICE_TABS.find((t) => t.id === activeTab.value)?.categories || [],
-)
+const APPLE_SUB_TABS = [
+  { id: 'iPhone', label: 'iPhone' },
+  { id: 'iPad', label: 'iPad' },
+  { id: 'MacBook', label: 'MacBook' },
+]
+
+const appleSubTab = ref('iPhone')
+
+const activeCategories = computed(() => {
+  if (activeTab.value === 'apple') {
+    return [appleSubTab.value]
+  }
+  return DEVICE_TABS.find((t) => t.id === activeTab.value)?.categories || []
+})
 
 const activeItems = computed(() =>
   items.value.filter((p) => activeCategories.value.includes(p.category_name)),
@@ -238,8 +250,17 @@ watch(hasGroups, (v) => { if (!v) group.value = '' })
             @click="activeTab = tab.id"
           >{{ tab.label }}</button>
         </div>
+        <div v-if="activeTab === 'apple'" class="tabs sub-tabs">
+          <button
+            v-for="sub in APPLE_SUB_TABS"
+            :key="sub.id"
+            type="button"
+            :class="{ active: appleSubTab === sub.id }"
+            @click="appleSubTab = sub.id"
+          >{{ sub.label }}</button>
+        </div>
         <div class="table">
-          <h3>{{ DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
+          <h3>{{ activeTab === 'apple' ? appleSubTab : DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
           <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
             <p v-if="groupName" class="group-label">{{ groupName }}</p>
             <ul>
@@ -265,8 +286,17 @@ watch(hasGroups, (v) => { if (!v) group.value = '' })
             @click="activeTab = tab.id"
           >{{ tab.label }}</button>
         </div>
+        <div v-if="activeTab === 'apple'" class="tabs sub-tabs">
+          <button
+            v-for="sub in APPLE_SUB_TABS"
+            :key="sub.id"
+            type="button"
+            :class="{ active: appleSubTab === sub.id }"
+            @click="appleSubTab = sub.id"
+          >{{ sub.label }}</button>
+        </div>
         <div class="table">
-          <h3>{{ DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
+          <h3>{{ activeTab === 'apple' ? appleSubTab : DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
           <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
             <p v-if="groupName" class="group-label">{{ groupName }}</p>
             <ul>
@@ -442,6 +472,15 @@ select {
   background: var(--brand);
   color: #fff;
   border-color: var(--brand);
+}
+.sub-tabs {
+  margin-bottom: 16px;
+  padding-left: 8px;
+  border-left: 3px solid var(--brand);
+}
+.sub-tabs button {
+  padding: 6px 14px;
+  font-size: 13px;
 }
 .table {
   background: #fff;

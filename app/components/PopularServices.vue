@@ -1,97 +1,75 @@
 <script setup lang="ts">
-import type { CatalogPrice } from '#shared/catalog'
-
 const props = defineProps<{
   slug?: string
 }>()
 
-const POPULAR: Record<string, string[]> = {
-  'remont-noutbukov': [
-    'Диагностика ноутбука',
-    'Чистка и обслуживание офисного ноутбука',
-    'Чистка игрового ноутбука',
-    'Компонентный ремонт материнской платы',
-    'Замена матрицы',
-    'Замена клавиатуры',
-    'Замена разъёма питания',
-    'Ремонт корпуса и петель',
-    'Замена аккумулятора',
-    'Замена накопителя HDD / SSD',
-  ],
+interface PopularItem {
+  name: string
+  price: string
+}
+
+const POPULAR: Record<string, PopularItem[]> = {
   'remont-smartfonov': [
-    'Диагностика смартфона',
-    'Замена дисплейного модуля',
-    'Замена аккумулятора',
-    'Ремонт разъёма зарядки',
-    'Замена задней крышки / корпуса',
-    'Замена камеры',
-    'Ремонт динамика / микрофона',
-    'Компонентный ремонт материнской платы',
-    'Перенос данных на другое устройство',
-    'Восстановление данных',
-  ],
-  'remont-kompyuterov': [
-    'Диагностика системного блока',
-    'Комплексная чистка ПК',
-    'Компонентный ремонт материнской платы',
-    'Ремонт разъёмов',
-    'Замена накопителя HDD / SSD',
-    'Установка / увеличение оперативной памяти',
-    'Замена блока питания',
-    'Замена процессора / системы охлаждения',
-    'Сборка ПК',
-    'Апгрейд ПК',
-  ],
-  'remont-monorolikov': [
-    'Диагностика моноблока',
-    'Комплексное обслуживание системы охлаждения',
-    'Замена HDD / SSD',
-    'Установка / увеличение оперативной памяти',
-    'Компонентный ремонт материнской платы',
-    'Ремонт системы питания',
-    'Ремонт USB / Audio и других разъёмов',
-    'Замена матрицы',
-    'Апгрейд моноблока',
+    { name: 'Диагностика смартфона', price: 'Бесплатно' },
+    { name: 'Замена дисплейного модуля', price: 'от 1 990 ₽' },
+    { name: 'Замена аккумулятора', price: 'от 1 490 ₽' },
+    { name: 'Ремонт разъёма зарядки', price: 'от 1 990 ₽' },
+    { name: 'Замена задней крышки / корпуса', price: 'от 1 490 ₽' },
+    { name: 'Замена камеры', price: 'от 1 990 ₽' },
+    { name: 'Ремонт динамика / микрофона', price: 'от 1 490 ₽' },
+    { name: 'Ремонт кнопок / SIM / аудио', price: 'от 1 490 ₽' },
+    { name: 'Компонентный ремонт материнской платы', price: 'от 5 900 ₽' },
+    { name: 'Перенос данных на другое устройство', price: 'от 1 490 ₽' },
   ],
   'remont-planshetov': [
-    'Диагностика планшета',
-    'Замена дисплейного модуля',
-    'Замена сенсорного стекла / тачскрина',
-    'Замена аккумулятора',
-    'Ремонт разъёма зарядки',
-    'Компонентный ремонт материнской платы',
-    'Замена камеры',
-    'Ремонт кнопок / шлейфов',
-    'Диагностика после попадания жидкости',
-    'Восстановление / перенос данных',
+    { name: 'Диагностика планшета', price: 'Бесплатно' },
+    { name: 'Замена аккумулятора', price: 'от 1 490 ₽' },
+    { name: 'Ремонт разъёма зарядки', price: 'от 2 490 ₽' },
+    { name: 'Замена дисплейного модуля', price: 'от 3 490 ₽' },
+    { name: 'Замена сенсорного стекла / тачскрина', price: 'от 3 990 ₽' },
+    { name: 'Ремонт динамика', price: 'от 1 990 ₽' },
+    { name: 'Ремонт кнопок / шлейфов', price: 'от 1 990 ₽' },
+    { name: 'Компонентный ремонт материнской платы', price: 'от 5 900 ₽' },
+  ],
+  'remont-noutbukov': [
+    { name: 'Диагностика ноутбука', price: 'Бесплатно' },
+    { name: 'Чистка и обслуживание офисного ноутбука', price: 'от 2 900 ₽' },
+    { name: 'Замена накопителя HDD / SSD', price: 'от 1 490 ₽' },
+    { name: 'Замена матрицы', price: 'от 2 990 ₽' },
+    { name: 'Замена клавиатуры', price: 'от 1 990 ₽' },
+    { name: 'Замена аккумулятора', price: 'от 1 990 ₽' },
+    { name: 'Ремонт разъёма питания', price: 'от 3 990 ₽' },
+    { name: 'Ремонт корпуса и петель', price: 'от 3 990 ₽' },
+    { name: 'Ремонт цепей питания', price: 'от 5 900 ₽' },
+    { name: 'Компонентный ремонт материнской платы', price: 'от 6 900 ₽' },
+  ],
+  'remont-kompyuterov': [
+    { name: 'Диагностика системного блока', price: 'Бесплатно' },
+    { name: 'Комплексная чистка ПК', price: 'от 1 990 ₽' },
+    { name: 'Замена / установка SSD, HDD или RAM', price: 'от 990 ₽' },
+    { name: 'Замена блока питания', price: 'от 1 490 ₽' },
+    { name: 'Замена системы охлаждения процессора', price: 'от 1 490 ₽' },
+    { name: 'Прошивка BIOS', price: 'от 1 190 ₽' },
+    { name: 'Прошивка BIOS программатором', price: 'от 3 490 ₽' },
+    { name: 'Компонентный ремонт материнской платы', price: 'от 4 990 ₽' },
+    { name: 'Сборка домашнего / офисного ПК', price: 'от 4 990 ₽' },
+    { name: 'Сборка игрового ПК', price: 'от 7 990 ₽' },
+  ],
+  'remont-monorolikov': [
+    { name: 'Диагностика моноблока', price: 'от 1 490 ₽' },
+    { name: 'Замена SSD / HDD', price: 'от 1 490 ₽' },
+    { name: 'Установка / увеличение оперативной памяти', price: 'от 1 190 ₽' },
+    { name: 'Комплексное обслуживание системы охлаждения', price: 'от 2 490 ₽' },
+    { name: 'Замена матрицы', price: 'от 3 990 ₽' },
+    { name: 'Замена блока питания', price: 'от 3 490 ₽' },
+    { name: 'Ремонт подсветки', price: 'от 4 990 ₽' },
+    { name: 'Компонентный ремонт материнской платы', price: 'от 5 900 ₽' },
   ],
 }
 
-const { data } = await useFetch<{ services: { price_items: CatalogPrice[] }[] }>(
-  () => `/api/catalog?slug=${props.slug}`,
-  { key: `popular-${props.slug}` },
-)
-
-const popularItems = computed(() => {
-  const names = POPULAR[props.slug || ''] || []
-  if (!names.length) return []
-  const allItems = data.value?.services?.[0]?.price_items || []
-  return allItems
-    .filter((p) => names.includes(p.name))
-    .sort((a, b) => {
-      const ia = names.indexOf(a.name)
-      const ib = names.indexOf(b.name)
-      return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib)
-    })
-    .slice(0, 10)
+const popularItems = computed<PopularItem[]>(() => {
+  return POPULAR[props.slug || ''] || []
 })
-
-function priceLabel(item: CatalogPrice) {
-  if (item.price_type === 'free') return 'Бесплатно'
-  if (item.price_fixed != null) return `${item.price_fixed.toLocaleString('ru-RU')} ₽`
-  if (item.price_from != null) return `от ${item.price_from.toLocaleString('ru-RU')} ₽`
-  return 'уточняйте'
-}
 </script>
 
 <template>
@@ -103,7 +81,7 @@ function priceLabel(item: CatalogPrice) {
         <div v-for="item in popularItems" :key="item.name" class="card">
           <div class="card-head">
             <span class="card-name">{{ item.name }}</span>
-            <span class="card-price">{{ priceLabel(item) }}</span>
+            <span class="card-price">{{ item.price }}</span>
           </div>
           <div class="card-meta">
             <span class="meta">Гарантия до 6 мес.</span>
@@ -111,12 +89,8 @@ function priceLabel(item: CatalogPrice) {
           <a class="card-cta" href="#order">Заказать</a>
         </div>
       </div>
-      <div v-if="!popularItems.length" class="empty">
-        <p>Не нашли нужную работу?</p>
-        <p>В полном прайс-листе доступны все услуги по ремонту.</p>
-      </div>
       <NuxtLink to="/prices" class="all-link">
-        {{ popularItems.length ? 'Посмотреть все цены' : 'Посмотреть все цены' }}
+        Посмотреть все цены
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
       </NuxtLink>
       <p class="note">Цены указаны за работу. Стоимость запчастей и комплектующих рассчитывается отдельно.</p>
@@ -229,14 +203,6 @@ function priceLabel(item: CatalogPrice) {
   color: var(--dim);
   text-align: center;
   line-height: 1.5;
-}
-.empty {
-  text-align: center;
-  margin-bottom: 16px;
-}
-.empty p {
-  color: var(--dim);
-  font-size: 15px;
 }
 @media (max-width: 880px) {
   .grid { grid-template-columns: 1fr 1fr; }
