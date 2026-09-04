@@ -41,6 +41,8 @@ const FEATURED_LIMIT: Record<string, number> = {
   additional: 10,
 }
 
+const route = useRoute()
+
 const SLUG_TO_TAB: Record<string, string> = {
   'remont-noutbukov': 'notebook',
   'remont-kompyuterov': 'pc',
@@ -50,13 +52,23 @@ const SLUG_TO_TAB: Record<string, string> = {
   'chistka-noutbuka': 'notebook',
 }
 
-const defaultTab = computed(() =>
-  (props.serviceSlug && SLUG_TO_TAB[props.serviceSlug]) || 'notebook',
-)
+const defaultTab = computed(() => {
+  if (route.query.device === 'iphone') return 'apple'
+  return (props.serviceSlug && SLUG_TO_TAB[props.serviceSlug]) || 'notebook'
+})
 
 const activeTab = ref('notebook')
 watch(defaultTab, (v) => { activeTab.value = v }, { immediate: true })
 watch(activeTab, (v) => { if (v !== 'apple') appleSubTab.value = 'iPhone' })
+watch(appleSubTab, () => { iphoneModel.value = '' })
+
+if (route.query.device === 'iphone') {
+  appleSubTab.value = 'iPhone'
+} else if (route.query.device === 'ipad') {
+  appleSubTab.value = 'iPad'
+} else if (route.query.device === 'macbook') {
+  appleSubTab.value = 'MacBook'
+}
 const items = computed(() => props.catalogPrices || [])
 
 const APPLE_SUB_TABS = [
@@ -67,6 +79,27 @@ const APPLE_SUB_TABS = [
 
 const appleSubTab = ref('iPhone')
 
+const IPHONE_MODELS = [
+  { id: '7', label: 'iPhone 7', suffix: 'До 8' },
+  { id: '8', label: 'iPhone 8', suffix: 'До 8' },
+  { id: 'SE2', label: 'iPhone SE 2', suffix: 'До 8' },
+  { id: 'X', label: 'iPhone X', suffix: 'X–13' },
+  { id: 'XS', label: 'iPhone XS', suffix: 'X–13' },
+  { id: 'XR', label: 'iPhone XR', suffix: 'X–13' },
+  { id: 'SE3', label: 'iPhone SE 3', suffix: 'X–13' },
+  { id: '11', label: 'iPhone 11', suffix: 'X–13' },
+  { id: '12', label: 'iPhone 12', suffix: 'X–13' },
+  { id: '13', label: 'iPhone 13', suffix: 'X–13' },
+  { id: '14', label: 'iPhone 14', suffix: '14–15' },
+  { id: '15', label: 'iPhone 15', suffix: '14–15' },
+  { id: '16', label: 'iPhone 16', suffix: '16 / 16 Plus' },
+  { id: '16pro', label: 'iPhone 16 Pro', suffix: '16 Pro' },
+  { id: '17', label: 'iPhone 17', suffix: '17 / 17e' },
+  { id: '17pro', label: 'iPhone 17 Pro', suffix: '17 Pro' },
+]
+
+const iphoneModel = ref('')
+
 const activeCategories = computed(() => {
   if (activeTab.value === 'apple') {
     return [appleSubTab.value]
@@ -74,9 +107,19 @@ const activeCategories = computed(() => {
   return DEVICE_TABS.find((t) => t.id === activeTab.value)?.categories || []
 })
 
-const activeItems = computed(() =>
-  items.value.filter((p) => activeCategories.value.includes(p.category_name)),
-)
+const activeItems = computed(() => {
+  const base = items.value.filter((p) => activeCategories.value.includes(p.category_name))
+  if (activeTab.value === 'apple' && appleSubTab.value === 'iPhone' && props.showAll && iphoneModel.value) {
+    const model = IPHONE_MODELS.find((m) => m.id === iphoneModel.value)
+    if (model) {
+      return base.filter((item) => {
+        const nameSuffix = item.name.split(' — ')[1] || ''
+        return nameSuffix.includes(model.suffix)
+      })
+    }
+  }
+  return base
+})
 
 const featuredItems = computed(() => {
   if (props.showAll) return activeItems.value
@@ -259,21 +302,52 @@ watch(hasGroups, (v) => { if (!v) group.value = '' })
             @click="appleSubTab = sub.id"
           >{{ sub.label }}</button>
         </div>
-        <div class="table">
-          <h3>{{ activeTab === 'apple' ? appleSubTab : DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
-          <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
-            <p v-if="groupName" class="group-label">{{ groupName }}</p>
+
+        <template v-if="activeTab === 'apple' && appleSubTab === 'iPhone'">
+          <div class="model-select">
+            <span class="model-label">Выберите модель:</span>
+            <div class="model-grid">
+              <button
+                v-for="m in IPHONE_MODELS"
+                :key="m.id"
+                type="button"
+                :class="{ active: iphoneModel === m.id }"
+                @click="iphoneModel = m.id"
+              >{{ m.label }}</button>
+            </div>
+          </div>
+          <div v-if="iphoneModel" class="table">
+            <h3>{{ IPHONE_MODELS.find((m) => m.id === iphoneModel)?.label }}</h3>
             <ul>
-              <li v-for="item in groupItems" :key="item.key || item.name">
-                <span>
-                  {{ item.name }}
-                  <small v-if="duplicateNames.get(item.name) > 1" class="cat-hint">{{ CATEGORY_LABELS[item.category_name] || item.category_name }}</small>
-                </span>
+              <li v-for="item in featuredItems" :key="item.key || item.name">
+                <span>{{ item.publicName || item.name.split(' — ')[0] }}</span>
                 <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
               </li>
             </ul>
-          </template>
-        </div>
+          </div>
+          <div v-else class="table-empty">
+            <p>Выберите модель выше, чтобы увидеть стоимость работ</p>
+          </div>
+          <p class="model-hint">Не знаете точную модель? Укажите её в заявке или опишите устройство — поможем определить модель и предварительную стоимость.</p>
+        </template>
+
+        <template v-else>
+          <div class="table">
+            <h3>{{ activeTab === 'apple' ? appleSubTab : DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
+            <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
+              <p v-if="groupName" class="group-label">{{ groupName }}</p>
+              <ul>
+                <li v-for="item in groupItems" :key="item.key || item.name">
+                  <span>
+                    {{ item.name }}
+                    <small v-if="duplicateNames.get(item.name) > 1" class="cat-hint">{{ CATEGORY_LABELS[item.category_name] || item.category_name }}</small>
+                  </span>
+                  <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
+                </li>
+              </ul>
+            </template>
+          </div>
+        </template>
       </template>
       <template v-else>
         <p class="section-label">Популярные услуги</p>
@@ -310,6 +384,9 @@ watch(hasGroups, (v) => { if (!v) group.value = '' })
             </ul>
           </template>
         </div>
+        <NuxtLink v-if="activeTab === 'apple' && appleSubTab === 'iPhone'" to="/prices?device=iphone" class="model-cta">
+          Цены для моей модели →
+        </NuxtLink>
       </template>
 
       <p class="note">
@@ -482,6 +559,67 @@ select {
   padding: 6px 14px;
   font-size: 13px;
 }
+.model-select {
+  margin-bottom: 16px;
+}
+.model-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dim);
+  margin-bottom: 10px;
+}
+.model-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.model-grid button {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.model-grid button.active,
+.model-grid button:hover {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+.table-empty {
+  background: #fff;
+  border-radius: 14px;
+  padding: 40px 20px;
+  border: 1px solid var(--border);
+  text-align: center;
+  color: var(--dim);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.model-hint {
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.model-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.model-cta:hover {
+  opacity: 0.8;
+}
 .table {
   background: #fff;
   border-radius: 14px;
@@ -603,5 +741,6 @@ select {
   .table li { font-size: 13px; flex-direction: column; gap: 4px; }
   .table b { font-size: 14px; }
   .calc { padding: 16px; gap: 12px; }
+  .model-grid button { padding: 6px 10px; font-size: 12px; }
 }
 </style>

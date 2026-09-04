@@ -6,9 +6,19 @@ const props = defineProps<{
 interface PopularItem {
   name: string
   price: string
+  ctaLink?: string
+  ctaText?: string
 }
 
 const POPULAR: Record<string, PopularItem[]> = {
+  'remont-iphone': [
+    { name: 'Замена дисплея', price: 'от 3 490 ₽', ctaLink: '/prices?device=iphone', ctaText: 'Цены для моей модели →' },
+    { name: 'Замена аккумулятора', price: 'от 2 990 ₽' },
+    { name: 'Разъём зарядки', price: 'от 2 990 ₽' },
+    { name: 'Камера', price: 'от 2 490 ₽' },
+    { name: 'Динамик / микрофон', price: 'от 1 990 ₽' },
+    { name: 'Компонентный ремонт', price: 'от 6 900 ₽' },
+  ],
   'remont-smartfonov': [
     { name: 'Диагностика смартфона', price: 'Бесплатно' },
     { name: 'Замена дисплейного модуля', price: 'от 1 990 ₽' },
@@ -86,7 +96,8 @@ const popularItems = computed<PopularItem[]>(() => {
           <div class="card-meta">
             <span class="meta">Гарантия до 6 мес.</span>
           </div>
-          <a class="card-cta" href="#order">Заказать</a>
+          <NuxtLink v-if="item.ctaLink" :to="item.ctaLink" class="card-cta cta-link">{{ item.ctaText || 'Подробнее' }}</NuxtLink>
+          <a v-else class="card-cta" href="#order">Заказать</a>
         </div>
       </div>
       <NuxtLink to="/prices" class="all-link">
@@ -177,6 +188,15 @@ const popularItems = computed<PopularItem[]>(() => {
 }
 .card-cta:hover {
   background: #e04410;
+}
+.card-cta.cta-link {
+  background: transparent;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+}
+.card-cta.cta-link:hover {
+  background: var(--brand);
+  color: #fff;
 }
 .all-link {
   display: flex;
