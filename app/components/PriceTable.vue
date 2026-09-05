@@ -155,7 +155,11 @@ const groupedByGroup = computed(() => {
 watch(groupedByGroup, (groups) => {
   const names = [...groups.keys()].filter(Boolean)
   expandedGroups.value.clear()
-  if (names.length) expandedGroups.value.add(names[0])
+  if (props.showAll) {
+    for (const n of names) expandedGroups.value.add(n)
+  } else if (names.length) {
+    expandedGroups.value.add(names[0])
+  }
 }, { immediate: true })
 
 const duplicateNames = computed(() => {
@@ -351,9 +355,9 @@ watch(hasGroups, (v) => { if (!v) group.value = '' })
           <div class="table">
             <h3>{{ activeTab === 'apple' ? appleSubTab : DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
             <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
-              <div v-if="groupName" class="group-section" :class="{ collapsed: !expandedGroups.has(groupName) }">
+              <div class="group-section" :class="{ collapsed: !expandedGroups.has(groupName) }">
                 <button class="group-toggle" type="button" @click="toggleGroup(groupName)">
-                  <span>{{ groupName }}</span>
+                  <span>{{ groupName || 'Другое' }}</span>
                   <span class="group-count">{{ groupItems.length }}</span>
                   <svg class="group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
                 </button>
