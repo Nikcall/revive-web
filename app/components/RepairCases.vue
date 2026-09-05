@@ -7,7 +7,6 @@ interface RepairCase {
   repair?: string
   result?: string
   tags: string[]
-  slug: string
 }
 
 const CASES: RepairCase[] = [
@@ -19,7 +18,6 @@ const CASES: RepairCase[] = [
     repair: 'Заменили контроллер питания и повреждённый дроссель.',
     result: 'Плата прошла POST, стабильная работа под нагрузкой.',
     tags: ['Материнская плата', 'Компонентный ремонт', 'Цепи питания'],
-    slug: 'gigabyte-b450m-ne-zapuskaetsya',
   },
   {
     device: 'Системный блок',
@@ -29,7 +27,6 @@ const CASES: RepairCase[] = [
     repair: 'Заменили неисправный модуль оперативной памяти.',
     result: 'Система прошла повторное тестирование без сбоев.',
     tags: ['ПК', 'Диагностика', 'ОЗУ'],
-    slug: 'sistemniy-blok-siniy-ekran',
   },
   {
     device: 'iPhone 12 mini',
@@ -37,9 +34,14 @@ const CASES: RepairCase[] = [
     summary: 'Диагностика шлейфа датчиков под микроскопом. Микропайка выполнена.',
     diagnostics: 'Проведена диагностика системы Face ID и работа с шлейфом датчиков под микроскопом с применением микропайки.',
     tags: ['Смартфон', 'Микропайка', 'Face ID'],
-    slug: 'iphone-12-mini-face-id',
   },
 ]
+
+const expanded = ref<number | null>(null)
+
+function toggle(i: number) {
+  expanded.value = expanded.value === i ? null : i
+}
 </script>
 
 <template>
@@ -51,11 +53,12 @@ const CASES: RepairCase[] = [
         <p class="subtitle">Каждый кейс — реальный случай из практики REVIVE.</p>
       </div>
       <div class="grid">
-        <NuxtLink
-          v-for="item in CASES"
-          :key="item.slug"
-          :to="`/cases/${item.slug}`"
+        <div
+          v-for="(item, i) in CASES"
+          :key="i"
           class="card"
+          :class="{ open: expanded === i }"
+          @click="toggle(i)"
         >
           <div class="card-head">
             <h3 class="device">{{ item.device }}</h3>
@@ -65,8 +68,22 @@ const CASES: RepairCase[] = [
           <div v-if="item.tags?.length" class="tags">
             <span v-for="tag in item.tags" :key="tag">{{ tag }}</span>
           </div>
-          <span class="more">Подробнее о ремонте →</span>
-        </NuxtLink>
+          <span class="more">{{ expanded === i ? 'Свернуть' : 'Подробнее о ремонте' }} <svg :class="{ rotated: expanded === i }" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg></span>
+          <div v-if="expanded === i" class="details" @click.stop>
+            <div v-if="item.diagnostics" class="detail">
+              <span class="detail-label">Диагностика</span>
+              <p>{{ item.diagnostics }}</p>
+            </div>
+            <div v-if="item.repair" class="detail">
+              <span class="detail-label">Что сделали</span>
+              <p>{{ item.repair }}</p>
+            </div>
+            <div v-if="item.result" class="detail">
+              <span class="detail-label">Результат</span>
+              <p>{{ item.result }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -129,11 +146,11 @@ const CASES: RepairCase[] = [
   display: flex;
   flex-direction: column;
   gap: 14px;
-  text-decoration: none;
-  color: inherit;
+  cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
-.card:hover {
+.card:hover,
+.card.open {
   border-color: rgba(253, 81, 25, 0.3);
   box-shadow: 0 8px 28px rgba(253, 81, 25, 0.06);
 }
@@ -155,7 +172,6 @@ const CASES: RepairCase[] = [
   font-size: 13px;
   color: #555;
   line-height: 1.55;
-  flex: 1;
 }
 .tags {
   display: flex;
@@ -171,10 +187,45 @@ const CASES: RepairCase[] = [
   color: var(--brand);
 }
 .more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 13px;
   font-weight: 700;
   color: var(--brand);
   margin-top: auto;
+}
+.more svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+.more svg.rotated {
+  transform: rotate(180deg);
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.detail-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.detail p {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.55;
 }
 @media (max-width: 880px) {
   .grid { grid-template-columns: 1fr 1fr; }
