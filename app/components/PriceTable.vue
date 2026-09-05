@@ -100,6 +100,16 @@ if (route.query.device === 'iphone') {
 }
 const items = computed(() => props.catalogPrices || [])
 
+const expandedGroups = ref<Set<string>>(new Set())
+
+function toggleGroup(g: string) {
+  if (expandedGroups.value.has(g)) {
+    expandedGroups.value.delete(g)
+  } else {
+    expandedGroups.value.add(g)
+  }
+}
+
 const activeCategories = computed(() => {
   if (activeTab.value === 'apple') {
     return [appleSubTab.value]
@@ -141,6 +151,13 @@ const groupedByGroup = computed(() => {
   }
   return map
 })
+
+watch(groupedByGroup, (groups) => {
+  const names = [...groups.keys()].filter(Boolean)
+  for (const n of names) {
+    if (!expandedGroups.value.has(n)) expandedGroups.value.add(n)
+  }
+}, { immediate: true })
 
 const duplicateNames = computed(() => {
   const counts = new Map<string, number>()
@@ -335,16 +352,22 @@ watch(hasGroups, (v) => { if (!v) group.value = '' })
           <div class="table">
             <h3>{{ activeTab === 'apple' ? appleSubTab : DEVICE_TABS.find((t) => t.id === activeTab)?.label }}</h3>
             <template v-for="[groupName, groupItems] in groupedByGroup" :key="groupName">
-              <p v-if="groupName" class="group-label">{{ groupName }}</p>
-              <ul>
-                <li v-for="item in groupItems" :key="item.key || item.name">
-                  <span>
-                    {{ item.name }}
-                    <small v-if="duplicateNames.get(item.name) > 1" class="cat-hint">{{ CATEGORY_LABELS[item.category_name] || item.category_name }}</small>
-                  </span>
-                  <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
-                </li>
-              </ul>
+              <div v-if="groupName" class="group-section" :class="{ collapsed: !expandedGroups.has(groupName) }">
+                <button class="group-toggle" type="button" @click="toggleGroup(groupName)">
+                  <span>{{ groupName }}</span>
+                  <span class="group-count">{{ groupItems.length }}</span>
+                  <svg class="group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                <ul v-show="expandedGroups.has(groupName)">
+                  <li v-for="item in groupItems" :key="item.key || item.name">
+                    <span>
+                      {{ item.name }}
+                      <small v-if="duplicateNames.get(item.name) > 1" class="cat-hint">{{ CATEGORY_LABELS[item.category_name] || item.category_name }}</small>
+                    </span>
+                    <b :class="{ free: item.price_type === 'free' }">{{ catalogPriceLabel(item) }}</b>
+                  </li>
+                </ul>
+              </div>
             </template>
           </div>
         </template>
@@ -652,6 +675,51 @@ select {
 }
 .group-label:first-child {
   margin-top: 0;
+}
+.group-section {
+  margin-bottom: 2px;
+}
+.group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s;
+}
+.group-toggle:hover {
+  color: #e04410;
+}
+.group-count {
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--soft);
+  color: var(--dim);
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+.group-chevron {
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.group-section:not(.collapsed) .group-chevron {
+  transform: rotate(180deg);
+}
+.group-section.collapsed .group-toggle {
+  border-bottom-color: transparent;
 }
 .table li {
   display: flex;
