@@ -52,25 +52,6 @@ const SLUG_TO_TAB: Record<string, string> = {
   'chistka-noutbuka': 'notebook',
 }
 
-const defaultTab = computed(() => {
-  if (route.query.device === 'iphone') return 'apple'
-  return (props.serviceSlug && SLUG_TO_TAB[props.serviceSlug]) || 'notebook'
-})
-
-const activeTab = ref('notebook')
-watch(defaultTab, (v) => { activeTab.value = v }, { immediate: true })
-watch(activeTab, (v) => { if (v !== 'apple') appleSubTab.value = 'iPhone' })
-watch(appleSubTab, () => { iphoneModel.value = '' })
-
-if (route.query.device === 'iphone') {
-  appleSubTab.value = 'iPhone'
-} else if (route.query.device === 'ipad') {
-  appleSubTab.value = 'iPad'
-} else if (route.query.device === 'macbook') {
-  appleSubTab.value = 'MacBook'
-}
-const items = computed(() => props.catalogPrices || [])
-
 const APPLE_SUB_TABS = [
   { id: 'iPhone', label: 'iPhone' },
   { id: 'iPad', label: 'iPad' },
@@ -98,7 +79,26 @@ const IPHONE_MODELS = [
   { id: '17pro', label: 'iPhone 17 Pro', suffix: '17 Pro' },
 ]
 
+const defaultTab = computed(() => {
+  if (route.query.device === 'iphone') return 'apple'
+  return (props.serviceSlug && SLUG_TO_TAB[props.serviceSlug]) || 'notebook'
+})
+
 const iphoneModel = ref('')
+
+const activeTab = ref('notebook')
+watch(defaultTab, (v) => { activeTab.value = v }, { immediate: true })
+watch(activeTab, (v) => { if (v !== 'apple') appleSubTab.value = 'iPhone' })
+watch(appleSubTab, () => { iphoneModel.value = '' })
+
+if (route.query.device === 'iphone') {
+  appleSubTab.value = 'iPhone'
+} else if (route.query.device === 'ipad') {
+  appleSubTab.value = 'iPad'
+} else if (route.query.device === 'macbook') {
+  appleSubTab.value = 'MacBook'
+}
+const items = computed(() => props.catalogPrices || [])
 
 const activeCategories = computed(() => {
   if (activeTab.value === 'apple') {
