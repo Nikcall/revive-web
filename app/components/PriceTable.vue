@@ -154,9 +154,8 @@ const groupedByGroup = computed(() => {
 
 watch(groupedByGroup, (groups) => {
   const names = [...groups.keys()].filter(Boolean)
-  for (const n of names) {
-    if (!expandedGroups.value.has(n)) expandedGroups.value.add(n)
-  }
+  expandedGroups.value.clear()
+  if (names.length) expandedGroups.value.add(names[0])
 }, { immediate: true })
 
 const duplicateNames = computed(() => {
