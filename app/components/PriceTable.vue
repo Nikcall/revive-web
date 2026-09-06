@@ -73,9 +73,9 @@ const IPHONE_MODELS = [
   { id: '13', label: 'iPhone 13', suffix: 'X–13' },
   { id: '14', label: 'iPhone 14', suffix: '14–15' },
   { id: '15', label: 'iPhone 15', suffix: '14–15' },
-  { id: '16', label: 'iPhone 16', suffix: '16 / 16 Plus' },
+  { id: '16', label: 'iPhone 16', suffix: '16' },
   { id: '16pro', label: 'iPhone 16 Pro', suffix: '16 Pro' },
-  { id: '17', label: 'iPhone 17', suffix: '17 / 17e' },
+  { id: '17', label: 'iPhone 17', suffix: '17' },
   { id: '17pro', label: 'iPhone 17 Pro', suffix: '17 Pro' },
 ]
 
@@ -123,8 +123,8 @@ const activeItems = computed(() => {
     const model = IPHONE_MODELS.find((m) => m.id === iphoneModel.value)
     if (model) {
       return base.filter((item) => {
-        const nameSuffix = item.name.split(' — ')[1] || ''
-        return nameSuffix.includes(model.suffix)
+        const mr = (item as any).modelRange || ''
+        return !mr || mr === model.suffix
       })
     }
   }

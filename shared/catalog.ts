@@ -5,6 +5,7 @@ export type CatalogPrice = PriceItem & {
   service_slug: string
   service_name: string
   landing_path: string
+  modelRange: string
 }
 
 export type CatalogService = {

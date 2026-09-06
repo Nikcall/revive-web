@@ -76,6 +76,7 @@ type CrmPricelist = {
       sku?: string
       group?: string | null
       name?: string
+      modelRange?: string | null
       pricingMode?: string | null
       priceMin?: number | null
       priceMax?: number | null
@@ -124,6 +125,7 @@ function mapCrmToServices(pricelist: CrmPricelist): CatalogService[] {
         key: item.sku || '',
         name: item.name || '',
         group: item.group || '',
+        modelRange: item.modelRange || '',
         description: '',
         price_type: priceType,
         price_from: item.priceMin ?? null,
